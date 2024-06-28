@@ -7,7 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 
 class SkipjackQueTimeFragment : Fragment() {
-
+    fun newInstance(queId: Long): SkipjackQueTimeFragment {
+        val fragment = SkipjackQueTimeFragment()
+        val args = Bundle()
+        args.putLong("QUE_ID", queId)
+        fragment.setArguments(args)
+        return fragment
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -13,7 +13,7 @@ class FishClient {
 
     companion object {
         //var apiAddr: String = "192.168.20.61"
-        var apiAddr: String = "192.168.54.53"
+        var apiAddr: String = "99.42.1.47"
         fun Init(context: Context, callback: InitCallback) {
             var master = MasterClient(context)
             master.also {

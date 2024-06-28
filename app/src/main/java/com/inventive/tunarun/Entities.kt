@@ -1110,6 +1110,7 @@ class Fish {
             var queue_time_thaw_actual: Date? = null
             var queue_time_cut_plan: Date? = null
             var queue_time_cut_actual: Date? = null
+
             var queue_arrange_start: Date? = null
             var queue_arrange_finish: Date? = null
 

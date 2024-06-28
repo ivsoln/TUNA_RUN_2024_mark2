@@ -18,7 +18,7 @@ class SkipjackQueActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
-    lateinit var textBarcode: EditText
+    lateinit var textQueueNo: EditText
     lateinit var viewSpecies: TextView
     lateinit var viewOrigin: TextView
     lateinit var viewBatchNo: TextView
@@ -28,7 +28,7 @@ class SkipjackQueActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_skipjack_que)
 
-        textBarcode = findViewById(R.id.text_barcode)
+        textQueueNo = findViewById(R.id.text_queueNo)
         viewSpecies = findViewById(R.id.view_species)
         viewOrigin = findViewById(R.id.view_origin)
         viewBatchNo = findViewById(R.id.view_batchNo)
@@ -38,7 +38,7 @@ class SkipjackQueActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager2)
 
         val adapter = SkipjackQueAdapter(supportFragmentManager, lifecycle,this)
-        adapter.number = 89 //pass data object to adapter to view in fragment element
+        adapter.queueId = 1 //pass data object to adapter to view in fragment element
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
