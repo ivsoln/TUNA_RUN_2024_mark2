@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackQueProductFragment">
+
+    <EditText
+        android:id="@+id/text_customer"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="#CUSTOMER"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cap_customer"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/cap_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="CUSTOMER"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_PlanTime"
+        app:layout_constraintTop_toBottomOf="@+id/text_PlanTime" />
+
+    <TextView
+        android:id="@+id/cap_productType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="PRODUCT"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_PlanTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/text_PlanTime"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="#PRODUCT"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cap_productType"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

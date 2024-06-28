@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TUNA_RUN2024"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".SkipjackQueListActivity"
+            android:exported="false" />
+        <activity android:name=".SkipjackColorActivity" />
+        <activity android:name=".SkipjackTagColorActivity" />
+        <activity
+            android:name=".TunarunMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackWipTagEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCleanTagActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCookTmptrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackSteamOffActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCookListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCleanMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackSteamMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCookPostTagActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCookPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackCookMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackWipTagActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackWipCookRackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackWipMainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TUNA_RUN2024" />
+        <activity
+            android:name=".BlindReceiveListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackShiftActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackQueActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SkipjackBinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BlindReceiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
+

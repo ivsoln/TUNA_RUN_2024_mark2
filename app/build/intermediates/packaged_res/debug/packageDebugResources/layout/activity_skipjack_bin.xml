@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackBinActivity">
+
+    <TextView
+        android:id="@+id/view_shift"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="dd.MM.yyyy - DN"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="serif"
+        android:hint="#RESULT"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_list" />
+
+    <TextView
+        android:id="@+id/view_run"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/Light_Green"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="@string/run"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/labelQueue"
+        app:layout_constraintEnd_toEndOf="@+id/text_weight"
+        app:layout_constraintStart_toStartOf="@+id/text_weight"
+        app:layout_constraintTop_toTopOf="@+id/text_queue" />
+
+    <TextView
+        android:id="@+id/view_list"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Amber_A400"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="@string/view_list"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/labelQueue"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelQueue"
+        app:layout_constraintTop_toBottomOf="@+id/labelQueue" />
+
+    <TextView
+        android:id="@+id/view_new"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/Light_Green_A400"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="@string/new_"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_list"
+        app:layout_constraintEnd_toEndOf="@+id/text_weight"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_weight"
+        app:layout_constraintTop_toTopOf="@+id/view_list" />
+
+    <EditText
+        android:id="@+id/text_batchNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_batch_no"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_sloc"
+        app:layout_constraintStart_toStartOf="@+id/labelBatchNo"
+        app:layout_constraintTop_toBottomOf="@+id/labelBatchNo"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_lotNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_lot_no"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_specyDesc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelBatchNo"
+        app:layout_constraintTop_toBottomOf="@+id/capt_lotNo"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_"
+        android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_sloc"
+        app:layout_constraintStart_toStartOf="@+id/text_sloc"
+        app:layout_constraintTop_toBottomOf="@+id/labelWeight"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_queue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_specyDesc"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/text_specy"
+        app:layout_constraintTop_toBottomOf="@+id/text_lotNo"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/labelWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/weight_kg"
+        app:layout_constraintEnd_toEndOf="@+id/text_sloc"
+        app:layout_constraintTop_toTopOf="@+id/capt_lotNo" />
+
+    <TextView
+        android:id="@+id/labelQueueType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/queue_no"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_queue"
+        app:layout_constraintEnd_toStartOf="@+id/text_queue"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/labelBatchNo" />
+
+    <TextView
+        android:id="@+id/labelQueue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Light_Green"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_type"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_queue"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/labelQueueType"
+        app:layout_constraintTop_toBottomOf="@+id/labelQueueType" />
+
+    <TextView
+        android:id="@+id/labelBatchNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="@string/batch_no"
+        app:layout_constraintStart_toStartOf="@+id/text_origin"
+        app:layout_constraintTop_toBottomOf="@+id/text_origin" />
+
+    <TextView
+        android:id="@+id/capt_lotNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="@string/lot_no"
+        app:layout_constraintStart_toStartOf="@+id/text_origin"
+        app:layout_constraintTop_toBottomOf="@+id/text_batchNo" />
+
+    <EditText
+        android:id="@+id/text_origin"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_origin"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_specy"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_spe"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_origin"
+        app:layout_constraintStart_toEndOf="@+id/text_origin"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_specyDesc"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_desc"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_specy"
+        app:layout_constraintStart_toEndOf="@+id/text_specy"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/text_sloc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_sloc"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_specyDesc"
+        app:layout_constraintEnd_toEndOf="@+id/goto_blindReceive"
+        app:layout_constraintStart_toEndOf="@+id/text_specyDesc"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/goto_blindReceive"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Amber_A400"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="@string/symb_plus"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_barcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_barcode" />
+
+    <EditText
+        android:id="@+id/text_barcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_scan_barcode"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/goto_blindReceive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_shift"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/bin_receiving"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="@string/origin"
+        app:layout_constraintStart_toStartOf="@+id/text_barcode"
+        app:layout_constraintTop_toBottomOf="@+id/text_barcode" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/species"
+        app:layout_constraintBottom_toTopOf="@+id/text_origin"
+        app:layout_constraintEnd_toEndOf="@+id/text_specyDesc"
+        app:layout_constraintStart_toStartOf="@+id/text_specy" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/location"
+        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="@+id/text_sloc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

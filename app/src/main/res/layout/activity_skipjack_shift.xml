@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackShiftActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="SHIFT"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_date_picker"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/Primary_090"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="01/01/2000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="DATE"
+        app:layout_constraintStart_toStartOf="@+id/text_date_picker"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="SHIFT"
+        app:layout_constraintStart_toStartOf="@+id/text_date_picker"
+        app:layout_constraintTop_toBottomOf="@+id/text_date_picker" />
+
+    <TextView
+        android:id="@+id/text_ds"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+        android:background="@color/Blue_Gray_050"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="DS"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/text_ns"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="NS"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_ds"
+        app:layout_constraintTop_toTopOf="@+id/text_ds" />
+</androidx.constraintlayout.widget.ConstraintLayout>

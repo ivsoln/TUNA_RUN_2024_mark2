@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackCleanMainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="CLEANING"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="DATE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="SHIFT"
+        app:layout_constraintStart_toStartOf="@+id/view_shift"
+        app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/view_date"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center"
+        android:hint="dd.MM.yyyy"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/view_shift"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center"
+        android:hint="DN"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_date"
+        app:layout_constraintTop_toTopOf="@+id/view_date"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/goto_tempRec"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Red_A200"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="TEMP. RECORD"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/goto_cleaning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/goto_cleaning"
+        app:layout_constraintTop_toBottomOf="@+id/view_date"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/goto_cleaning"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Light_Green"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="CLEANING"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_shift"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view_date"
+        app:layout_constraintTop_toBottomOf="@+id/goto_tempRec"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/goto_batchCook"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Amber_A400"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="BATCH COOK"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/goto_cleaning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/goto_cleaning"
+        app:layout_constraintTop_toBottomOf="@+id/goto_cleaning"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackCleanTagActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/hdr_cleaning"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/capt_scanned"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="@string/capt_scan_tag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/capt_rackNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="RACK NO."
+        app:layout_constraintStart_toStartOf="@+id/actn_ds"
+        app:layout_constraintTop_toBottomOf="@+id/actn_ds" />
+
+    <TextView
+        android:id="@+id/capt_fracPick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="PICK EACH"
+        app:layout_constraintBottom_toTopOf="@+id/text_eachPick"
+        app:layout_constraintEnd_toEndOf="@+id/text_eachPick" />
+
+    <TextView
+        android:id="@+id/capt_trayPick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="PICK TRAY"
+        app:layout_constraintBottom_toTopOf="@+id/text_trayPick"
+        app:layout_constraintEnd_toEndOf="@+id/text_trayPick" />
+
+    <TextView
+        android:id="@+id/capt_skinLn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="SKIN LINE"
+        app:layout_constraintStart_toStartOf="@+id/text_batchGroup"
+        app:layout_constraintTop_toBottomOf="@+id/text_batchGroup" />
+
+    <TextView
+        android:id="@+id/capt_cleanLn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="CLEAN LINE"
+        app:layout_constraintBottom_toBottomOf="@+id/capt_skinLn"
+        app:layout_constraintStart_toStartOf="@+id/text_cleanLine" />
+
+    <TextView
+        android:id="@+id/capt_rackNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="RACK NUM."
+        app:layout_constraintStart_toStartOf="@+id/view_rackNum"
+        app:layout_constraintTop_toTopOf="@+id/capt_rackNo" />
+
+    <TextView
+        android:id="@+id/capt_batchCook"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="COOK NO."
+        app:layout_constraintStart_toStartOf="@+id/view_cookNo"
+        app:layout_constraintTop_toTopOf="@+id/capt_rackNum" />
+
+    <TextView
+        android:id="@+id/actn_ds"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Cyan_A100"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="AM"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/text_barcode"
+        app:layout_constraintTop_toBottomOf="@+id/text_barcode" />
+
+    <TextView
+        android:id="@+id/actn_push"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Light_Green"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="PUSH"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_cleanLine"
+        app:layout_constraintEnd_toEndOf="@+id/text_batchGroup"
+        app:layout_constraintStart_toEndOf="@+id/text_cleanLine"
+        app:layout_constraintTop_toTopOf="@+id/text_cleanLine" />
+
+    <TextView
+        android:id="@+id/view_rackNo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|start"
+        android:hint="#RACK"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/actn_pm"
+        app:layout_constraintStart_toStartOf="@+id/capt_rackNo"
+        app:layout_constraintTop_toBottomOf="@+id/capt_rackNo" />
+
+    <TextView
+        android:id="@+id/view_trayUsed"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|end"
+        android:hint="#"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_trayCount"
+        app:layout_constraintStart_toStartOf="@+id/view_rackNo" />
+
+    <TextView
+        android:id="@+id/view_eachUsed"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|end"
+        android:hint="#"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_eachCount"
+        app:layout_constraintEnd_toStartOf="@+id/view_eachCount" />
+
+    <EditText
+        android:id="@+id/text_eachPick"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center|end"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_cookNo"
+        app:layout_constraintTop_toBottomOf="@+id/capt_trayPick"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/view_eachCount"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|end"
+        android:hint="#"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_eachPick"
+        app:layout_constraintEnd_toStartOf="@+id/text_eachPick" />
+
+    <TextView
+        android:id="@+id/view_trayCount"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|end"
+        android:hint="#"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_trayPick"
+        app:layout_constraintStart_toEndOf="@+id/view_trayUsed" />
+
+    <TextView
+        android:id="@+id/view_rackNum"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|start"
+        android:hint="#NUMBER"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/view_rackNo"
+        app:layout_constraintTop_toBottomOf="@+id/capt_rackNum" />
+
+    <TextView
+        android:id="@+id/view_cookNo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center|start"
+        android:hint="#COOK"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_remark"
+        app:layout_constraintStart_toEndOf="@+id/view_rackNum"
+        app:layout_constraintTop_toBottomOf="@+id/capt_batchCook" />
+
+    <TextView
+        android:id="@+id/actn_pm"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Red_100"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="PM"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actn_ds"
+        app:layout_constraintStart_toEndOf="@+id/actn_ds"
+        app:layout_constraintTop_toTopOf="@+id/actn_ds" />
+
+    <TextView
+        android:id="@+id/view_remark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Amber_A100"
+        android:fontFamily="serif"
+        android:gravity="center_vertical"
+        android:hint="#REMARK"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actn_ds"
+        app:layout_constraintEnd_toEndOf="@+id/text_barcode"
+        app:layout_constraintStart_toEndOf="@+id/actn_pm"
+        app:layout_constraintTop_toTopOf="@+id/actn_ds"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/text_barcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="start"
+        android:hint="@string/hint_barcode"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/capt_scanned"
+        app:layout_constraintTop_toBottomOf="@+id/capt_scanned"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_batchGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="start"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_eachPick"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/capt_scanned"
+        app:layout_constraintTop_toBottomOf="@+id/text_trayPick"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_skinLine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_rackNo"
+        app:layout_constraintStart_toStartOf="@+id/capt_skinLn"
+        app:layout_constraintTop_toBottomOf="@+id/capt_skinLn"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_cleanLine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Amber_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_rackNum"
+        app:layout_constraintStart_toStartOf="@+id/view_rackNum"
+        app:layout_constraintTop_toBottomOf="@+id/capt_cleanLn"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_trayPick"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center|end"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/view_trayCount"
+        app:layout_constraintTop_toBottomOf="@+id/view_rackNo"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/capt_trayPick"
+        app:layout_constraintStart_toStartOf="@+id/view_trayUsed"
+        app:layout_constraintTop_toTopOf="@+id/capt_trayPick" />
+</androidx.constraintlayout.widget.ConstraintLayout>

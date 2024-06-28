@@ -1,0 +1,6 @@
+com.inventive.tunarun.test.app-core-1.5.0-0 C:\Users\bhumi\.gradle\caches\transforms-3\7abb391ea414411ae306671f34fc525d\transformed\core-1.5.0\res
+com.inventive.tunarun.test.app-annotation-experimental-1.4.0-1 C:\Users\bhumi\.gradle\caches\transforms-3\a4261bac46378ba6a108479cc22a8a25\transformed\annotation-experimental-1.4.0\res
+com.inventive.tunarun.test.app-androidTest-2 C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\build\generated\res\resValues\androidTest\debug
+com.inventive.tunarun.test.app-mergeDebugAndroidTestResources-3 C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.inventive.tunarun.test.app-mergeDebugAndroidTestResources-4 C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.inventive.tunarun.test.app-debugAndroidTest-5 C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

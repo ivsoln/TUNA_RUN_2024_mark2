@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/capt_que"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:gravity="left|center_vertical"
+        android:text="NO."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_que"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view_batchNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:hint="#BATCH_NO"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_que" />
+
+    <TextView
+        android:id="@+id/view_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:hint="#WEIGHT"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_batchNo" />
+
+    <TextView
+        android:id="@+id/view_lotNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:hint="#LOT_NO"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/capt_lot"
+        app:layout_constraintEnd_toEndOf="@+id/view_batchNo"
+        app:layout_constraintStart_toEndOf="@+id/capt_lot" />
+
+    <TextView
+        android:id="@+id/view_separate"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/Primary_090"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capt_lot" />
+
+    <TextView
+        android:id="@+id/capt_lot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="serif"
+        android:gravity="left|center_vertical"
+        android:text="LOT."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_weight"
+        app:layout_constraintStart_toEndOf="@+id/view_weight" />
+
+    <TextView
+        android:id="@+id/view_itemNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:hint="#ITEM_NO|SPECIES"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_que"
+        app:layout_constraintTop_toTopOf="@+id/view_que" />
+
+    <TextView
+        android:id="@+id/view_que"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/Amber_A200"
+        android:fontFamily="serif"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="#QUE"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/capt_que"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,290 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.inventive.tunarun"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:5:22-64
+12
+13    <permission
+13-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+14        android:name="com.inventive.tunarun.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.inventive.tunarun.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:8:5-98:19
+20        android:allowBackup="true"
+20-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:9:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.13.1] C:\Users\bhumi\.gradle\caches\transforms-3\bc326708cb7196bf07e7166a8af3f5e0\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+22        android:dataExtractionRules="@xml/data_extraction_rules"
+22-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:10:9-65
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:fullBackupContent="@xml/backup_rules"
+25-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:11:9-54
+26        android:icon="@mipmap/ic_launcher"
+26-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:12:9-43
+27        android:label="@string/app_name"
+27-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:13:9-41
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:14:9-54
+29        android:supportsRtl="true"
+29-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:15:9-35
+30        android:testOnly="true"
+31        android:theme="@style/Theme.TUNA_RUN2024"
+31-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:16:9-50
+32        android:usesCleartextTraffic="true" >
+32-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:17:9-44
+33        <activity
+33-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:19:9-21:40
+34            android:name="com.inventive.tunarun.SkipjackQueListActivity"
+34-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:20:13-52
+35            android:exported="false" />
+35-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:21:13-37
+36        <activity android:name="com.inventive.tunarun.SkipjackColorActivity" />
+36-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:22:9-59
+36-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:22:19-56
+37        <activity android:name="com.inventive.tunarun.SkipjackTagColorActivity" />
+37-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:23:9-62
+37-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:23:19-59
+38        <activity
+38-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:24:9-26:40
+39            android:name="com.inventive.tunarun.TunarunMainActivity"
+39-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:25:13-48
+40            android:exported="false" />
+40-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:26:13-37
+41        <activity
+41-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:27:9-29:40
+42            android:name="com.inventive.tunarun.SkipjackWipTagEditActivity"
+42-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:28:13-55
+43            android:exported="false" />
+43-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:29:13-37
+44        <activity
+44-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:30:9-32:40
+45            android:name="com.inventive.tunarun.SkipjackCleanTagActivity"
+45-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:31:13-53
+46            android:exported="false" />
+46-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:32:13-37
+47        <activity
+47-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:33:9-35:40
+48            android:name="com.inventive.tunarun.SkipjackCookTmptrActivity"
+48-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:34:13-54
+49            android:exported="false" />
+49-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:35:13-37
+50        <activity
+50-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:36:9-38:40
+51            android:name="com.inventive.tunarun.SkipjackSteamOffActivity"
+51-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:37:13-53
+52            android:exported="false" />
+52-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:38:13-37
+53        <activity
+53-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:39:9-41:40
+54            android:name="com.inventive.tunarun.SkipjackCookListActivity"
+54-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:40:13-53
+55            android:exported="false" />
+55-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:41:13-37
+56        <activity
+56-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:42:9-44:40
+57            android:name="com.inventive.tunarun.SkipjackCleanMainActivity"
+57-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:43:13-54
+58            android:exported="false" />
+58-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:44:13-37
+59        <activity
+59-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:45:9-47:40
+60            android:name="com.inventive.tunarun.SkipjackSteamMainActivity"
+60-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:46:13-54
+61            android:exported="false" />
+61-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:47:13-37
+62        <activity
+62-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:48:9-50:40
+63            android:name="com.inventive.tunarun.SkipjackCookPostTagActivity"
+63-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:49:13-56
+64            android:exported="false" />
+64-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:50:13-37
+65        <activity
+65-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:51:9-53:40
+66            android:name="com.inventive.tunarun.SkipjackCookPostActivity"
+66-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:52:13-53
+67            android:exported="false" />
+67-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:53:13-37
+68        <activity
+68-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:54:9-56:40
+69            android:name="com.inventive.tunarun.SkipjackCookMainActivity"
+69-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:55:13-53
+70            android:exported="false" />
+70-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:56:13-37
+71        <activity
+71-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:57:9-59:40
+72            android:name="com.inventive.tunarun.SkipjackWipTagActivity"
+72-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:58:13-51
+73            android:exported="false" />
+73-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:59:13-37
+74        <activity
+74-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:60:9-62:40
+75            android:name="com.inventive.tunarun.SkipjackWipCookRackActivity"
+75-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:61:13-56
+76            android:exported="false" />
+76-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:62:13-37
+77        <activity
+77-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:63:9-66:57
+78            android:name="com.inventive.tunarun.SkipjackWipMainActivity"
+78-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:64:13-52
+79            android:exported="false"
+79-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:65:13-37
+80            android:theme="@style/Theme.TUNA_RUN2024" />
+80-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:66:13-54
+81        <activity
+81-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:67:9-69:40
+82            android:name="com.inventive.tunarun.BlindReceiveListActivity"
+82-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:68:13-53
+83            android:exported="false" />
+83-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:69:13-37
+84        <activity
+84-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:70:9-72:40
+85            android:name="com.inventive.tunarun.SkipjackShiftActivity"
+85-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:71:13-50
+86            android:exported="false" />
+86-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:72:13-37
+87        <activity
+87-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:73:9-75:40
+88            android:name="com.inventive.tunarun.SkipjackQueActivity"
+88-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:74:13-48
+89            android:exported="false" />
+89-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:75:13-37
+90        <activity
+90-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:76:9-78:40
+91            android:name="com.inventive.tunarun.SkipjackBinActivity"
+91-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:77:13-48
+92            android:exported="false" />
+92-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:78:13-37
+93        <activity
+93-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:79:9-81:40
+94            android:name="com.inventive.tunarun.BlindReceiveActivity"
+94-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:80:13-49
+95            android:exported="false" />
+95-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:81:13-37
+96        <activity
+96-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:82:9-84:40
+97            android:name="com.inventive.tunarun.LoginActivity"
+97-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:83:13-42
+98            android:exported="false" />
+98-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:84:13-37
+99        <activity
+99-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:85:9-93:20
+100            android:name="com.inventive.tunarun.MainActivity"
+100-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:86:13-41
+101            android:exported="true" >
+101-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:87:13-36
+102            <intent-filter>
+102-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:88:13-92:29
+103                <action android:name="android.intent.action.MAIN" />
+103-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:89:17-69
+103-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:89:25-66
+104
+105                <category android:name="android.intent.category.LAUNCHER" />
+105-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:91:17-77
+105-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:91:27-74
+106            </intent-filter>
+107        </activity>
+108
+109        <meta-data
+109-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:95:9-97:57
+110            android:name="preloaded_fonts"
+110-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:96:13-43
+111            android:resource="@array/preloaded_fonts" />
+111-->C:\Users\bhumi\AndroidStudioProjects\TUNA_RUN.2024\app\src\main\AndroidManifest.xml:97:13-54
+112
+113        <provider
+113-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+114            android:name="androidx.startup.InitializationProvider"
+114-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+115            android:authorities="com.inventive.tunarun.androidx-startup"
+115-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+116            android:exported="false" >
+116-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+117            <meta-data
+117-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+118                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+118-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+119                android:value="androidx.startup" />
+119-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bhumi\.gradle\caches\transforms-3\8592d16f08038ccb3687f936c5be5765\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+120            <meta-data
+120-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\bhumi\.gradle\caches\transforms-3\f4ff3458c1933fc313b8e2ba6ebbd7e1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+121                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+121-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\bhumi\.gradle\caches\transforms-3\f4ff3458c1933fc313b8e2ba6ebbd7e1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+122                android:value="androidx.startup" />
+122-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\bhumi\.gradle\caches\transforms-3\f4ff3458c1933fc313b8e2ba6ebbd7e1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+123            <meta-data
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+124                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+125                android:value="androidx.startup" />
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+126        </provider>
+127
+128        <uses-library
+128-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+129            android:name="androidx.window.extensions"
+129-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+130            android:required="false" />
+130-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+131        <uses-library
+131-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+132            android:name="androidx.window.sidecar"
+132-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+133            android:required="false" />
+133-->[androidx.window:window:1.0.0] C:\Users\bhumi\.gradle\caches\transforms-3\37c1e8781f4fb6ec1c4916459488e931\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+134
+135        <receiver
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+136            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+136-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+137            android:directBootAware="false"
+137-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+138            android:enabled="true"
+138-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+139            android:exported="true"
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+140            android:permission="android.permission.DUMP" >
+140-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+141            <intent-filter>
+141-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+142                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+143            </intent-filter>
+144            <intent-filter>
+144-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+145                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+146            </intent-filter>
+147            <intent-filter>
+147-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+148                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+149            </intent-filter>
+150            <intent-filter>
+150-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+151                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bhumi\.gradle\caches\transforms-3\ea073c5c8a3a7f66e7c417eab8515c08\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+152            </intent-filter>
+153        </receiver>
+154    </application>
+155
+156</manifest>

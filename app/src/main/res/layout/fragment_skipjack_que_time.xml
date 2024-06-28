@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackQueTimeFragment">
+
+
+    <TextView
+        android:id="@+id/cap_arrangeFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="ARRANGE FINISH"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_butchTime"
+        app:layout_constraintTop_toTopOf="@+id/cap_arrangeTime" />
+
+    <TextView
+        android:id="@+id/cap_arrangeTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="ARRANGE"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_thawTime"
+        app:layout_constraintTop_toBottomOf="@+id/text_thawTime" />
+
+    <EditText
+        android:id="@+id/text_butchTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_ActualTime"
+        app:layout_constraintStart_toStartOf="@+id/text_ActualTime"
+        app:layout_constraintTop_toTopOf="@+id/text_thawTime"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_thawTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_PlanTime"
+        app:layout_constraintStart_toStartOf="@+id/cap_thawTime"
+        app:layout_constraintTop_toBottomOf="@+id/cap_thawTime"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_arrangeFinish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_thawTime"
+        app:layout_constraintStart_toStartOf="@+id/cap_arrangeTime"
+        app:layout_constraintTop_toBottomOf="@+id/cap_arrangeTime"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_arrangeTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_butchTime"
+        app:layout_constraintStart_toStartOf="@+id/cap_arrangeFinish"
+        app:layout_constraintTop_toBottomOf="@+id/cap_arrangeFinish"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/cap_butchTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="BUTCH TIME"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_ActualTime"
+        app:layout_constraintTop_toTopOf="@+id/cap_thawTime" />
+
+    <TextView
+        android:id="@+id/cap_thawTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="THAW TIME"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_PlanTime" />
+
+    <TextView
+        android:id="@+id/cap_planTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="PLAN TIME"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_PlanTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/text_ActualTime"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_PlanTime"
+        app:layout_constraintStart_toEndOf="@+id/text_PlanTime"
+        app:layout_constraintTop_toTopOf="@+id/text_PlanTime"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/text_PlanTime"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="@string/hint_time"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cap_planTime"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/cap_actualTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="ACTUAL TIME"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/text_ActualTime"
+        app:layout_constraintTop_toTopOf="@+id/cap_planTime" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
