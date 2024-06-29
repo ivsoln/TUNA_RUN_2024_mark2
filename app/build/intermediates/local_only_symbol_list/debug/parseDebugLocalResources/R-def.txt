@@ -127,7 +127,6 @@ id goto_undo
 id imageView
 id input_barcode
 id labelBatchNo
-id labelQueue
 id labelQueueType
 id labelWeight
 id layout_skipjack_wip_tag
@@ -163,7 +162,6 @@ id textView21
 id textView22
 id textView222
 id textView23
-id textView24
 id textView25
 id textView26
 id textView3
@@ -202,6 +200,7 @@ id text_ns
 id text_origin
 id text_queue
 id text_queueNo
+id text_queueType
 id text_rack
 id text_rackCount
 id text_rackNo
@@ -221,6 +220,7 @@ id text_title
 id text_tmptr
 id text_tray
 id text_trayPick
+id text_type
 id text_weight
 id title_colors
 id tvAnimalName

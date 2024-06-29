@@ -79,15 +79,31 @@ class Instant {
 
         fun TextView.showResult(state: EntityState, message: String) {
             this.text = message
-            if (state == EntityState.OK) {
-                this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
-            } else if (state == EntityState.WARNING) {
-                this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
-            } else if (state == EntityState.ERROR) {
-                this.setBackgroundColor(Color.RED)
-            } else if (state == EntityState.NEW) {
-                this.setBackgroundColor(Color.TRANSPARENT)
+            when (state) {
+                EntityState.OK -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
+                EntityState.WARNING -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
+                EntityState.ERROR -> this.setBackgroundColor(Color.RED)
+                EntityState.NEW -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.SUCCESS -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
+                EntityState.FAILURE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.DUPLICATE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.NOT_FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.EXISTED -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.REJECT -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.NOTHING -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.UNCHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.NOT_ALLOW_NULL -> this.setBackgroundColor(Color.TRANSPARENT)
             }
+        }
+
+        fun TextView.showVCColor(vcColor: Fish.Skipjack.Masters.VCColor) {
+            this.setBackgroundColor(Color.parseColor(vcColor.color_hex))
+            this.text = vcColor.color_description
+            this.setTextColor(Color.BLACK)
         }
 
         fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
@@ -128,7 +144,8 @@ class Instant {
                 override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
                     if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
                         afterKeyEnteredThenCloseKeyboard.invoke("")
-                        val imm = v.context.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+                        val imm =
+                            v.context.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
                         imm?.hideSoftInputFromWindow(v.windowToken, 0)
                         return true
                     }

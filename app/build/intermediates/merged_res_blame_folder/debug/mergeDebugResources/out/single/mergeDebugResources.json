@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_color.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_color.xml"
+    },
+    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-anydpi_ic_launcher.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-anydpi\\ic_launcher.xml"
     },
@@ -12,40 +16,28 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-mdpi\\ic_logo.webp"
     },
     {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_recyclerview_row.xml.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\recyclerview_row.xml"
-    },
-    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_blind_receive.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_blind_receive.xml"
-    },
-    {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_que_list.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_que_list.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-debug-47:/layout_activity_skipjack_que_list.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_que_list.xml"
-    },
-    {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.inventive.tunarun.app-debug-47:/layout_item_color.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/layout/item_color.xml"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_cook_main.xml.flat",
@@ -54,10 +46,6 @@
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_wip_tag_edit.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_wip_tag_edit.xml"
-    },
-    {
-        "merged": "com.inventive.tunarun.app-debug-47:/drawable_border.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/drawable/border.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
@@ -80,28 +68,32 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-anydpi-v26\\ic_logo_round.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-debug-47:/layout_activity_skipjack_color.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_color.xml"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_item_color.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\item_color.xml"
     },
     {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\font_roboto_mono.xml.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\font\\roboto_mono.xml"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\drawable_border.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\drawable\\border.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\font_roboto_mono.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\font\\roboto_mono.xml"
+    },
+    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_fragment_skipjack_blind_receive_item.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\fragment_skipjack_blind_receive_item.xml"
     },
     {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_search_view_list.xml.flat",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_search_view_list.xml"
-    },
-    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxhdpi_ic_logo.webp.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xxhdpi\\ic_logo.webp"
+    },
+    {
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_search_view_list.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_search_view_list.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxxhdpi_ic_logo.webp.flat",
@@ -130,6 +122,10 @@
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_fragment_skipjack_que_property.xml.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\fragment_skipjack_que_property.xml"
+    },
+    {
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_tag_color.xml.flat",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_tag_color.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\layout_activity_skipjack_wip_tag.xml.flat",
@@ -264,10 +260,6 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\fragment_skipjack_que_product.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-debug-47:/layout_activity_login.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-debug-47:\\mipmap-xxhdpi_ic_logo_foreground.webp.flat",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\mipmap-xxhdpi\\ic_logo_foreground.webp"
     },
@@ -288,7 +280,7 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_tunarun_main.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-debug-47:/layout_activity_skipjack_tag_color.xml.flat",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_tag_color.xml"
+        "merged": "com.inventive.tunarun.app-debug-47:/layout_activity_skipjack_bin.xml.flat",
+        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_bin.xml"
     }
 ]

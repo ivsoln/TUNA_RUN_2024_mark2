@@ -30,9 +30,6 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
   public final TextView labelBatchNo;
 
   @NonNull
-  public final TextView labelQueue;
-
-  @NonNull
   public final TextView labelQueueType;
 
   @NonNull
@@ -51,7 +48,10 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
   public final EditText textOrigin;
 
   @NonNull
-  public final EditText textQueue;
+  public final TextView textQueue;
+
+  @NonNull
+  public final TextView textQueueType;
 
   @NonNull
   public final TextView textResult;
@@ -94,19 +94,18 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
 
   private ActivitySkipjackBinBinding(@NonNull ConstraintLayout rootView,
       @NonNull TextView captLotNo, @NonNull TextView gotoBlindReceive,
-      @NonNull TextView labelBatchNo, @NonNull TextView labelQueue,
-      @NonNull TextView labelQueueType, @NonNull TextView labelWeight,
-      @NonNull EditText textBarcode, @NonNull EditText textBatchNo, @NonNull EditText textLotNo,
-      @NonNull EditText textOrigin, @NonNull EditText textQueue, @NonNull TextView textResult,
-      @NonNull EditText textSloc, @NonNull EditText textSpecy, @NonNull EditText textSpecyDesc,
-      @NonNull TextView textView19, @NonNull TextView textView20, @NonNull TextView textView21,
-      @NonNull TextView textView22, @NonNull EditText textWeight, @NonNull TextView viewList,
-      @NonNull TextView viewNew, @NonNull TextView viewRun, @NonNull TextView viewShift) {
+      @NonNull TextView labelBatchNo, @NonNull TextView labelQueueType,
+      @NonNull TextView labelWeight, @NonNull EditText textBarcode, @NonNull EditText textBatchNo,
+      @NonNull EditText textLotNo, @NonNull EditText textOrigin, @NonNull TextView textQueue,
+      @NonNull TextView textQueueType, @NonNull TextView textResult, @NonNull EditText textSloc,
+      @NonNull EditText textSpecy, @NonNull EditText textSpecyDesc, @NonNull TextView textView19,
+      @NonNull TextView textView20, @NonNull TextView textView21, @NonNull TextView textView22,
+      @NonNull EditText textWeight, @NonNull TextView viewList, @NonNull TextView viewNew,
+      @NonNull TextView viewRun, @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.captLotNo = captLotNo;
     this.gotoBlindReceive = gotoBlindReceive;
     this.labelBatchNo = labelBatchNo;
-    this.labelQueue = labelQueue;
     this.labelQueueType = labelQueueType;
     this.labelWeight = labelWeight;
     this.textBarcode = textBarcode;
@@ -114,6 +113,7 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
     this.textLotNo = textLotNo;
     this.textOrigin = textOrigin;
     this.textQueue = textQueue;
+    this.textQueueType = textQueueType;
     this.textResult = textResult;
     this.textSloc = textSloc;
     this.textSpecy = textSpecy;
@@ -174,12 +174,6 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.labelQueue;
-      TextView labelQueue = ViewBindings.findChildViewById(rootView, id);
-      if (labelQueue == null) {
-        break missingId;
-      }
-
       id = R.id.labelQueueType;
       TextView labelQueueType = ViewBindings.findChildViewById(rootView, id);
       if (labelQueueType == null) {
@@ -217,8 +211,14 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
       }
 
       id = R.id.text_queue;
-      EditText textQueue = ViewBindings.findChildViewById(rootView, id);
+      TextView textQueue = ViewBindings.findChildViewById(rootView, id);
       if (textQueue == null) {
+        break missingId;
+      }
+
+      id = R.id.text_queueType;
+      TextView textQueueType = ViewBindings.findChildViewById(rootView, id);
+      if (textQueueType == null) {
         break missingId;
       }
 
@@ -301,8 +301,8 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
       }
 
       return new ActivitySkipjackBinBinding((ConstraintLayout) rootView, captLotNo,
-          gotoBlindReceive, labelBatchNo, labelQueue, labelQueueType, labelWeight, textBarcode,
-          textBatchNo, textLotNo, textOrigin, textQueue, textResult, textSloc, textSpecy,
+          gotoBlindReceive, labelBatchNo, labelQueueType, labelWeight, textBarcode, textBatchNo,
+          textLotNo, textOrigin, textQueue, textQueueType, textResult, textSloc, textSpecy,
           textSpecyDesc, textView19, textView20, textView21, textView22, textWeight, viewList,
           viewNew, viewRun, viewShift);
     }

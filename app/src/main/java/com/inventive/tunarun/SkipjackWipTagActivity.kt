@@ -12,10 +12,23 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
+import com.inventive.tunarun.Instant.Companion.showVCColor
+import org.w3c.dom.Text
 
 class SkipjackWipTagActivity : AppCompatActivity() {
 
-    var queue: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
+    var _queue: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
+    var _tag: Fish.Skipjack.Tag = Fish.Skipjack.Tag()
+    var _species: Fish.Skipjack.Masters.Species = Fish.Skipjack.Masters.Species()
+    var _origin: Fish.Skipjack.Masters.SpeciesOrigin = Fish.Skipjack.Masters.SpeciesOrigin()
+    var _size: Fish.Skipjack.Masters.SpeciesSize = Fish.Skipjack.Masters.SpeciesSize()
+
+    var _tagColor: Fish.Skipjack.Masters.TagColor = Fish.Skipjack.Masters.TagColor();
+
+//    var _vcColor1: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
+//    var _vcColor2: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
+//    var _vcColor3: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
+
     lateinit var textQueueNo: EditText
     lateinit var viewQueColor: TextView
     lateinit var viewColor: TextView
@@ -36,9 +49,9 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     private lateinit var gotoEdit: TextView
 
     private val REQUEST_COLOR = 0
-    private val REQUEST_COLOR1 = 1
-    private val REQUEST_COLOR2 = 2
-    private val REQUEST_COLOR3 = 3
+//    private val REQUEST_COLOR1 = 1
+//    private val REQUEST_COLOR2 = 2
+//    private val REQUEST_COLOR3 = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,18 +206,18 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             val intent = Intent(this, SkipjackTagColorActivity::class.java)
             startActivityForResult(intent, REQUEST_COLOR)
         }
-        viewColor1.setOnClickListener {
-            val intent = Intent(this, SkipjackColorActivity::class.java)
-            startActivityForResult(intent, REQUEST_COLOR1)
-        }
-        viewColor2.setOnClickListener {
-            val intent = Intent(this, SkipjackColorActivity::class.java)
-            startActivityForResult(intent, REQUEST_COLOR2)
-        }
-        viewColor3.setOnClickListener {
-            val intent = Intent(this, SkipjackColorActivity::class.java)
-            startActivityForResult(intent, REQUEST_COLOR3)
-        }
+//        viewColor1.setOnClickListener {
+//            val intent = Intent(this, SkipjackColorActivity::class.java)
+//            startActivityForResult(intent, REQUEST_COLOR1)
+//        }
+//        viewColor2.setOnClickListener {
+//            val intent = Intent(this, SkipjackColorActivity::class.java)
+//            startActivityForResult(intent, REQUEST_COLOR2)
+//        }
+//        viewColor3.setOnClickListener {
+//            val intent = Intent(this, SkipjackColorActivity::class.java)
+//            startActivityForResult(intent, REQUEST_COLOR3)
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -214,32 +227,32 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             selectedColorId?.let {
                 when (requestCode) {
                     REQUEST_COLOR -> {
-                        val selectedColor = getTagColorCodeById(it)
-                        viewColor.setBackgroundColor(Color.parseColor(selectedColor.color_hex))
-                        viewColor.text = selectedColor.color_description
+                        _tagColor = getTagColorCodeById(it)
+                        viewColor.setBackgroundColor(Color.parseColor(_tagColor.color_hex))
+                        viewColor.text = _tagColor.color_description
                         viewColor.setTextColor(Color.BLACK)
                     }
 
-                    REQUEST_COLOR1 -> {
-                        val selectedColor = getColorCodeById(it)
-                        viewColor1.setBackgroundColor(Color.parseColor(selectedColor.color_hex))
-                        viewColor1.text = selectedColor.color_description
-                        viewColor1.setTextColor(Color.BLACK)
-                    }
-
-                    REQUEST_COLOR2 -> {
-                        val selectedColor = getColorCodeById(it)
-                        viewColor2.setBackgroundColor(Color.parseColor(selectedColor.color_hex))
-                        viewColor2.text = selectedColor.color_description
-                        viewColor2.setTextColor(Color.BLACK)
-                    }
-
-                    REQUEST_COLOR3 -> {
-                        val selectedColor = getColorCodeById(it)
-                        viewColor3.setBackgroundColor(Color.parseColor(selectedColor.color_hex))
-                        viewColor3.text = selectedColor.color_description
-                        viewColor3.setTextColor(Color.BLACK)
-                    }
+//                    REQUEST_COLOR1 -> {
+//                        _vcColor1 = getColorCodeById(it)
+//                        viewColor1.setBackgroundColor(Color.parseColor(_vcColor1.color_hex))
+//                        viewColor1.text = _vcColor1.color_description
+//                        viewColor1.setTextColor(Color.BLACK)
+//                    }
+//
+//                    REQUEST_COLOR2 -> {
+//                        _vcColor2 = getColorCodeById(it)
+//                        viewColor2.setBackgroundColor(Color.parseColor(_vcColor2.color_hex))
+//                        viewColor2.text = _vcColor2.color_description
+//                        viewColor2.setTextColor(Color.BLACK)
+//                    }
+//
+//                    REQUEST_COLOR3 -> {
+//                        _vcColor3 = getColorCodeById(it)
+//                        viewColor3.setBackgroundColor(Color.parseColor(_vcColor3.color_hex))
+//                        viewColor3.text = _vcColor3.color_description
+//                        viewColor3.setTextColor(Color.BLACK)
+//                    }
 
                     else -> throw IllegalArgumentException("Unknown requestCode: $requestCode")
                 }
@@ -248,19 +261,38 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     }
 
 
-    private fun getColorCodeById(colorId: Int): Fish.Skipjack.Masters.VCColor {
-        return FishClient.Companion.Master.VCColor.Items.first { it.Id == colorId }
-    }
+//    private fun getColorCodeById(colorId: Int): Fish.Skipjack.Masters.VCColor {
+//        return FishClient.Companion.Master.VCColor.Items.first { it.Id == colorId }
+//    }
 
     private fun getTagColorCodeById(colorId: Int): Fish.Skipjack.Masters.TagColor {
         return FishClient.Companion.Master.TagColor.Items.first { it.Id == colorId }
     }
 
     fun bind(obj: Fish.Skipjack.Queue) {
-        queue = obj
+        _queue = obj
+        _species = _queue.Species
+        _origin = _queue.SpeciesOrigin
 
-        viewSpecy.text = queue.species_code
-        //viewOrigin.text = queue.species_origin_code
-        //viewSize.text =
+        viewSpecy.text = _species.species_code
+        viewOrigin.text = _origin.species_origin_code
+
+        if (_queue.VCColors.Items.size > 0) {
+            _queue.VCColors.Items.forEachIndexed { index, element ->
+                when (index) {
+                    0 -> {
+                        viewColor1.showVCColor(element)
+                    }
+
+                    1 -> {
+                        viewColor2.showVCColor(element)
+                    }
+
+                    2 -> {
+                        viewColor3.showVCColor(element)
+                    }
+                }
+            }
+        }
     }
 }

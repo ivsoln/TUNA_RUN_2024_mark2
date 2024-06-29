@@ -32,7 +32,7 @@ public final class FragmentSkipjackQuePropertyBinding implements ViewBinding {
   public final TextView textDesc;
 
   @NonNull
-  public final TextView textView24;
+  public final TextView textType;
 
   @NonNull
   public final TextView viewColor1;
@@ -45,14 +45,14 @@ public final class FragmentSkipjackQuePropertyBinding implements ViewBinding {
 
   private FragmentSkipjackQuePropertyBinding(@NonNull ConstraintLayout rootView,
       @NonNull TextView capVc1, @NonNull TextView capVc2, @NonNull TextView capVc3,
-      @NonNull TextView textDesc, @NonNull TextView textView24, @NonNull TextView viewColor1,
+      @NonNull TextView textDesc, @NonNull TextView textType, @NonNull TextView viewColor1,
       @NonNull TextView viewColor2, @NonNull TextView viewColor3) {
     this.rootView = rootView;
     this.capVc1 = capVc1;
     this.capVc2 = capVc2;
     this.capVc3 = capVc3;
     this.textDesc = textDesc;
-    this.textView24 = textView24;
+    this.textType = textType;
     this.viewColor1 = viewColor1;
     this.viewColor2 = viewColor2;
     this.viewColor3 = viewColor3;
@@ -109,9 +109,9 @@ public final class FragmentSkipjackQuePropertyBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView24;
-      TextView textView24 = ViewBindings.findChildViewById(rootView, id);
-      if (textView24 == null) {
+      id = R.id.text_type;
+      TextView textType = ViewBindings.findChildViewById(rootView, id);
+      if (textType == null) {
         break missingId;
       }
 
@@ -134,7 +134,7 @@ public final class FragmentSkipjackQuePropertyBinding implements ViewBinding {
       }
 
       return new FragmentSkipjackQuePropertyBinding((ConstraintLayout) rootView, capVc1, capVc2,
-          capVc3, textDesc, textView24, viewColor1, viewColor2, viewColor3);
+          capVc3, textDesc, textType, viewColor1, viewColor2, viewColor3);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

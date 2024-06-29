@@ -4,14 +4,6 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/activity_skipjack_tag_color.xml",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_tag_color.xml"
-    },
-    {
-        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\recyclerview_row.xml",
-        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\recyclerview_row.xml"
-    },
-    {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_search_view_list.xml",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_search_view_list.xml"
     },
@@ -22,6 +14,10 @@
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_steam_off.xml",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_steam_off.xml"
+    },
+    {
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_color.xml",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_color.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_tunarun_main.xml",
@@ -52,24 +48,24 @@
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_blind_receive_list.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/activity_skipjack_que_list.xml",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_que_list.xml"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_tag_color.xml",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_tag_color.xml"
+    },
+    {
+        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/activity_skipjack_bin.xml",
+        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_bin.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_wip_cook_rack.xml",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_wip_cook_rack.xml"
     },
     {
-        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/activity_skipjack_color.xml",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_skipjack_color.xml"
+        "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\item_color.xml",
+        "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\item_color.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_cook_main.xml",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_cook_main.xml"
-    },
-    {
-        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/item_color.xml",
-        "source": "com.inventive.tunarun.app-main-49:/layout/item_color.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_wip_tag.xml",
@@ -130,10 +126,6 @@
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\activity_skipjack_clean_tag.xml",
         "source": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-main-49:\\layout\\activity_skipjack_clean_tag.xml"
-    },
-    {
-        "merged": "com.inventive.tunarun.app-mergeDebugResources-46:/layout/activity_login.xml",
-        "source": "com.inventive.tunarun.app-main-49:/layout/activity_login.xml"
     },
     {
         "merged": "C:\\Users\\bhumi\\.gradle\\daemon\\8.4\\com.inventive.tunarun.app-mergeDebugResources-46:\\layout\\custom_skipjack_que_item.xml",
