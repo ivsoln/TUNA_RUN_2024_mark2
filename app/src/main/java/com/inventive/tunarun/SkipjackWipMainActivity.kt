@@ -15,14 +15,14 @@ import java.text.SimpleDateFormat
 
 class SkipjackWipMainActivity : AppCompatActivity() {
 
-    lateinit var viewDate: TextView
-    lateinit var viewShift: TextView
+    private lateinit var viewDate: TextView
+    private lateinit var viewShift: TextView
 
-    lateinit var gotoScanBin: TextView
-    lateinit var gotoPrepareRack: TextView
+    private lateinit var gotoScanBin: TextView
+    private lateinit var gotoPrepareRack: TextView
 
-    lateinit var gotoQueue: TextView
-    lateinit var gotoTag: TextView
+    private lateinit var gotoQueue: TextView
+    private lateinit var gotoTag: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

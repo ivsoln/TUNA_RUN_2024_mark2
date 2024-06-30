@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/goto_prepareRack" />
 
     <TextView
-        android:id="@+id/goto_queue"
+        android:id="@+id/goto_queue_list"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -94,7 +94,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/Cyan_050"
         android:ems="10"
         android:fontFamily="serif"
@@ -137,7 +137,7 @@
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="DATE"
@@ -156,4 +156,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Red_A700"
+        android:fontFamily="serif"
+        android:hint="#USER"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

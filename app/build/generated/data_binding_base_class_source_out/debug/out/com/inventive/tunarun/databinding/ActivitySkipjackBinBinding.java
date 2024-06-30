@@ -66,6 +66,9 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
   public final EditText textSpecyDesc;
 
   @NonNull
+  public final TextView textUser;
+
+  @NonNull
   public final TextView textView19;
 
   @NonNull
@@ -98,10 +101,10 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
       @NonNull TextView labelWeight, @NonNull EditText textBarcode, @NonNull EditText textBatchNo,
       @NonNull EditText textLotNo, @NonNull EditText textOrigin, @NonNull TextView textQueue,
       @NonNull TextView textQueueType, @NonNull TextView textResult, @NonNull EditText textSloc,
-      @NonNull EditText textSpecy, @NonNull EditText textSpecyDesc, @NonNull TextView textView19,
-      @NonNull TextView textView20, @NonNull TextView textView21, @NonNull TextView textView22,
-      @NonNull EditText textWeight, @NonNull TextView viewList, @NonNull TextView viewNew,
-      @NonNull TextView viewRun, @NonNull TextView viewShift) {
+      @NonNull EditText textSpecy, @NonNull EditText textSpecyDesc, @NonNull TextView textUser,
+      @NonNull TextView textView19, @NonNull TextView textView20, @NonNull TextView textView21,
+      @NonNull TextView textView22, @NonNull EditText textWeight, @NonNull TextView viewList,
+      @NonNull TextView viewNew, @NonNull TextView viewRun, @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.captLotNo = captLotNo;
     this.gotoBlindReceive = gotoBlindReceive;
@@ -118,6 +121,7 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
     this.textSloc = textSloc;
     this.textSpecy = textSpecy;
     this.textSpecyDesc = textSpecyDesc;
+    this.textUser = textUser;
     this.textView19 = textView19;
     this.textView20 = textView20;
     this.textView21 = textView21;
@@ -246,6 +250,12 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
+        break missingId;
+      }
+
       id = R.id.textView19;
       TextView textView19 = ViewBindings.findChildViewById(rootView, id);
       if (textView19 == null) {
@@ -303,8 +313,8 @@ public final class ActivitySkipjackBinBinding implements ViewBinding {
       return new ActivitySkipjackBinBinding((ConstraintLayout) rootView, captLotNo,
           gotoBlindReceive, labelBatchNo, labelQueueType, labelWeight, textBarcode, textBatchNo,
           textLotNo, textOrigin, textQueue, textQueueType, textResult, textSloc, textSpecy,
-          textSpecyDesc, textView19, textView20, textView21, textView22, textWeight, viewList,
-          viewNew, viewRun, viewShift);
+          textSpecyDesc, textUser, textView19, textView20, textView21, textView22, textWeight,
+          viewList, viewNew, viewRun, viewShift);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

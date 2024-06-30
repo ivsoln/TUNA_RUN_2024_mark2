@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         FishClient.also {
             val callback = object : InitCallback {
                 override var count: Int = 0
-                override var total: Int = 4
+                override var total: Int = 6
 
                 override fun refresh() {
                     if (count === total) {

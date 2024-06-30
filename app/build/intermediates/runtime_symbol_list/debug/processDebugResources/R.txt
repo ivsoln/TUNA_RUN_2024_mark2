@@ -3453,7 +3453,7 @@ int id goto_pallet 0x7f0a010b
 int id goto_pickRackCount 0x7f0a010c
 int id goto_pickSteam 0x7f0a010d
 int id goto_prepareRack 0x7f0a010e
-int id goto_queue 0x7f0a010f
+int id goto_queue_list 0x7f0a02d5
 int id goto_reset 0x7f0a0110
 int id goto_retort 0x7f0a0111
 int id goto_rm 0x7f0a0112
@@ -3785,7 +3785,6 @@ int id text_description 0x7f0a0257
 int id text_ds 0x7f0a0258
 int id text_each 0x7f0a0259
 int id text_eachPick 0x7f0a025a
-int id text_frac 0x7f0a025b
 int id text_group 0x7f0a025c
 int id text_input_end_icon 0x7f0a025d
 int id text_input_error_icon 0x7f0a025e
@@ -3818,6 +3817,7 @@ int id text_tmptr 0x7f0a0278
 int id text_tray 0x7f0a0279
 int id text_trayPick 0x7f0a027a
 int id text_type 0x7f0a027b
+int id text_user 0x7f0a02d4
 int id text_weight 0x7f0a027c
 int id textinput_counter 0x7f0a027d
 int id textinput_error 0x7f0a027e

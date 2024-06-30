@@ -3454,7 +3454,7 @@ id goto_pallet
 id goto_pickRackCount
 id goto_pickSteam
 id goto_prepareRack
-id goto_queue
+id goto_queue_list
 id goto_reset
 id goto_retort
 id goto_rm
@@ -3786,7 +3786,6 @@ id text_description
 id text_ds
 id text_each
 id text_eachPick
-id text_frac
 id text_group
 id text_input_end_icon
 id text_input_error_icon
@@ -3819,6 +3818,7 @@ id text_tmptr
 id text_tray
 id text_trayPick
 id text_type
+id text_user
 id text_weight
 id textinput_counter
 id textinput_error
