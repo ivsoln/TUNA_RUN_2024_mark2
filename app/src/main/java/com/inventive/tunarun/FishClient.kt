@@ -167,6 +167,10 @@ class FishClient {
             this.text = shiftText
         }
 
+        fun TextView.showUser(){
+            this.text = FishClient.Companion.Skipjack.Identity.UserId.uppercase()
+        }
+
 
     }
 

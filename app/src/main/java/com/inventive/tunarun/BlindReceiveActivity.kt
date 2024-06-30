@@ -17,6 +17,7 @@ import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.FishClient.Companion.showShift
+import com.inventive.tunarun.FishClient.Companion.showUser
 
 
 class BlindReceiveActivity : AppCompatActivity() {
@@ -54,7 +55,7 @@ class BlindReceiveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_blind_receive)
-
+        findViewById<TextView>(R.id.text_user).showUser()
         findViewById<TextView>(R.id.view_shift).showShift()
 
         gotoListAll = findViewById(R.id.goto_listAll)

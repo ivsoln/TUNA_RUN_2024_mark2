@@ -8,6 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.inventive.tunarun.FishClient.Companion.showShift
+import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.popupText
 import java.text.SimpleDateFormat
 
@@ -32,13 +34,20 @@ class SkipjackWipMainActivity : AppCompatActivity() {
             insets
         }
 
+        findViewById<TextView>(R.id.text_user).showUser()
+
         viewDate = findViewById(R.id.view_date)
         viewShift = findViewById(R.id.view_shift)
 
         gotoScanBin = findViewById(R.id.goto_scanBin)
         gotoPrepareRack = findViewById(R.id.goto_prepareRack)
 
-        gotoQueue = findViewById(R.id.goto_queue)
+        gotoQueue = findViewById(R.id.goto_queue_list)
+        gotoQueue.setOnClickListener {
+            Intent(this, SkipjackQueListActivity::class.java).also {
+                startActivityForResult(it, 0, null)
+            }
+        }
         gotoTag = findViewById(R.id.goto_tag)
 
         viewShift(FishClient.Companion.Skipjack.Shift)
@@ -50,12 +59,6 @@ class SkipjackWipMainActivity : AppCompatActivity() {
 
         gotoPrepareRack.setOnClickListener {
             val intent = Intent(this, SkipjackWipCookRackActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        gotoQueue.setOnClickListener {
-            val intent = Intent(this, SkipjackQueActivity::class.java)
             startActivity(intent)
         }
 
