@@ -51,12 +51,6 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
   public final EditText textMaterial;
 
   @NonNull
-  public final EditText textOrigin;
-
-  @NonNull
-  public final EditText textRemarkDesc;
-
-  @NonNull
   public final TextView textResult;
 
   @NonNull
@@ -66,7 +60,7 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
   public final EditText textSpecies;
 
   @NonNull
-  public final EditText textStatus;
+  public final TextView textUser;
 
   @NonNull
   public final TextView textView10;
@@ -81,19 +75,10 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
   public final TextView textView14;
 
   @NonNull
-  public final TextView textView15;
-
-  @NonNull
-  public final TextView textView16;
-
-  @NonNull
   public final TextView textView6;
 
   @NonNull
   public final TextView textView8;
-
-  @NonNull
-  public final TextView textView9;
 
   @NonNull
   public final EditText textWeight;
@@ -105,12 +90,10 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
       @NonNull TextView actionSave, @NonNull TextView actionUse, @NonNull TextView captBarcode,
       @NonNull TextView captLot, @NonNull TextView captMaterial, @NonNull TextView gotoListAll,
       @NonNull EditText inputBarcode, @NonNull EditText textBatchNo, @NonNull EditText textLotNo,
-      @NonNull EditText textMaterial, @NonNull EditText textOrigin,
-      @NonNull EditText textRemarkDesc, @NonNull TextView textResult, @NonNull EditText textSloc,
-      @NonNull EditText textSpecies, @NonNull EditText textStatus, @NonNull TextView textView10,
+      @NonNull EditText textMaterial, @NonNull TextView textResult, @NonNull EditText textSloc,
+      @NonNull EditText textSpecies, @NonNull TextView textUser, @NonNull TextView textView10,
       @NonNull TextView textView12, @NonNull TextView textView13, @NonNull TextView textView14,
-      @NonNull TextView textView15, @NonNull TextView textView16, @NonNull TextView textView6,
-      @NonNull TextView textView8, @NonNull TextView textView9, @NonNull EditText textWeight,
+      @NonNull TextView textView6, @NonNull TextView textView8, @NonNull EditText textWeight,
       @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.actionSave = actionSave;
@@ -123,21 +106,16 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
     this.textBatchNo = textBatchNo;
     this.textLotNo = textLotNo;
     this.textMaterial = textMaterial;
-    this.textOrigin = textOrigin;
-    this.textRemarkDesc = textRemarkDesc;
     this.textResult = textResult;
     this.textSloc = textSloc;
     this.textSpecies = textSpecies;
-    this.textStatus = textStatus;
+    this.textUser = textUser;
     this.textView10 = textView10;
     this.textView12 = textView12;
     this.textView13 = textView13;
     this.textView14 = textView14;
-    this.textView15 = textView15;
-    this.textView16 = textView16;
     this.textView6 = textView6;
     this.textView8 = textView8;
-    this.textView9 = textView9;
     this.textWeight = textWeight;
     this.viewShift = viewShift;
   }
@@ -229,18 +207,6 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.text_origin;
-      EditText textOrigin = ViewBindings.findChildViewById(rootView, id);
-      if (textOrigin == null) {
-        break missingId;
-      }
-
-      id = R.id.text_remarkDesc;
-      EditText textRemarkDesc = ViewBindings.findChildViewById(rootView, id);
-      if (textRemarkDesc == null) {
-        break missingId;
-      }
-
       id = R.id.text_result;
       TextView textResult = ViewBindings.findChildViewById(rootView, id);
       if (textResult == null) {
@@ -259,9 +225,9 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.text_status;
-      EditText textStatus = ViewBindings.findChildViewById(rootView, id);
-      if (textStatus == null) {
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
         break missingId;
       }
 
@@ -289,18 +255,6 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView15;
-      TextView textView15 = ViewBindings.findChildViewById(rootView, id);
-      if (textView15 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView16;
-      TextView textView16 = ViewBindings.findChildViewById(rootView, id);
-      if (textView16 == null) {
-        break missingId;
-      }
-
       id = R.id.textView6;
       TextView textView6 = ViewBindings.findChildViewById(rootView, id);
       if (textView6 == null) {
@@ -310,12 +264,6 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
       id = R.id.textView8;
       TextView textView8 = ViewBindings.findChildViewById(rootView, id);
       if (textView8 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView9;
-      TextView textView9 = ViewBindings.findChildViewById(rootView, id);
-      if (textView9 == null) {
         break missingId;
       }
 
@@ -333,9 +281,8 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
 
       return new ActivityBlindReceiveBinding((ConstraintLayout) rootView, actionSave, actionUse,
           captBarcode, captLot, captMaterial, gotoListAll, inputBarcode, textBatchNo, textLotNo,
-          textMaterial, textOrigin, textRemarkDesc, textResult, textSloc, textSpecies, textStatus,
-          textView10, textView12, textView13, textView14, textView15, textView16, textView6,
-          textView8, textView9, textWeight, viewShift);
+          textMaterial, textResult, textSloc, textSpecies, textUser, textView10, textView12,
+          textView13, textView14, textView6, textView8, textWeight, viewShift);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

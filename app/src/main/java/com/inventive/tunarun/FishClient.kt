@@ -12,8 +12,8 @@ import java.util.Date
 class FishClient {
 
     companion object {
-        //var apiAddr: String = "192.168.20.61"
-        var apiAddr: String = "99.42.1.42"
+        var apiAddr: String = "99.42.1.61"
+        //var apiAddr: String = "172.20.10.4"
         fun Init(context: Context, callback: InitCallback) {
             var master = MasterClient(context)
             master.also {
@@ -31,6 +31,38 @@ class FishClient {
                     }
                 }
                 it.get_species_materials(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.SpeciesSize =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.SpeciesSize>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > INIT_SPECIES_SIZE > COUNT", Master.SpeciesSize.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > INIT_SPECIES_SIZE > ERROR", result)
+                    }
+                }
+                it.get_species_sizes(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.SpeciesOrigin =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.SpeciesOrigin>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > INIT_SPECIES_ORIGIN > COUNT", Master.SpeciesOrigin.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > INIT_SPECIES_ORIGIN > ERROR", result)
+                    }
+                }
+                it.get_species_origins(callback)
             }
             master.also {
                 val callback = object : ActionRequest.Callback {
@@ -165,6 +197,10 @@ class FishClient {
             var shiftText = SimpleDateFormat(Instant.dateFormat).format(FishClient.Companion.Skipjack.Shift.Date)
             shiftText += " - " + FishClient.Companion.Skipjack.Shift.WorkShift?.ShiftCode.toString()
             this.text = shiftText
+        }
+
+        fun TextView.showUser(){
+            this.text = FishClient.Companion.Skipjack.Identity.UserId.uppercase()
         }
 
 
@@ -657,6 +693,21 @@ class FishClient {
             connect.get(baseUrl + "get_blind_receive?_serial_no=$serialNo", jCall)
         }
 
+        fun runBlindReceiveQueue(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Blind.BR>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            connect.post(baseUrl + "change_blind_receive", blind, jCall)
+        }
+
+
         fun changeBlindReceive(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -670,6 +721,8 @@ class FishClient {
             }
             connect.post(baseUrl + "change_blind_receive", blind, jCall)
         }
+
+
 
         fun addQueue(bin: Fish.Skipjack.Bin, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
@@ -745,7 +798,6 @@ class FishClient {
             connect.post(baseUrl + "add_tag", tag, jCall)
         }
 
-        // get_tag(string _tag)
         fun getTag(tagNo: String, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -758,6 +810,49 @@ class FishClient {
                 }
             }
             connect.get(baseUrl + "get_tag?_tag=$tagNo", jCall)
+        }
+
+        fun preRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback){
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Rack>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = SimpleDateFormat("yyyy-MM-dd").format(date)
+            connect.get(baseUrl + "pre_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
+        }
+        fun getRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback){
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Rack>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = SimpleDateFormat("yyyy-MM-dd").format(date)
+            connect.get(baseUrl + "get_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
+        }
+        fun deleteRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback){
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Rack>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = SimpleDateFormat("yyyy-MM-dd").format(date)
+            connect.get(baseUrl + "delete_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
         }
 
     }

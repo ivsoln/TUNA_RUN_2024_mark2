@@ -30,13 +30,16 @@ public final class ActivitySkipjackWipCookRackBinding implements ViewBinding {
   public final TextView textCancelRack;
 
   @NonNull
-  public final TextView textMessage;
-
-  @NonNull
   public final EditText textRackNo;
 
   @NonNull
+  public final TextView textResult;
+
+  @NonNull
   public final EditText textStartTime;
+
+  @NonNull
+  public final TextView textUser;
 
   @NonNull
   public final TextView textView;
@@ -44,19 +47,25 @@ public final class ActivitySkipjackWipCookRackBinding implements ViewBinding {
   @NonNull
   public final TextView textView22;
 
+  @NonNull
+  public final TextView viewShift;
+
   private ActivitySkipjackWipCookRackBinding(@NonNull ConstraintLayout rootView,
       @NonNull TextView lblTime, @NonNull ConstraintLayout main, @NonNull TextView textCancelRack,
-      @NonNull TextView textMessage, @NonNull EditText textRackNo, @NonNull EditText textStartTime,
-      @NonNull TextView textView, @NonNull TextView textView22) {
+      @NonNull EditText textRackNo, @NonNull TextView textResult, @NonNull EditText textStartTime,
+      @NonNull TextView textUser, @NonNull TextView textView, @NonNull TextView textView22,
+      @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.lblTime = lblTime;
     this.main = main;
     this.textCancelRack = textCancelRack;
-    this.textMessage = textMessage;
     this.textRackNo = textRackNo;
+    this.textResult = textResult;
     this.textStartTime = textStartTime;
+    this.textUser = textUser;
     this.textView = textView;
     this.textView22 = textView22;
+    this.viewShift = viewShift;
   }
 
   @Override
@@ -100,21 +109,27 @@ public final class ActivitySkipjackWipCookRackBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.text_message;
-      TextView textMessage = ViewBindings.findChildViewById(rootView, id);
-      if (textMessage == null) {
-        break missingId;
-      }
-
       id = R.id.text_rackNo;
       EditText textRackNo = ViewBindings.findChildViewById(rootView, id);
       if (textRackNo == null) {
         break missingId;
       }
 
+      id = R.id.text_result;
+      TextView textResult = ViewBindings.findChildViewById(rootView, id);
+      if (textResult == null) {
+        break missingId;
+      }
+
       id = R.id.text_startTime;
       EditText textStartTime = ViewBindings.findChildViewById(rootView, id);
       if (textStartTime == null) {
+        break missingId;
+      }
+
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
         break missingId;
       }
 
@@ -130,8 +145,15 @@ public final class ActivitySkipjackWipCookRackBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.view_shift;
+      TextView viewShift = ViewBindings.findChildViewById(rootView, id);
+      if (viewShift == null) {
+        break missingId;
+      }
+
       return new ActivitySkipjackWipCookRackBinding((ConstraintLayout) rootView, lblTime, main,
-          textCancelRack, textMessage, textRackNo, textStartTime, textView, textView22);
+          textCancelRack, textRackNo, textResult, textStartTime, textUser, textView, textView22,
+          viewShift);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

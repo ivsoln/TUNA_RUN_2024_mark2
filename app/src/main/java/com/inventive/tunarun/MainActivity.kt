@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.isVisible
+import com.inventive.tunarun.FishClient.Companion.showUser
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +19,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonSteam: TextView
     private lateinit var buttonClean: TextView
 
+    private lateinit var textUser: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        textUser = findViewById(R.id.text_user)
+        textUser.isVisible = false
 
         buttonLogin = findViewById(R.id.lnk_login)
         buttonLogin.isVisible = false
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         FishClient.also {
             val callback = object : InitCallback {
                 override var count: Int = 0
-                override var total: Int = 4
+                override var total: Int = 6
 
                 override fun refresh() {
                     if (count === total) {
@@ -92,6 +97,8 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 0) {
                 buttonLogin.isVisible = false
+                textUser.isVisible = true
+                textUser.showUser()
                 when (FishClient.Companion.Skipjack.Identity.RoleId) {
                     2 -> {
                         buttonRm.isVisible = true
@@ -99,21 +106,25 @@ class MainActivity : AppCompatActivity() {
                         buttonSteam.isVisible = true
                         buttonClean.isVisible = true
                     }
+
                     3 -> {
                         buttonRm.isVisible = true
                         val intent = Intent(this, SkipjackWipMainActivity::class.java)
                         startActivity(intent)
                     }
+
                     4 -> {
                         buttonCook.isVisible = true
                         val intent = Intent(this, SkipjackCookMainActivity::class.java)
                         startActivity(intent)
                     }
+
                     5 -> {
                         buttonSteam.isVisible = true
                         val intent = Intent(this, SkipjackSteamMainActivity::class.java)
                         startActivity(intent)
                     }
+
                     6 -> {
                         buttonClean.isVisible = true
                         val intent = Intent(this, SkipjackCleanMainActivity::class.java)

@@ -17,6 +17,7 @@ import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.FishClient.Companion.showShift
+import com.inventive.tunarun.FishClient.Companion.showUser
 
 
 class BlindReceiveActivity : AppCompatActivity() {
@@ -33,7 +34,6 @@ class BlindReceiveActivity : AppCompatActivity() {
 
     private lateinit var inputBatchNo: EditText
     private lateinit var inputLotNo: EditText
-    private lateinit var inputOrigin: EditText
     private lateinit var inputSpecies: EditText
 
     private lateinit var inputWeight: EditText
@@ -41,8 +41,6 @@ class BlindReceiveActivity : AppCompatActivity() {
     private lateinit var inputMaterial: EditText
 
     private lateinit var inputSloc: EditText
-    private lateinit var inputStatus: EditText
-    private lateinit var inputRemarkDesc: EditText
 
     private lateinit var actionSave: TextView
     private lateinit var actionUse: TextView
@@ -54,7 +52,7 @@ class BlindReceiveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_blind_receive)
-
+        findViewById<TextView>(R.id.text_user).showUser()
         findViewById<TextView>(R.id.view_shift).showShift()
 
         gotoListAll = findViewById(R.id.goto_listAll)
@@ -69,15 +67,12 @@ class BlindReceiveActivity : AppCompatActivity() {
         inputBatchNo = findViewById(R.id.text_batchNo)
 
         inputLotNo = findViewById(R.id.text_lotNo)
-        inputOrigin = findViewById(R.id.text_origin)
         inputSpecies = findViewById(R.id.text_species)
 
         inputWeight = findViewById(R.id.text_weight)
         inputMaterial = findViewById(R.id.text_material)
 
         inputSloc = findViewById(R.id.text_sloc)
-        inputStatus = findViewById(R.id.text_status)
-        inputRemarkDesc = findViewById(R.id.text_remarkDesc)
 
         actionSave = findViewById(R.id.action_save)
         actionUse = findViewById(R.id.action_use)
@@ -171,7 +166,6 @@ class BlindReceiveActivity : AppCompatActivity() {
             br.batch_no = inputBatchNo.text.toString()
             br.lot_no = inputLotNo.text.toString()
 
-            br.origin = inputOrigin.text.toString()
             br.species = inputSpecies.text.toString()
 
             var wTxt = inputWeight.text.toString()
@@ -180,8 +174,6 @@ class BlindReceiveActivity : AppCompatActivity() {
             }
             br.sloc = inputSloc.text.toString()
             br.material_code = inputMaterial.text.toString()
-            br.status = inputStatus.text.toString()
-            br.remark = inputRemarkDesc.text.toString()
 
             val skipjack = FishClient.SkipjackClient(applicationContext)
             val callback = object : ActionRequest.Callback {
@@ -217,60 +209,60 @@ class BlindReceiveActivity : AppCompatActivity() {
         }
 
 
-        val popupStatusList = object : ListItem.Callback(this, "CHOOSE STATUS") {
-            override fun onItemSelected(result: ListItem) {
-                inputStatus.setText(result.caption)
-                inputStatus.setBackgroundColor(resources.getColor(R.color.Light_Green))
-            }
-
-            override fun searchTextChanged(listView: ListView, text: String) {
-
-                Log.i("TUNA RUN > SEARCH", text)
-                val skipjack = FishClient.SkipjackClient(applicationContext)
-                val callback = object : ActionRequest.Callback {
-                    override fun <T> onSuccess(result: T) {
-
-                        val list = result as Fish.Objects.HashSetClient<Fish.Skipjack.Blind.Status>
-
-                        items = listOf()
-                        //for (i in 1..20) {
-                        for (o: Fish.Skipjack.Blind.Status in list.Items) {
-                            val w = ListItem()
-                            w.id = o.Id
-                            w.caption = o.statusText.toString()
-                            w.description = ""
-                            items = items + w
-                        }
-                        //}
-
-                        var o0 = list.EntityMessages[0]
-                        Toast.makeText(
-                            applicationContext,
-                            o0.TimeStamp.toString(),
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                        listView.adapter =
-                            ListItem.Adapter(
-                                activity,
-                                R.layout.activity_search_item_desc,
-                                items
-                            )
-                    }
-
-                    override fun onError(result: String) {
-                        Log.e("TUNA RUN > SEARCH ERROR", result)
-                        textResult.showResult(EntityState.WARNING, result)
-
-                    }
-                }
-                skipjack.listBlindStatus(callback)
-            }
-        }
-        inputStatus.setOnLongClickListener {
-            Instant.selectionDialog(popupStatusList)
-            true
-        }
+//        val popupStatusList = object : ListItem.Callback(this, "CHOOSE STATUS") {
+//            override fun onItemSelected(result: ListItem) {
+//                inputStatus.setText(result.caption)
+//                inputStatus.setBackgroundColor(resources.getColor(R.color.Light_Green))
+//            }
+//
+//            override fun searchTextChanged(listView: ListView, text: String) {
+//
+//                Log.i("TUNA RUN > SEARCH", text)
+//                val skipjack = FishClient.SkipjackClient(applicationContext)
+//                val callback = object : ActionRequest.Callback {
+//                    override fun <T> onSuccess(result: T) {
+//
+//                        val list = result as Fish.Objects.HashSetClient<Fish.Skipjack.Blind.Status>
+//
+//                        items = listOf()
+//                        //for (i in 1..20) {
+//                        for (o: Fish.Skipjack.Blind.Status in list.Items) {
+//                            val w = ListItem()
+//                            w.id = o.Id
+//                            w.caption = o.statusText.toString()
+//                            w.description = ""
+//                            items = items + w
+//                        }
+//                        //}
+//
+//                        var o0 = list.EntityMessages[0]
+//                        Toast.makeText(
+//                            applicationContext,
+//                            o0.TimeStamp.toString(),
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//
+//                        listView.adapter =
+//                            ListItem.Adapter(
+//                                activity,
+//                                R.layout.activity_search_item_desc,
+//                                items
+//                            )
+//                    }
+//
+//                    override fun onError(result: String) {
+//                        Log.e("TUNA RUN > SEARCH ERROR", result)
+//                        textResult.showResult(EntityState.WARNING, result)
+//
+//                    }
+//                }
+//                skipjack.listBlindStatus(callback)
+//            }
+//        }
+//        inputStatus.setOnLongClickListener {
+//            Instant.selectionDialog(popupStatusList)
+//            true
+//        }
 
 
         inputBarcode.setOnTouchListener { v, event ->
@@ -307,20 +299,13 @@ class BlindReceiveActivity : AppCompatActivity() {
 
     private fun bind(obj: Fish.Skipjack.Blind.BR) {
         br = obj
-
         inputBarcode.setText(br.serial_no)
-
         setBatch(br.batch_no)
         setLot(br.lot_no)
         setSloc(br.sloc)
         setMaterial(br.material_code)
         setWeight(br.weight.toString())
-
         inputSpecies.setText(br.species)
-        inputOrigin.setText(br.origin)
-        inputStatus.setText(br.status)
-        inputRemarkDesc.setText(br.remark)
-
         prompt()
 
     }

@@ -51,7 +51,7 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
   public final ConstraintLayout layoutSkipjackWipTag;
 
   @NonNull
-  public final EditText textFrac;
+  public final EditText textEach;
 
   @NonNull
   public final EditText textQueueNo;
@@ -60,7 +60,13 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
   public final EditText textRackNo;
 
   @NonNull
+  public final EditText textSize;
+
+  @NonNull
   public final EditText textTray;
+
+  @NonNull
+  public final TextView textUser;
 
   @NonNull
   public final TextView textView;
@@ -84,7 +90,7 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
   public final TextView viewQueColor;
 
   @NonNull
-  public final TextView viewSize;
+  public final TextView viewShift;
 
   @NonNull
   public final TextView viewSpecy;
@@ -93,11 +99,12 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
       @NonNull TextView btnNew, @NonNull TextView btnSave, @NonNull TextView capFrac,
       @NonNull TextView capOrigin, @NonNull TextView capRackNo, @NonNull TextView capSize,
       @NonNull TextView capSpecy, @NonNull TextView capTray, @NonNull TextView gotoEdit,
-      @NonNull ConstraintLayout layoutSkipjackWipTag, @NonNull EditText textFrac,
-      @NonNull EditText textQueueNo, @NonNull EditText textRackNo, @NonNull EditText textTray,
-      @NonNull TextView textView, @NonNull TextView viewCol, @NonNull TextView viewColor1,
-      @NonNull TextView viewColor2, @NonNull TextView viewColor3, @NonNull TextView viewOrigin,
-      @NonNull TextView viewQueColor, @NonNull TextView viewSize, @NonNull TextView viewSpecy) {
+      @NonNull ConstraintLayout layoutSkipjackWipTag, @NonNull EditText textEach,
+      @NonNull EditText textQueueNo, @NonNull EditText textRackNo, @NonNull EditText textSize,
+      @NonNull EditText textTray, @NonNull TextView textUser, @NonNull TextView textView,
+      @NonNull TextView viewCol, @NonNull TextView viewColor1, @NonNull TextView viewColor2,
+      @NonNull TextView viewColor3, @NonNull TextView viewOrigin, @NonNull TextView viewQueColor,
+      @NonNull TextView viewShift, @NonNull TextView viewSpecy) {
     this.rootView = rootView;
     this.btnNew = btnNew;
     this.btnSave = btnSave;
@@ -109,10 +116,12 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
     this.capTray = capTray;
     this.gotoEdit = gotoEdit;
     this.layoutSkipjackWipTag = layoutSkipjackWipTag;
-    this.textFrac = textFrac;
+    this.textEach = textEach;
     this.textQueueNo = textQueueNo;
     this.textRackNo = textRackNo;
+    this.textSize = textSize;
     this.textTray = textTray;
+    this.textUser = textUser;
     this.textView = textView;
     this.viewCol = viewCol;
     this.viewColor1 = viewColor1;
@@ -120,7 +129,7 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
     this.viewColor3 = viewColor3;
     this.viewOrigin = viewOrigin;
     this.viewQueColor = viewQueColor;
-    this.viewSize = viewSize;
+    this.viewShift = viewShift;
     this.viewSpecy = viewSpecy;
   }
 
@@ -207,9 +216,9 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
 
       ConstraintLayout layoutSkipjackWipTag = (ConstraintLayout) rootView;
 
-      id = R.id.text_frac;
-      EditText textFrac = ViewBindings.findChildViewById(rootView, id);
-      if (textFrac == null) {
+      id = R.id.text_each;
+      EditText textEach = ViewBindings.findChildViewById(rootView, id);
+      if (textEach == null) {
         break missingId;
       }
 
@@ -225,9 +234,21 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.text_size;
+      EditText textSize = ViewBindings.findChildViewById(rootView, id);
+      if (textSize == null) {
+        break missingId;
+      }
+
       id = R.id.text_tray;
       EditText textTray = ViewBindings.findChildViewById(rootView, id);
       if (textTray == null) {
+        break missingId;
+      }
+
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
         break missingId;
       }
 
@@ -273,9 +294,9 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.view_size;
-      TextView viewSize = ViewBindings.findChildViewById(rootView, id);
-      if (viewSize == null) {
+      id = R.id.view_shift;
+      TextView viewShift = ViewBindings.findChildViewById(rootView, id);
+      if (viewShift == null) {
         break missingId;
       }
 
@@ -287,8 +308,8 @@ public final class ActivitySkipjackWipTagBinding implements ViewBinding {
 
       return new ActivitySkipjackWipTagBinding((ConstraintLayout) rootView, btnNew, btnSave,
           capFrac, capOrigin, capRackNo, capSize, capSpecy, capTray, gotoEdit, layoutSkipjackWipTag,
-          textFrac, textQueueNo, textRackNo, textTray, textView, viewCol, viewColor1, viewColor2,
-          viewColor3, viewOrigin, viewQueColor, viewSize, viewSpecy);
+          textEach, textQueueNo, textRackNo, textSize, textTray, textUser, textView, viewCol,
+          viewColor1, viewColor2, viewColor3, viewOrigin, viewQueColor, viewShift, viewSpecy);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -3454,7 +3454,7 @@ id goto_pallet
 id goto_pickRackCount
 id goto_pickSteam
 id goto_prepareRack
-id goto_queue
+id goto_queue_list
 id goto_reset
 id goto_retort
 id goto_rm
@@ -3748,8 +3748,6 @@ id textView10
 id textView12
 id textView13
 id textView14
-id textView15
-id textView16
 id textView19
 id textView2
 id textView20
@@ -3764,7 +3762,6 @@ id textView4
 id textView5
 id textView6
 id textView8
-id textView9
 id text_ActualTime
 id text_PlanTime
 id text_arrangeFinish
@@ -3786,14 +3783,12 @@ id text_description
 id text_ds
 id text_each
 id text_eachPick
-id text_frac
 id text_group
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
 id text_lotNo
 id text_material
-id text_message
 id text_ns
 id text_origin
 id text_queue
@@ -3802,7 +3797,6 @@ id text_queueType
 id text_rack
 id text_rackCount
 id text_rackNo
-id text_remarkDesc
 id text_result
 id text_size
 id text_skinLine
@@ -3811,7 +3805,6 @@ id text_species
 id text_specy
 id text_specyDesc
 id text_startTime
-id text_status
 id text_steamNo
 id text_thawTime
 id text_title
@@ -3819,6 +3812,7 @@ id text_tmptr
 id text_tray
 id text_trayPick
 id text_type
+id text_user
 id text_weight
 id textinput_counter
 id textinput_error

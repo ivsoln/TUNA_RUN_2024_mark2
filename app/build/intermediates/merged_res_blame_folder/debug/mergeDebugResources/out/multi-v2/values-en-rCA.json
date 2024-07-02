@@ -4,7 +4,7 @@
             "outputFile": "com.inventive.tunarun.app-mergeDebugResources-45:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Bhumi\\.gradle\\caches\\transforms-3\\e15e91a94ecf5b72afff07bb298aae3e\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "/Users/bhumi/.gradle/caches/transforms-3/e15e91a94ecf5b72afff07bb298aae3e/transformed/appcompat-1.6.1/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Bhumi\\.gradle\\caches\\transforms-3\\bc326708cb7196bf07e7166a8af3f5e0\\transformed\\core-1.13.1\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "/Users/bhumi/.gradle/caches/transforms-3/bc326708cb7196bf07e7166a8af3f5e0/transformed/core-1.13.1/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

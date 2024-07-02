@@ -39,6 +39,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView lnkSteam;
 
   @NonNull
+  public final TextView textUser;
+
+  @NonNull
   public final TextView textView;
 
   @NonNull
@@ -52,8 +55,9 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView imageView,
       @NonNull TextView lnkClean, @NonNull TextView lnkCook, @NonNull TextView lnkLogin,
-      @NonNull TextView lnkRm, @NonNull TextView lnkSteam, @NonNull TextView textView,
-      @NonNull TextView textView2, @NonNull TextView textView3, @NonNull TextView textView4) {
+      @NonNull TextView lnkRm, @NonNull TextView lnkSteam, @NonNull TextView textUser,
+      @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3,
+      @NonNull TextView textView4) {
     this.rootView = rootView;
     this.imageView = imageView;
     this.lnkClean = lnkClean;
@@ -61,6 +65,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.lnkLogin = lnkLogin;
     this.lnkRm = lnkRm;
     this.lnkSteam = lnkSteam;
+    this.textUser = textUser;
     this.textView = textView;
     this.textView2 = textView2;
     this.textView3 = textView3;
@@ -130,6 +135,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
+        break missingId;
+      }
+
       id = R.id.textView;
       TextView textView = ViewBindings.findChildViewById(rootView, id);
       if (textView == null) {
@@ -155,7 +166,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, imageView, lnkClean, lnkCook,
-          lnkLogin, lnkRm, lnkSteam, textView, textView2, textView3, textView4);
+          lnkLogin, lnkRm, lnkSteam, textUser, textView, textView2, textView3, textView4);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

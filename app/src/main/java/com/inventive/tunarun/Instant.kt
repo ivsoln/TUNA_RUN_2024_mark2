@@ -21,6 +21,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.inventive.tunarun.Fish.Objects.EntityState
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class Instant {
@@ -73,6 +75,21 @@ class Instant {
             dialog.show()
         }
 
+        fun EditText.focusThenSelectionEnd(){
+            this.requestFocus()
+            this.setSelection(this.length())
+        }
+        fun EditText.focusThenSelectionAll(){
+            this.requestFocus()
+            this.selectAll()
+        }
+        fun EditText.showShortTime(date: Date){
+            this.setText(SimpleDateFormat("dd/MM/yyyy HH:mm").format(date))
+        }
+        fun TextView.showShortTime(date: Date){
+            this.text = (SimpleDateFormat("dd/MM/yyyy HH:mm").format(date))
+        }
+
         fun TextView.clearResult() {
             this.showResult(EntityState.NEW, "")
         }
@@ -82,7 +99,7 @@ class Instant {
             when (state) {
                 EntityState.OK -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
                 EntityState.WARNING -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
-                EntityState.ERROR -> this.setBackgroundColor(Color.RED)
+                EntityState.ERROR ->  this.setBackgroundColor(resources.getColor(R.color.Red_A200))
                 EntityState.NEW -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
@@ -92,7 +109,7 @@ class Instant {
                 EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOT_FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
-                EntityState.EXISTED -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.EXISTED ->  this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.REJECT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOTHING -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.UNCHANGE -> this.setBackgroundColor(Color.TRANSPARENT)

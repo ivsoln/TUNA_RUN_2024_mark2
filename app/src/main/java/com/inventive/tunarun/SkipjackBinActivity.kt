@@ -15,6 +15,7 @@ import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.FishClient.Companion.showShift
+import com.inventive.tunarun.FishClient.Companion.showUser
 
 
 class SkipjackBinActivity : AppCompatActivity() {
@@ -46,6 +47,7 @@ class SkipjackBinActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_skipjack_bin)
 
+        findViewById<TextView>(R.id.text_user).showUser()
         findViewById<TextView>(R.id.view_shift).showShift()
 
         textBarcode = findViewById(R.id.text_barcode)
@@ -149,6 +151,12 @@ class SkipjackBinActivity : AppCompatActivity() {
         textBatchNo.setText(bin.batch_no)
         textLotNo.setText(bin.lot_no)
         textWeight.setText(bin.net_weight.toString())
+
+        queRange = FishClient.Companion.Master.QueueRanges.Items.first()
+        textQueue.text = queRange.queue_range_description
+
+        queType = FishClient.Companion.Master.QueueTypes.Items.first()
+        textQueueType.text = ""
     }
 
     private fun bind(obj: Fish.Skipjack.Queue) {
@@ -161,22 +169,18 @@ class SkipjackBinActivity : AppCompatActivity() {
             textQueueType.text = queType.queue_type_code
 
 
-        }else{
-            queType = FishClient.Companion.Master.QueueTypes.Items.first()
-            queRange = FishClient.Companion.Master.QueueRanges.Items.first()
+        } else {
+            textSpecy.setText("")
+            textSpecyDesc.setText("")
+            textOrigin.setText("")
+            textSloc.setText("")
+            textBatchNo.setText("")
+            textLotNo.setText("")
+            textWeight.setText("")
 
-            textQueue.text = queRange.queue_range_description
-            textQueueType.text = ""
+            textBarcode.setText("")
+            textBarcode.requestFocus()
         }
-
-
-        textSpecy.setText("")
-        textSpecyDesc.setText("")
-        textOrigin.setText("")
-        textSloc.setText("")
-        textBatchNo.setText("")
-        textLotNo.setText("")
-        textWeight.setText("")
     }
 
     private fun clrscr() {

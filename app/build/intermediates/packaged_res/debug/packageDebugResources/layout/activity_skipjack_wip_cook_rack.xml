@@ -8,35 +8,69 @@
     tools:context=".SkipjackWipCookRackActivity">
 
     <TextView
+        android:id="@+id/text_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="serif"
+        android:hint="#RESULT"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_startTime" />
+
+    <TextView
+        android:id="@+id/view_shift"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Cyan_050"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="dd.MM.yyyy - DN"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/text_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Red_A700"
+        android:fontFamily="serif"
+        android:hint="#USER"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_shift"
+        app:layout_constraintTop_toTopOf="@+id/view_shift" />
+
+    <TextView
         android:id="@+id/text_cancel_rack"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/Red_200"
+        android:layout_marginTop="16dp"
+        android:background="@color/Red_A700"
         android:fontFamily="serif"
         android:gravity="center"
-        android:text="CANCEL RACK"
+        android:text="DELETE RACK"
         android:textAlignment="center"
+        android:textColor="@color/White"
         android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/text_message"
-        app:layout_constraintStart_toStartOf="@+id/text_message"
-        app:layout_constraintTop_toBottomOf="@+id/text_message" />
-
-    <TextView
-        android:id="@+id/text_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/Blue_Gray_050"
-        android:fontFamily="serif"
-        android:hint="#message"
-        android:textAlignment="textStart"
-        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/text_startTime"
         app:layout_constraintStart_toStartOf="@+id/text_startTime"
-        app:layout_constraintTop_toBottomOf="@+id/text_startTime" />
+        app:layout_constraintTop_toBottomOf="@+id/text_result" />
 
     <EditText
         android:id="@+id/text_startTime"
@@ -58,7 +92,7 @@
         android:id="@+id/lblTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="START TIME"
         app:layout_constraintStart_toStartOf="@+id/text_rackNo"
@@ -68,7 +102,7 @@
         android:id="@+id/text_rackNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/Amber_A200"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
@@ -85,12 +119,12 @@
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="RACK NO."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/view_shift" />
 
     <TextView
         android:id="@+id/textView"
