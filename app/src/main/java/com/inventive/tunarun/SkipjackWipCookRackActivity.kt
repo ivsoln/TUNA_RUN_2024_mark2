@@ -90,7 +90,7 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
             textCancelRack.isVisible = true
             textCancelRack.setOnClickListener { cancelRack() }
         }
-        textRackNo.focusThenSelectionEnd()
+        textRackNo.focusThenSelectionAll()
     }
 
     private fun cancelRack() {
