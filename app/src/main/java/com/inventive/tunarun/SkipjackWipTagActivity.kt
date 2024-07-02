@@ -16,6 +16,7 @@ import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
 import com.inventive.tunarun.Instant.Companion.afterTextChanged
 import com.inventive.tunarun.Instant.Companion.showVCColor
+import com.inventive.tunarun.Instant.Companion.stringShortTime
 import org.w3c.dom.Text
 
 class SkipjackWipTagActivity : AppCompatActivity() {
@@ -28,9 +29,8 @@ class SkipjackWipTagActivity : AppCompatActivity() {
 
     var _tagColor: Fish.Skipjack.Masters.TagColor = Fish.Skipjack.Masters.TagColor();
 
-//    var _vcColor1: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
-//    var _vcColor2: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
-//    var _vcColor3: Fish.Skipjack.Masters.VCColor = Fish.Skipjack.Masters.VCColor();
+    var _rack = Fish.Skipjack.Rack()
+    var _racks = Fish.Objects.HashSetClient<Fish.Skipjack.Rack>()
 
     lateinit var textQueueNo: EditText
     lateinit var viewQueColor: TextView
@@ -43,7 +43,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     lateinit var viewColor1: TextView
     lateinit var viewColor2: TextView
     lateinit var viewColor3: TextView
-    lateinit var textRackNo: EditText
+    lateinit var textRack: EditText
     lateinit var textTray: EditText
     lateinit var textEach: EditText
     lateinit var btnSave: TextView
@@ -78,7 +78,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
         viewColor1 = findViewById(R.id.view_color1)
         viewColor2 = findViewById(R.id.view_color2)
         viewColor3 = findViewById(R.id.view_color3)
-        textRackNo = findViewById(R.id.text_rackNo)
+        textRack = findViewById(R.id.text_rackNo)
         textTray = findViewById(R.id.text_tray)
         textEach = findViewById(R.id.text_each)
         btnSave = findViewById(R.id.btn_save)
@@ -125,6 +125,9 @@ class SkipjackWipTagActivity : AppCompatActivity() {
                     val w = ListItem()
                     w.id = o.Id
                     w.caption = o.species_code
+                    if (o.material_code.isNotEmpty()) {
+                        w.caption = "${o.species_code} /${o.material_code}"
+                    }
                     w.description = o.species_description.toString()
                     items = items + w
                 }
@@ -186,6 +189,51 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             }
         }
 
+        val popupRackList = object : ListItem.Callback(this, "CHOOSE PRE-RACK") {
+            override fun onItemSelected(result: ListItem) {
+                _rack = _racks.Items.first { it.Id == result.id }
+                textRack.setText(_rack.rack_no)
+                textRack.setBackgroundColor(resources.getColor(R.color.Light_Green))
+            }
+
+            override fun searchTextChanged(listView: ListView, text: String) {
+                var date = FishClient.Companion.Skipjack.Shift.Date
+                var shift = FishClient.Companion.Skipjack.Shift.Shift
+                val skipjack = FishClient.SkipjackClient(applicationContext)
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        _racks = result as Fish.Objects.HashSetClient<Fish.Skipjack.Rack>
+                        items = listOf()
+                        for (o in _racks.Items) {
+                            val w = ListItem()
+                            w.id = o.Id
+                            w.caption = o.rack_no.toString()
+                            w.description = o.rack_arrange_start.stringShortTime()
+                            items = items + w
+                        }
+                        listView.adapter =
+                            ListItem.Adapter(
+                                activity,
+                                R.layout.activity_search_item_desc,
+                                items
+                            )
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > GET_PRE_RACKS > ERROR", result)
+                    }
+                }
+                skipjack.getPreRacks(date, shift, callback)
+            }
+        }
+
+        textRack.setOnLongClickListener {
+            Instant.selectionDialog(popupRackList)
+            true
+        }
+
+
+
         textSize.afterTextChanged { s ->
             FishClient.Companion.Master.SpeciesSize.Items.firstOrNull { it.species_size_code == s }
                 .also {
@@ -217,18 +265,6 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             val intent = Intent(this, SkipjackTagColorActivity::class.java)
             startActivityForResult(intent, REQUEST_COLOR)
         }
-//        viewColor1.setOnClickListener {
-//            val intent = Intent(this, SkipjackColorActivity::class.java)
-//            startActivityForResult(intent, REQUEST_COLOR1)
-//        }
-//        viewColor2.setOnClickListener {
-//            val intent = Intent(this, SkipjackColorActivity::class.java)
-//            startActivityForResult(intent, REQUEST_COLOR2)
-//        }
-//        viewColor3.setOnClickListener {
-//            val intent = Intent(this, SkipjackColorActivity::class.java)
-//            startActivityForResult(intent, REQUEST_COLOR3)
-//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -244,37 +280,11 @@ class SkipjackWipTagActivity : AppCompatActivity() {
                         viewColor.setTextColor(Color.BLACK)
                     }
 
-//                    REQUEST_COLOR1 -> {
-//                        _vcColor1 = getColorCodeById(it)
-//                        viewColor1.setBackgroundColor(Color.parseColor(_vcColor1.color_hex))
-//                        viewColor1.text = _vcColor1.color_description
-//                        viewColor1.setTextColor(Color.BLACK)
-//                    }
-//
-//                    REQUEST_COLOR2 -> {
-//                        _vcColor2 = getColorCodeById(it)
-//                        viewColor2.setBackgroundColor(Color.parseColor(_vcColor2.color_hex))
-//                        viewColor2.text = _vcColor2.color_description
-//                        viewColor2.setTextColor(Color.BLACK)
-//                    }
-//
-//                    REQUEST_COLOR3 -> {
-//                        _vcColor3 = getColorCodeById(it)
-//                        viewColor3.setBackgroundColor(Color.parseColor(_vcColor3.color_hex))
-//                        viewColor3.text = _vcColor3.color_description
-//                        viewColor3.setTextColor(Color.BLACK)
-//                    }
-
                     else -> throw IllegalArgumentException("Unknown requestCode: $requestCode")
                 }
             }
         }
     }
-
-
-//    private fun getColorCodeById(colorId: Int): Fish.Skipjack.Masters.VCColor {
-//        return FishClient.Companion.Master.VCColor.Items.first { it.Id == colorId }
-//    }
 
     private fun getTagColorCodeById(colorId: Int): Fish.Skipjack.Masters.TagColor {
         return FishClient.Companion.Master.TagColor.Items.first { it.Id == colorId }

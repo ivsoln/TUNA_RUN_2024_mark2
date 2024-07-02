@@ -72,7 +72,7 @@ class SkipjackShiftActivity : AppCompatActivity() {
                     Log.e("TUNA RUN > GET_SHIFT > ERROR", result)
                 }
             }
-            it.getShift(callback, date, shift)
+            it.getShift(date, shift, callback)
         }
     }
 

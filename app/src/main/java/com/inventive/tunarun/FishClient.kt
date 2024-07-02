@@ -599,7 +599,7 @@ class FishClient {
             connect.get(baseUrl + "GetDefault", jCall)
         }
 
-        fun getShift(callback: ActionRequest.Callback, date: Date, shift: Int) {
+        fun getShift(date: Date, shift: Int, callback: ActionRequest.Callback) {
 
             var strDate = SimpleDateFormat("yyyy-MM-dd").format(date)
             var strShift = shift.toString()
@@ -854,6 +854,20 @@ class FishClient {
             val strDate = SimpleDateFormat("yyyy-MM-dd").format(date)
             connect.get(baseUrl + "delete_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
         }
+        fun getPreRacks(date: Date, shift: Int, callback: ActionRequest.Callback) {
+            var _date = SimpleDateFormat("yyyy-MM-dd").format(date)
+            var _shift = shift.toString()
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<HashSetClient<Fish.Skipjack.Rack>>(response)
+                    callback.onSuccess(result)
+                }
 
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            connect.get(baseUrl + "get_pre_racks?_date=$_date&_shift=$_shift", jCall)
+        }
     }
 }

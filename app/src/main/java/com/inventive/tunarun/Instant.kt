@@ -84,10 +84,14 @@ class Instant {
             this.selectAll()
         }
         fun EditText.showShortTime(date: Date){
-            this.setText(SimpleDateFormat("dd/MM/yyyy HH:mm").format(date))
+            this.setText(date.stringShortTime())
         }
         fun TextView.showShortTime(date: Date){
-            this.text = (SimpleDateFormat("dd/MM/yyyy HH:mm").format(date))
+            this.text = date.stringShortTime()
+        }
+
+        fun Date.stringShortTime(): String {
+           return (SimpleDateFormat("dd/MM/yyyy HH:mm").format(this))
         }
 
         fun TextView.clearResult() {
