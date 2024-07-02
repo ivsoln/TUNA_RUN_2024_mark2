@@ -1,3 +1,0 @@
-com.inventive.tunarun.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
