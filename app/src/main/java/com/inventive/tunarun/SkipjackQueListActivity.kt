@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,31 +23,55 @@ import java.text.SimpleDateFormat
 class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickListener {
 
     private var adapter: QueListAdapter? = null
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var overlay: View
+    private lateinit var viewResult: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_skipjack_que_list)
 
         findViewById<TextView>(R.id.view_shift).showShift()
 
+        progressBar = findViewById(R.id.progressBar)
+        overlay = findViewById(R.id.overlay)
+        viewResult = findViewById(R.id.view_result)
+
+        progressBar.visibility = View.VISIBLE
+        overlay.visibility = View.VISIBLE
+
         var context: SkipjackQueListActivity = this
         val skipjack = FishClient.SkipjackClient(context)
+
         val callback = object : ActionRequest.Callback {
+
             override fun <T> onSuccess(result: T) {
+                progressBar.visibility = View.GONE
+                overlay.visibility = View.GONE
+
                 val queues = result as Fish.Objects.HashSetClient<Fish.Skipjack.Queue>
-                val recyclerView = findViewById<RecyclerView>(R.id.list_queue)
-                recyclerView.setLayoutManager(LinearLayoutManager(context))
-                adapter = QueListAdapter(context, queues.Items)
-                adapter!!.setClickListener(itemClickListener = context)
-                recyclerView.setAdapter(adapter)
+                if (queues.Items.isEmpty()) {
+                    viewResult.text = "No Result"
+                } else {
+                    val recyclerView = findViewById<RecyclerView>(R.id.list_queue)
+                    recyclerView.setLayoutManager(LinearLayoutManager(context))
+                    adapter = QueListAdapter(context, queues.Items)
+                    adapter!!.setClickListener(itemClickListener = context)
+                    recyclerView.setAdapter(adapter)
+                }
             }
 
             override fun onError(result: String) {
                 Log.e("TUNA RUN > LIST_QUEUE > ERROR", result)
+                progressBar.visibility = View.GONE
+                overlay.visibility = View.GONE
+                viewResult.text = "TUNA RUN LIST_QUEUE ERROR: $result"
+
             }
         }
         skipjack.getQueues(callback)
-
     }
 
     override fun onItemClick(view: View?, position: Int) {
@@ -115,6 +140,7 @@ class QueListAdapter internal constructor(
     // total number of rows
     override fun getItemCount(): Int {
         return mData.size
+
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -129,6 +155,7 @@ class QueListAdapter internal constructor(
             if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
         }
     }
+
 
     // convenience method for getting data at click position
     fun getItem(id: Int): Fish.Skipjack.Queue {
@@ -145,3 +172,4 @@ class QueListAdapter internal constructor(
         fun onItemClick(view: View?, position: Int)
     }
 }
+
