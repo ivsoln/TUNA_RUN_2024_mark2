@@ -8,7 +8,13 @@ import android.view.ViewGroup
 import android.widget.EditText
 
 class SkipjackQueProductFragment : Fragment() {
-
+    fun newInstance(queId: Long): SkipjackQueProductFragment {
+        val fragment = SkipjackQueProductFragment()
+        val args = Bundle()
+        args.putLong("QUE_ID", queId)
+        fragment.setArguments(args)
+        return fragment
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

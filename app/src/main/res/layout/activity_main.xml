@@ -7,6 +7,21 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/text_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Red_A700"
+        android:fontFamily="serif"
+        android:hint="#USER"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
         android:id="@+id/lnk_login"
         android:layout_width="0dp"
         android:layout_height="54dp"

@@ -69,6 +69,9 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
   public final EditText textStatus;
 
   @NonNull
+  public final TextView textUser;
+
+  @NonNull
   public final TextView textView10;
 
   @NonNull
@@ -107,11 +110,11 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
       @NonNull EditText inputBarcode, @NonNull EditText textBatchNo, @NonNull EditText textLotNo,
       @NonNull EditText textMaterial, @NonNull EditText textOrigin,
       @NonNull EditText textRemarkDesc, @NonNull TextView textResult, @NonNull EditText textSloc,
-      @NonNull EditText textSpecies, @NonNull EditText textStatus, @NonNull TextView textView10,
-      @NonNull TextView textView12, @NonNull TextView textView13, @NonNull TextView textView14,
-      @NonNull TextView textView15, @NonNull TextView textView16, @NonNull TextView textView6,
-      @NonNull TextView textView8, @NonNull TextView textView9, @NonNull EditText textWeight,
-      @NonNull TextView viewShift) {
+      @NonNull EditText textSpecies, @NonNull EditText textStatus, @NonNull TextView textUser,
+      @NonNull TextView textView10, @NonNull TextView textView12, @NonNull TextView textView13,
+      @NonNull TextView textView14, @NonNull TextView textView15, @NonNull TextView textView16,
+      @NonNull TextView textView6, @NonNull TextView textView8, @NonNull TextView textView9,
+      @NonNull EditText textWeight, @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.actionSave = actionSave;
     this.actionUse = actionUse;
@@ -129,6 +132,7 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
     this.textSloc = textSloc;
     this.textSpecies = textSpecies;
     this.textStatus = textStatus;
+    this.textUser = textUser;
     this.textView10 = textView10;
     this.textView12 = textView12;
     this.textView13 = textView13;
@@ -265,6 +269,12 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
+        break missingId;
+      }
+
       id = R.id.textView10;
       TextView textView10 = ViewBindings.findChildViewById(rootView, id);
       if (textView10 == null) {
@@ -334,8 +344,8 @@ public final class ActivityBlindReceiveBinding implements ViewBinding {
       return new ActivityBlindReceiveBinding((ConstraintLayout) rootView, actionSave, actionUse,
           captBarcode, captLot, captMaterial, gotoListAll, inputBarcode, textBatchNo, textLotNo,
           textMaterial, textOrigin, textRemarkDesc, textResult, textSloc, textSpecies, textStatus,
-          textView10, textView12, textView13, textView14, textView15, textView16, textView6,
-          textView8, textView9, textWeight, viewShift);
+          textUser, textView10, textView12, textView13, textView14, textView15, textView16,
+          textView6, textView8, textView9, textWeight, viewShift);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

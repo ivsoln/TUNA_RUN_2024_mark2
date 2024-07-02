@@ -13,7 +13,7 @@ class FishClient {
 
     companion object {
         //var apiAddr: String = "192.168.20.61"
-        var apiAddr: String = "192.168.54.53"
+        var apiAddr: String = "99.42.1.42"
         fun Init(context: Context, callback: InitCallback) {
             var master = MasterClient(context)
             master.also {
@@ -31,6 +31,70 @@ class FishClient {
                     }
                 }
                 it.get_species_materials(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.SpeciesSize =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.SpeciesSize>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > INIT_SPECIES_SIZE > COUNT", Master.SpeciesSize.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > INIT_SPECIES_SIZE > ERROR", result)
+                    }
+                }
+                it.get_species_sizes(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.SpeciesOrigin =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.SpeciesOrigin>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > INIT_SPECIES_ORIGIN > COUNT", Master.SpeciesOrigin.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > INIT_SPECIES_ORIGIN > ERROR", result)
+                    }
+                }
+                it.get_species_origins(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.QueueRanges =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.QueueRange>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > LOAD_QUEUE_RANGE > COUNT", Master.QueueRanges.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > LOAD_QUEUE_RANGE > ERROR", result)
+                    }
+                }
+                it.get_queue_ranges(callback)
+            }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.QueueTypes =
+                            result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.QueueType>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e("TUNA RUN > LOAD_QUEUE_TYPE > COUNT", Master.QueueTypes.count.toString())
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > LOAD_QUEUE_TYPE > ERROR", result)
+                    }
+                }
+                it.get_queue_types(callback)
             }
 
             var skipjack = SkipjackClient(context)
@@ -116,6 +180,8 @@ class FishClient {
                 var SpeciesSize = HashSetClient<Fish.Skipjack.Masters.SpeciesSize>()
                 var VCColor = HashSetClient<Fish.Skipjack.Masters.VCColor>()
                 var TagColor = HashSetClient<Fish.Skipjack.Masters.TagColor>()
+                var QueueRanges = HashSetClient<Fish.Skipjack.Masters.QueueRange>()
+                var QueueTypes = HashSetClient<Fish.Skipjack.Masters.QueueType>()
             }
         }
 
@@ -131,6 +197,10 @@ class FishClient {
             var shiftText = SimpleDateFormat(Instant.dateFormat).format(FishClient.Companion.Skipjack.Shift.Date)
             shiftText += " - " + FishClient.Companion.Skipjack.Shift.WorkShift?.ShiftCode.toString()
             this.text = shiftText
+        }
+
+        fun TextView.showUser(){
+            this.text = FishClient.Companion.Skipjack.Identity.UserId.uppercase()
         }
 
 

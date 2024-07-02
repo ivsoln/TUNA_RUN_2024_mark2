@@ -23,7 +23,7 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
   public final TextView gotoPrepareRack;
 
   @NonNull
-  public final TextView gotoQueue;
+  public final TextView gotoQueueList;
 
   @NonNull
   public final TextView gotoScanBin;
@@ -33,6 +33,12 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
 
   @NonNull
   public final ConstraintLayout main;
+
+  @NonNull
+  public final TextView textQueueNo;
+
+  @NonNull
+  public final TextView textUser;
 
   @NonNull
   public final TextView textView;
@@ -50,16 +56,19 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
   public final TextView viewShift;
 
   private ActivitySkipjackWipMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView gotoPrepareRack, @NonNull TextView gotoQueue, @NonNull TextView gotoScanBin,
-      @NonNull TextView gotoTag, @NonNull ConstraintLayout main, @NonNull TextView textView,
+      @NonNull TextView gotoPrepareRack, @NonNull TextView gotoQueueList,
+      @NonNull TextView gotoScanBin, @NonNull TextView gotoTag, @NonNull ConstraintLayout main,
+      @NonNull TextView textQueueNo, @NonNull TextView textUser, @NonNull TextView textView,
       @NonNull TextView textView22, @NonNull TextView textView23, @NonNull TextView viewDate,
       @NonNull TextView viewShift) {
     this.rootView = rootView;
     this.gotoPrepareRack = gotoPrepareRack;
-    this.gotoQueue = gotoQueue;
+    this.gotoQueueList = gotoQueueList;
     this.gotoScanBin = gotoScanBin;
     this.gotoTag = gotoTag;
     this.main = main;
+    this.textQueueNo = textQueueNo;
+    this.textUser = textUser;
     this.textView = textView;
     this.textView22 = textView22;
     this.textView23 = textView23;
@@ -100,9 +109,9 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.goto_queue;
-      TextView gotoQueue = ViewBindings.findChildViewById(rootView, id);
-      if (gotoQueue == null) {
+      id = R.id.goto_queue_list;
+      TextView gotoQueueList = ViewBindings.findChildViewById(rootView, id);
+      if (gotoQueueList == null) {
         break missingId;
       }
 
@@ -119,6 +128,18 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
       }
 
       ConstraintLayout main = (ConstraintLayout) rootView;
+
+      id = R.id.text_queueNo;
+      TextView textQueueNo = ViewBindings.findChildViewById(rootView, id);
+      if (textQueueNo == null) {
+        break missingId;
+      }
+
+      id = R.id.text_user;
+      TextView textUser = ViewBindings.findChildViewById(rootView, id);
+      if (textUser == null) {
+        break missingId;
+      }
 
       id = R.id.textView;
       TextView textView = ViewBindings.findChildViewById(rootView, id);
@@ -151,8 +172,8 @@ public final class ActivitySkipjackWipMainBinding implements ViewBinding {
       }
 
       return new ActivitySkipjackWipMainBinding((ConstraintLayout) rootView, gotoPrepareRack,
-          gotoQueue, gotoScanBin, gotoTag, main, textView, textView22, textView23, viewDate,
-          viewShift);
+          gotoQueueList, gotoScanBin, gotoTag, main, textQueueNo, textUser, textView, textView22,
+          textView23, viewDate, viewShift);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -29,7 +29,7 @@ public final class ActivitySkipjackQueBinding implements ViewBinding {
   public final TabLayout tabLayout;
 
   @NonNull
-  public final EditText textBarcode;
+  public final EditText textQueueNo;
 
   @NonNull
   public final TextView textView19;
@@ -47,13 +47,13 @@ public final class ActivitySkipjackQueBinding implements ViewBinding {
   public final TextView viewSpecies;
 
   private ActivitySkipjackQueBinding(@NonNull ConstraintLayout rootView, @NonNull TextView btnSave,
-      @NonNull TabLayout tabLayout, @NonNull EditText textBarcode, @NonNull TextView textView19,
+      @NonNull TabLayout tabLayout, @NonNull EditText textQueueNo, @NonNull TextView textView19,
       @NonNull TextView viewBatchNo, @NonNull TextView viewOrigin, @NonNull ViewPager2 viewPager2,
       @NonNull TextView viewSpecies) {
     this.rootView = rootView;
     this.btnSave = btnSave;
     this.tabLayout = tabLayout;
-    this.textBarcode = textBarcode;
+    this.textQueueNo = textQueueNo;
     this.textView19 = textView19;
     this.viewBatchNo = viewBatchNo;
     this.viewOrigin = viewOrigin;
@@ -100,9 +100,9 @@ public final class ActivitySkipjackQueBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.text_barcode;
-      EditText textBarcode = ViewBindings.findChildViewById(rootView, id);
-      if (textBarcode == null) {
+      id = R.id.text_queueNo;
+      EditText textQueueNo = ViewBindings.findChildViewById(rootView, id);
+      if (textQueueNo == null) {
         break missingId;
       }
 
@@ -137,7 +137,7 @@ public final class ActivitySkipjackQueBinding implements ViewBinding {
       }
 
       return new ActivitySkipjackQueBinding((ConstraintLayout) rootView, btnSave, tabLayout,
-          textBarcode, textView19, viewBatchNo, viewOrigin, viewPager2, viewSpecies);
+          textQueueNo, textView19, viewBatchNo, viewOrigin, viewPager2, viewSpecies);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

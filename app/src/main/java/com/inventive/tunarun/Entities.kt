@@ -1007,22 +1007,19 @@ class Fish {
 
         class Queue : Objects.EntityClient<Queue>() {
 
-            var lot_no: String? = null
-            var material_code: String? = null
-            var material_name: String? = null
-            var material_sesc: String? = null
+            var lot_no: String = ""
+            var material_code: String = ""
+            var material_name: String = ""
+            var material_sesc: String = ""
 
             var time_stamp: Date? = null
 
-            var SpeciesOrigin: Masters.SpeciesOrigin? = null
+            var SpeciesOrigin: Masters.SpeciesOrigin = Masters.SpeciesOrigin()
+            var Species: Masters.Species = Masters.Species()
 
-            var Species: Masters.Species? = null
-
-            var QueueRange: Masters.QueueRange? = null
-
-            var QueueType: Masters.QueueType? = null
-
-            var QueueState: Skipjack.QueueState? = null
+            var QueueRange: Masters.QueueRange = Masters.QueueRange()
+            var QueueType: Masters.QueueType =  Masters.QueueType()
+            var QueueState: Skipjack.QueueState = Skipjack.QueueState.EMPTY_QUEUE
 
 
             var VCColors: Objects.HashSetClient<Masters.VCColor> = Objects.HashSetClient()
@@ -1110,6 +1107,7 @@ class Fish {
             var queue_time_thaw_actual: Date? = null
             var queue_time_cut_plan: Date? = null
             var queue_time_cut_actual: Date? = null
+
             var queue_arrange_start: Date? = null
             var queue_arrange_finish: Date? = null
 
