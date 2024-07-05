@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.inventive.tunarun.Fish.Objects.EntityState
+import com.inventive.tunarun.ListItem.Callback
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -34,7 +35,7 @@ class Instant {
             toast.show()
         }
 
-        fun selectionDialog(callback: ListItem.Callback) {
+        fun <T> selectionDialog(callback: Callback<T>) {
             val dialog = Dialog(callback.activity)
             with(dialog) {
                 setCancelable(true)
@@ -68,7 +69,9 @@ class Instant {
 
             callback.searchTextChanged(listView, "")
             listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-                Log.e("TUNA RUN > SELECT", callback.items[position].toString())
+                Log.i("TUNA RUN > COUNT", "${callback.items.size.toString()}")
+                Log.i("TUNA RUN > SELECT", "${position.toString()}")
+                //Log.e("TUNA RUN > SELECT", callback.items[position].toString())
                 callback.onItemSelected(callback.items[position])
                 dialog.dismiss()
             }
@@ -208,7 +211,7 @@ class ListItem {
     var caption: String = ""
     var description: String = ""
 
-    class Adapter(context: Activity, var resources: Int, var items: List<ListItem>) :
+    class Adapter(context: Activity, var resources: Int, private var items: List<ListItem>) :
         ArrayAdapter<ListItem>(context, resources, items) {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
@@ -225,11 +228,11 @@ class ListItem {
         }
     }
 
-    abstract class Callback(activity: Activity, title: String) {
+    abstract class Callback<T>(activity: Activity, title: String) {
         var title: String = title
         val activity: Activity = activity
-        var items: List<ListItem> = listOf()
-        open fun onItemSelected(result: ListItem) {}
+        var items: List<T> = listOf()
+        open fun onItemSelected(result: T) {}
         open fun searchTextChanged(listView: ListView, text: String) {}
     }
 }

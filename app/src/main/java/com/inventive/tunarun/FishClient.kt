@@ -3,6 +3,10 @@ package com.inventive.tunarun
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import com.inventive.tunarun.Fish.Objects.HashSetClient
@@ -15,9 +19,58 @@ import java.util.Date
 
 class FishClient {
 
+class  ListQueueItem {
+        override fun toString(): String {
+            return queue.queue_no.toString()
+        }
+
+        private var queue: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
+
+        class Adapter(context: Activity, var resources: Int, private var items: List<Fish.Skipjack.Queue>) :
+            ArrayAdapter<Fish.Skipjack.Queue>(context, resources, items) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
+                val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
+                val itemView: View = layoutInflater.inflate(resources, null)
+
+                var viewQue: TextView = itemView.findViewById(R.id.view_que)
+                var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
+                var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
+                var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
+                var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
+
+                var queue: Fish.Skipjack.Queue = items[position]
+
+
+                viewQue.text = queue.queue_no.toString()
+                viewBatchNo.text = queue.batch_no
+                viewLotNo.text = queue.lot_no
+
+                var itemNo = ""
+                if (queue.material_code != null) {
+                    itemNo += queue.material_code
+                }
+
+                if (queue.species_code != null) {
+                    if (itemNo.isNotEmpty()) {
+                        itemNo += " /"
+                    }
+                    itemNo += queue.species_code
+                }
+
+                viewItemNo.text = itemNo
+                viewWeight.text = "${queue.net_weight} KG."
+
+                return itemView
+            }
+        }
+
+
+}
+
     companion object {
-        var apiAddr: String = "99.42.1.61"
-        //var apiAddr: String = "172.20.10.4"
+        //var apiAddr: String = "99.42.1.61"
+        var apiAddr: String = "172.20.10.4"
         fun Init(context: Context, callback: InitCallback) {
             var master = MasterClient(context)
             master.also {
@@ -222,7 +275,7 @@ class FishClient {
 
 
         fun Activity.dialogSpeciesList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback(this, "CHOOSE SPECIES") {
+            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE SPECIES") {
                 override fun onItemSelected(result: ListItem) {
                     var species = Master.Species.Items.first { it.Id == result.id }
                     callback.onSuccess(species)
@@ -252,7 +305,7 @@ class FishClient {
         }
 
         fun Activity.dialogSpeciesOriginList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback(this, "CHOOSE ORIGIN") {
+            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE ORIGIN") {
                 override fun onItemSelected(result: ListItem) {
                     var origin = Master.SpeciesOrigin.Items.first { it.Id == result.id }
                     callback.onSuccess(origin)
@@ -280,7 +333,7 @@ class FishClient {
         }
 
         fun Activity.dialogSpeciesSizeList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback(this, "CHOOSE SIZE") {
+            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE SIZE") {
                 override fun onItemSelected(result: ListItem) {
                     Master.SpeciesSize.Items.firstOrNull { it.Id == result.id }
                         .also {
@@ -309,7 +362,7 @@ class FishClient {
         }
 
         fun Activity.dialogPreRackList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback(this, "CHOOSE PRE-RACK") {
+            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE PRE-RACK") {
                 var racks = HashSetClient<Fish.Skipjack.Rack>()
                 override fun onItemSelected(result: ListItem) {
                     var rack = racks.Items.first { it.Id == result.id }
@@ -347,30 +400,24 @@ class FishClient {
         }
 
         fun Activity.dialogQueueList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback(this, "CHOOSE QUEUE") {
-                var queues = HashSetClient<Fish.Skipjack.Queue>()
-                override fun onItemSelected(result: ListItem) {
-                    var queue = queues.Items.first { it.Id == result.id }
+            val popupList = object : ListItem.Callback<Fish.Skipjack.Queue>(this, "CHOOSE QUEUE") {
+                var client = HashSetClient<Fish.Skipjack.Queue>()
+                override fun onItemSelected(result: Fish.Skipjack.Queue) {
+                    var queue = client.Items.first { it.Id == result.Id }
                     callback.onSuccess(queue)
                 }
                 override fun searchTextChanged(listView: ListView, text: String) {
                     val skipjack = SkipjackClient(applicationContext)
                     val callback = object : ActionRequest.Callback {
                         override fun <T> onSuccess(result: T) {
-                            queues = result as HashSetClient<Fish.Skipjack.Queue>
-                            items = listOf()
-                            for (o in queues.Items) {
-                                val w = ListItem()
-                                w.id = o.Id
-                                w.caption = "${o.queue_no.toString()} /${o.material_code} /${o.species_code}KG."
-                                w.description = "${o.net_weight} KG./${o.batch_no} /${o.location_description}"
-                                items = items + w
-                            }
-                            listView.adapter = ListItem.Adapter(
+                            client = result as HashSetClient<Fish.Skipjack.Queue>
+                            items = client.Items
+                            listView.adapter = ListQueueItem.Adapter(
                                 activity,
-                                R.layout.activity_search_item_desc,
+                                R.layout.custom_skipjack_que_item,
                                 items
                             )
+
                         }
                         override fun onError(result: String) {
                             Log.e("TUNA RUN > GET_QUEUES > ERROR", result)
@@ -383,6 +430,7 @@ class FishClient {
         }
 
     }
+
 
 
     class AuthClient constructor(context: Context) {
