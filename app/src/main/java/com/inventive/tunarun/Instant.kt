@@ -40,9 +40,9 @@ class Instant {
                 setCancelable(true)
                 setContentView(R.layout.activity_search_view_list)
             }
-            val title: TextView = dialog.findViewById(R.id.text_title) as TextView
-            val listView: ListView = dialog.findViewById(R.id.list_item_view) as ListView
-            val searchView = dialog.findViewById(R.id.search_item) as SearchView
+            val title: TextView = dialog.findViewById(R.id.text_title)
+            val listView: ListView = dialog.findViewById(R.id.list_item_view)
+            val searchView: SearchView = dialog.findViewById(R.id.search_item)
 
             title.text = callback.title
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -63,7 +63,7 @@ class Instant {
                 }
             })
 
-            val dismiss = dialog.findViewById(R.id.button_dismiss) as Button
+            val dismiss: Button = dialog.findViewById(R.id.button_dismiss)
             dismiss.setOnClickListener { dialog.dismiss() }
 
             callback.searchTextChanged(listView, "")
@@ -74,7 +74,22 @@ class Instant {
             }
             dialog.show()
         }
+        fun TextView.done(){
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
 
+        fun TextView.cancel(){
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+        fun EditText.done(){
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
+        fun EditText.typing(){
+            this.setBackgroundColor(resources.getColor(R.color.Amber_A100))
+        }
+        fun EditText.cancel(){
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
         fun EditText.focusThenSelectionEnd(){
             this.requestFocus()
             this.setSelection(this.length())
@@ -90,6 +105,9 @@ class Instant {
             this.text = date.stringShortTime()
         }
 
+        fun Date.queryDateString(): String {
+            return (SimpleDateFormat("yyyy-MM-dd").format(this))
+        }
         fun Date.stringShortTime(): String {
            return (SimpleDateFormat("dd/MM/yyyy HH:mm").format(this))
         }
@@ -108,7 +126,7 @@ class Instant {
                 EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.SUCCESS -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
-                EntityState.FAILURE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.FAILURE -> this.setBackgroundColor(resources.getColor(R.color.Red_A200))
                 EntityState.DUPLICATE -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
@@ -174,6 +192,8 @@ class Instant {
                 }
             })
         }
+
+
 
 
     }
