@@ -24,70 +24,34 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/text_status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@color/Primary_090"
-        android:ems="10"
-        android:fontFamily="@font/roboto_mono"
-        android:hint="#STATUS"
-        android:inputType="text"
-        android:paddingLeft="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/text_origin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_origin"
-        app:layout_constraintTop_toBottomOf="@+id/text_sloc" />
-
-    <EditText
         android:id="@+id/text_sloc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/Amber_A200"
+        android:layout_marginTop="8dp"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
-        android:hint="#SLOC"
         android:inputType="text"
         android:paddingLeft="8dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_origin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_origin"
+        app:layout_constraintEnd_toEndOf="@+id/text_material"
+        app:layout_constraintStart_toStartOf="@+id/text_species"
         app:layout_constraintTop_toBottomOf="@+id/text_material" />
 
     <EditText
         android:id="@+id/text_material"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/Amber_A200"
+        android:layout_marginTop="8dp"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
-        android:hint="#MATERIAL"
         android:inputType="text"
         android:paddingLeft="8dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_origin"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/text_origin"
+        app:layout_constraintEnd_toEndOf="@+id/text_species"
+        app:layout_constraintStart_toStartOf="@+id/text_species"
         app:layout_constraintTop_toBottomOf="@+id/text_weight" />
-
-    <EditText
-        android:id="@+id/text_remarkDesc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@color/Primary_090"
-        android:ems="10"
-        android:fontFamily="@font/roboto_mono"
-        android:hint="#REMARK/DESCRIPTION"
-        android:inputType="text"
-        android:paddingLeft="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/text_origin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_origin"
-        app:layout_constraintTop_toBottomOf="@+id/text_status" />
 
     <TextView
         android:id="@+id/textView12"
@@ -97,8 +61,7 @@
         android:text="SPECIES :"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/text_species"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/text_lotNo"
         app:layout_constraintStart_toStartOf="@+id/textView8" />
 
     <TextView
@@ -150,8 +113,8 @@
         android:id="@+id/text_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/Amber_A200"
+        android:layout_marginTop="8dp"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
         android:hint="#"
@@ -160,7 +123,7 @@
         android:textAlignment="textEnd"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/text_species"
+        app:layout_constraintEnd_toEndOf="@+id/input_barcode"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/text_species" />
 
@@ -169,44 +132,59 @@
         android:layout_width="90dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:background="@color/Cyan_050"
+        android:background="@color/Cyan_A100"
         android:fontFamily="serif"
         android:gravity="center_vertical|end"
         android:text="SCAN/KEY :"
         android:textAlignment="textEnd"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/input_barcode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/input_barcode" />
+
+    <EditText
+        android:id="@+id/text_serialNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/Blue_Gray_050"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:inputType="text"
+        android:paddingLeft="8dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/goto_listAll"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/input_barcode"
+        app:layout_constraintTop_toBottomOf="@+id/input_barcode" />
 
     <EditText
         android:id="@+id/text_batchNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/Amber_A200"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
-        android:hint="#BATCH NO."
         android:inputType="text"
         android:paddingLeft="8dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/input_barcode"
+        app:layout_constraintEnd_toEndOf="@+id/goto_listAll"
         app:layout_constraintStart_toStartOf="@+id/input_barcode"
-        app:layout_constraintTop_toBottomOf="@+id/input_barcode" />
+        app:layout_constraintTop_toBottomOf="@+id/text_serialNo" />
 
     <EditText
         android:id="@+id/text_lotNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/Primary_090"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
-        android:hint="#LOT NO."
         android:inputType="text"
         android:paddingLeft="8dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/input_barcode"
+        app:layout_constraintEnd_toEndOf="@+id/text_batchNo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/input_barcode"
         app:layout_constraintTop_toBottomOf="@+id/text_batchNo" />
@@ -223,6 +201,18 @@
         app:layout_constraintStart_toStartOf="@+id/capt_barcode" />
 
     <TextView
+        android:id="@+id/capt_serialNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="SERIAL NO. :"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/text_serialNo"
+        app:layout_constraintEnd_toEndOf="@+id/capt_barcode"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/capt_barcode" />
+
+    <TextView
         android:id="@+id/capt_lot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -235,47 +225,19 @@
         app:layout_constraintStart_toStartOf="@+id/capt_barcode" />
 
     <EditText
-        android:id="@+id/text_origin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@color/Primary_090"
-        android:ems="10"
-        android:fontFamily="@font/roboto_mono"
-        android:hint="#ORIGIN"
-        android:inputType="text"
-        android:paddingLeft="8dp"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_batchNo"
-        app:layout_constraintStart_toStartOf="@+id/text_batchNo"
-        app:layout_constraintTop_toBottomOf="@+id/text_lotNo" />
-
-    <EditText
         android:id="@+id/text_species"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/Primary_090"
+        android:background="@color/Blue_Gray_050"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
-        android:hint="#SPECIES"
         android:inputType="text"
         android:paddingLeft="8dp"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_origin"
-        app:layout_constraintStart_toStartOf="@+id/text_origin"
-        app:layout_constraintTop_toBottomOf="@+id/text_origin" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:text="ORIGIN :"
-        android:textAlignment="textEnd"
-        app:layout_constraintBottom_toBottomOf="@+id/text_origin"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8" />
+        app:layout_constraintEnd_toEndOf="@+id/text_lotNo"
+        app:layout_constraintStart_toStartOf="@+id/text_lotNo"
+        app:layout_constraintTop_toBottomOf="@+id/text_lotNo" />
 
     <TextView
         android:id="@+id/textView10"
@@ -296,7 +258,7 @@
         android:background="@color/Amber_A400"
         android:fontFamily="serif"
         android:gravity="center"
-        android:text="[=]"
+        android:hint="[=]"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/input_barcode"
@@ -340,44 +302,18 @@
         app:layout_constraintStart_toStartOf="@+id/textView12" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:text="REMARK :"
-        android:textAlignment="textEnd"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/text_remarkDesc"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:text="STATUS :"
-        android:textAlignment="textEnd"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/text_status"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView12" />
-
-    <TextView
         android:id="@+id/action_save"
-        android:layout_width="90dp"
-        android:layout_height="32dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/Amber_A400"
         android:fontFamily="serif"
         android:text="SAVE"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/text_remarkDesc"
-        app:layout_constraintTop_toBottomOf="@+id/text_remarkDesc" />
+        app:layout_constraintStart_toStartOf="@+id/text_sloc"
+        app:layout_constraintTop_toBottomOf="@+id/text_sloc" />
 
     <TextView
         android:id="@+id/action_use"
@@ -388,10 +324,10 @@
         android:fontFamily="serif"
         android:text="USE"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/action_save"
-        app:layout_constraintEnd_toEndOf="@+id/text_remarkDesc"
+        app:layout_constraintEnd_toEndOf="@+id/text_sloc"
         app:layout_constraintStart_toEndOf="@+id/action_save"
         app:layout_constraintTop_toTopOf="@+id/action_save" />
 
@@ -400,7 +336,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="serif"
         android:hint="#RESULT"

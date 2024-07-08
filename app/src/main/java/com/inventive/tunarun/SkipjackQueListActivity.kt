@@ -9,15 +9,19 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListAdapter
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.FishClient.Companion.showShift
+import com.inventive.tunarun.FishClient.Companion.showUser
+import com.inventive.tunarun.Instant.Companion.showResult
 import java.text.SimpleDateFormat
 
 class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickListener {
@@ -34,10 +38,12 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
         setContentView(R.layout.activity_skipjack_que_list)
 
         findViewById<TextView>(R.id.view_shift).showShift()
+        findViewById<TextView>(R.id.text_user).showUser()
 
         progressBar = findViewById(R.id.progressBar)
         overlay = findViewById(R.id.overlay)
         viewResult = findViewById(R.id.view_result)
+        viewResult.isVisible = false
 
         progressBar.visibility = View.VISIBLE
         overlay.visibility = View.VISIBLE
@@ -53,7 +59,8 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
 
                 val queues = result as Fish.Objects.HashSetClient<Fish.Skipjack.Queue>
                 if (queues.Items.isEmpty()) {
-                    viewResult.text = "No Result"
+                    viewResult.text = ""
+                    viewResult.isVisible = true
                 } else {
                     val recyclerView = findViewById<RecyclerView>(R.id.list_queue)
                     recyclerView.setLayoutManager(LinearLayoutManager(context))
@@ -67,8 +74,7 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
                 Log.e("TUNA RUN > LIST_QUEUE > ERROR", result)
                 progressBar.visibility = View.GONE
                 overlay.visibility = View.GONE
-                viewResult.text = "TUNA RUN LIST_QUEUE ERROR: $result"
-
+                viewResult.showResult(Fish.Objects.EntityState.ERROR, result)
             }
         }
         skipjack.getQueues(callback)

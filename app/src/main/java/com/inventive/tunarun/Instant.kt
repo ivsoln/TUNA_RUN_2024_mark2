@@ -21,6 +21,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.inventive.tunarun.Fish.Objects.EntityState
+import com.inventive.tunarun.ListItem.Callback
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class Instant {
@@ -32,15 +35,15 @@ class Instant {
             toast.show()
         }
 
-        fun selectionDialog(callback: ListItem.Callback) {
+        fun <T> selectionDialog(callback: Callback<T>) {
             val dialog = Dialog(callback.activity)
             with(dialog) {
                 setCancelable(true)
                 setContentView(R.layout.activity_search_view_list)
             }
-            val title: TextView = dialog.findViewById(R.id.text_title) as TextView
-            val listView: ListView = dialog.findViewById(R.id.list_item_view) as ListView
-            val searchView = dialog.findViewById(R.id.search_item) as SearchView
+            val title: TextView = dialog.findViewById(R.id.text_title)
+            val listView: ListView = dialog.findViewById(R.id.list_item_view)
+            val searchView: SearchView = dialog.findViewById(R.id.search_item)
 
             title.text = callback.title
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -61,16 +64,55 @@ class Instant {
                 }
             })
 
-            val dismiss = dialog.findViewById(R.id.button_dismiss) as Button
+            val dismiss: Button = dialog.findViewById(R.id.button_dismiss)
             dismiss.setOnClickListener { dialog.dismiss() }
 
             callback.searchTextChanged(listView, "")
             listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-                Log.e("TUNA RUN > SELECT", callback.items[position].toString())
+                Log.i("TUNA RUN > COUNT", "${callback.items.size.toString()}")
+                Log.i("TUNA RUN > SELECT", "${position.toString()}")
+                //Log.e("TUNA RUN > SELECT", callback.items[position].toString())
                 callback.onItemSelected(callback.items[position])
                 dialog.dismiss()
             }
             dialog.show()
+        }
+        fun TextView.done(){
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
+
+        fun TextView.cancel(){
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+        fun EditText.done(){
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
+        fun EditText.typing(){
+            this.setBackgroundColor(resources.getColor(R.color.Amber_A100))
+        }
+        fun EditText.cancel(){
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+        fun EditText.focusThenSelectionEnd(){
+            this.requestFocus()
+            this.setSelection(this.length())
+        }
+        fun EditText.focusThenSelectionAll(){
+            this.requestFocus()
+            this.selectAll()
+        }
+        fun EditText.showShortTime(date: Date){
+            this.setText(date.stringShortTime())
+        }
+        fun TextView.showShortTime(date: Date){
+            this.text = date.stringShortTime()
+        }
+
+        fun Date.queryDateString(): String {
+            return (SimpleDateFormat("yyyy-MM-dd").format(this))
+        }
+        fun Date.stringShortTime(): String {
+           return (SimpleDateFormat("dd/MM/yyyy HH:mm").format(this))
         }
 
         fun TextView.clearResult() {
@@ -82,17 +124,17 @@ class Instant {
             when (state) {
                 EntityState.OK -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
                 EntityState.WARNING -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
-                EntityState.ERROR -> this.setBackgroundColor(Color.RED)
+                EntityState.ERROR ->  this.setBackgroundColor(resources.getColor(R.color.Red_A200))
                 EntityState.NEW -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.SUCCESS -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
-                EntityState.FAILURE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.FAILURE -> this.setBackgroundColor(resources.getColor(R.color.Red_A200))
                 EntityState.DUPLICATE -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOT_FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
-                EntityState.EXISTED -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.EXISTED ->  this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.REJECT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOTHING -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.UNCHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
@@ -155,6 +197,8 @@ class Instant {
         }
 
 
+
+
     }
 }
 
@@ -167,7 +211,7 @@ class ListItem {
     var caption: String = ""
     var description: String = ""
 
-    class Adapter(context: Activity, var resources: Int, var items: List<ListItem>) :
+    class Adapter(context: Activity, var resources: Int, private var items: List<ListItem>) :
         ArrayAdapter<ListItem>(context, resources, items) {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
@@ -184,11 +228,11 @@ class ListItem {
         }
     }
 
-    abstract class Callback(activity: Activity, title: String) {
+    abstract class Callback<T>(activity: Activity, title: String) {
         var title: String = title
         val activity: Activity = activity
-        var items: List<ListItem> = listOf()
-        open fun onItemSelected(result: ListItem) {}
+        var items: List<T> = listOf()
+        open fun onItemSelected(result: T) {}
         open fun searchTextChanged(listView: ListView, text: String) {}
     }
 }

@@ -492,8 +492,6 @@ class Fish {
             }
 
 
-
-
             class VCColor : Objects.EntityClient<VCColor>() {
 
                 var color_code: String? = null
@@ -565,6 +563,52 @@ class Fish {
             }
         }
 
+        class DateShift : Objects.EntityClient<DateShift>() {
+            val Date: Date = Date()
+            val WorkShift: Masters.WorkShift = Masters.WorkShift()
+            var Hour: Int = 0
+            val Shift: Int = 0
+        }
+
+        class Blind {
+            class BR : Objects.EntityClient<BR>() {
+                var serial_no: String = ""
+                var batch_no: String = ""
+                var lot_no: String = ""
+                var species: String = ""
+                var species_desc: String = ""
+
+                var origin: String = ""
+                var origin_desc: String = ""
+
+                var weight: Number = 0
+
+                var sloc: String = ""
+                var status: String = ""
+                var remark: String = ""
+
+                var receive_date: Date = Date()
+
+                var shift_id: Int = 0
+                var shift_date: Date = Date()
+                var shift_text: String = ""
+
+                var material_code: String = ""
+                var material_name: String = ""
+                var material_desc: String = ""
+
+                var time_stamp: Date = Date()
+
+            }
+
+            class SLoc : Objects.EntityClient<SLoc>() {
+                var sloc: String? = null
+            }
+
+            class Status : Objects.EntityClient<Status>() {
+                var statusText: String? = null
+            }
+        }
 
         class Bin : Objects.EntityClient<Bin>() {
             var date: Date? = null
@@ -599,12 +643,6 @@ class Fish {
             var receive_date: Date? = null
         }
 
-        class DateShift : Objects.EntityClient<DateShift>() {
-            val Date: Date = Date()
-            val WorkShift: Masters.WorkShift = Masters.WorkShift()
-            var Hour: Int = 0
-            val Shift: Int = 0
-        }
 
         class Batch : Objects.EntityClient<Batch> {
             constructor() {
@@ -832,45 +870,6 @@ class Fish {
             var time_stamp: Date? = null
         }
 
-        class Blind {
-            class BR : Objects.EntityClient<BR>() {
-                var serial_no: String = ""
-                var batch_no: String = ""
-                var lot_no: String = ""
-                var species: String = ""
-                var species_desc: String = ""
-
-                var origin: String = ""
-                var origin_desc: String = ""
-
-                var weight: Number = 0
-
-                var sloc: String = ""
-                var status: String = ""
-                var remark: String = ""
-
-                var receive_date: Date = Date()
-
-                var shift_id: Int = 0
-                var shift_date: Date = Date()
-                var shift_text: String = ""
-
-                var material_code: String = ""
-                var material_name: String = ""
-                var material_desc: String = ""
-
-                var time_stamp: Date = Date()
-
-            }
-
-            class SLoc : Objects.EntityClient<SLoc>() {
-                var sloc: String? = null
-            }
-
-            class Status : Objects.EntityClient<Status>() {
-                var statusText: String? = null
-            }
-        }
 
         class Cook : Objects.EntityClient<Cook>() {
             var subs: Objects.HashSetClient<CookSub>? = null
@@ -989,7 +988,7 @@ class Fish {
             var shift_code: String? = null
             var rack_sequence: Int? = null
             var rack_no: String? = null
-            var rack_arrange_start: Date? = null
+            var rack_arrange_start: Date = Date()
             var rack_arrange_finish: Date? = null
             var tag_count: Int = 0
             var is_cooked: Boolean = false
@@ -1018,7 +1017,7 @@ class Fish {
             var Species: Masters.Species = Masters.Species()
 
             var QueueRange: Masters.QueueRange = Masters.QueueRange()
-            var QueueType: Masters.QueueType =  Masters.QueueType()
+            var QueueType: Masters.QueueType = Masters.QueueType()
             var QueueState: Skipjack.QueueState = Skipjack.QueueState.EMPTY_QUEUE
 
 
@@ -1066,6 +1065,7 @@ class Fish {
             var product_group_description: String = ""
 
             var cold_storage_size_code: String = ""
+            var location_description: String = ""
 
             var batch_group_id: Int = 0
 
@@ -1185,5 +1185,3 @@ class Fish {
         }
     }
 }
-
-class Pack {}
