@@ -34,6 +34,8 @@ class TunarunPackingAdapterActivity(private val itemList: MutableList<String>) :
         itemList.removeAt(position)
         notifyItemRemoved(position)
     }
+
+
 //    fun addItem(item: String){
 //        itemList += item
 //        notifyItemChanged(itemList.count() - 1)
