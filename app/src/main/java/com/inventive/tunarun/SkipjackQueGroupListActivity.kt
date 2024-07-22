@@ -1,7 +1,6 @@
 package com.inventive.tunarun
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +12,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -21,19 +19,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
+import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 
-
-class BlindReceiveListActivity : AppCompatActivity(), BlindReceiveListAdapter.ItemClickListener {
-
-    private var adapter: BlindReceiveListAdapter? = null
+class SkipjackQueGroupListActivity : AppCompatActivity() , QueGroupAdapter.ItemClickListener{
+    private var adapter: QueGroupAdapter? = null
 
     private lateinit var progressBar: ProgressBar
     private lateinit var overlay: View
     private lateinit var viewResult: TextView
-
-    private  var requestCode: Int = -1
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -51,71 +45,62 @@ class BlindReceiveListActivity : AppCompatActivity(), BlindReceiveListAdapter.It
         progressBar.visibility = View.VISIBLE
         overlay.visibility = View.VISIBLE
 
-        var context: BlindReceiveListActivity = this
-        FishClient.SkipjackClient(context).also {
-            val callback = object : ActionRequest.Callback {
-                override fun <T> onSuccess(result: T) {
-                    progressBar.visibility = View.GONE
-                    overlay.visibility = View.GONE
+        var context: SkipjackQueGroupListActivity = this
+        val skipjack = FishClient.SkipjackClient(context)
 
-                    val br = result as Fish.Objects.HashSetClient<Fish.Skipjack.Blind.BR>
-                    if (br.Items.isEmpty()) {
-                        viewResult.text = ""
-                        viewResult.isVisible = true
-                    } else {
-                        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-                        recyclerView.setLayoutManager(LinearLayoutManager(context))
-                        adapter = BlindReceiveListAdapter(context, br.Items)
-                        adapter!!.setClickListener(itemClickListener = context)
-                        recyclerView.setAdapter(adapter)
-                    }
-                }
+        val callback = object : ActionRequest.Callback {
 
-                override fun onError(result: String) {
-                    Log.e("TUNA RUN > LIST_BLIND_RECEIVE > ERROR", result)
-                    progressBar.visibility = View.GONE
-                    overlay.visibility = View.GONE
-                    viewResult.showResult(Fish.Objects.EntityState.ERROR, result)
+            override fun <T> onSuccess(result: T) {
+                progressBar.visibility = View.GONE
+                overlay.visibility = View.GONE
+
+                val queues = result as Fish.Objects.HashSetClient<Fish.Skipjack.Queue>
+                if (queues.Items.isEmpty()) {
+                    viewResult.clearResult()
+                    viewResult.isVisible = true
+                } else {
+                    val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+                    recyclerView.setLayoutManager(LinearLayoutManager(context))
+                    adapter = QueGroupAdapter(context, queues.Items)
+                    adapter!!.setClickListener(itemClickListener = context)
+                    recyclerView.setAdapter(adapter)
                 }
             }
-            it.listBlindReceive(callback)
-        }
 
-        if (intent != null) {
-            if (intent.extras != null) {
-                requestCode = intent.extras!!.getInt("REQUEST_CODE")
+            override fun onError(result: String) {
+                Log.e("TUNA RUN > LIST_QUEUE > ERROR", result)
+                progressBar.visibility = View.GONE
+                overlay.visibility = View.GONE
+                viewResult.showResult(Fish.Objects.EntityState.ERROR, result)
             }
         }
+        skipjack.getQueuesGroupBatchText(callback)
     }
 
     override fun onItemClick(view: View?, position: Int) {
-        if (requestCode == FishClient.REQUEST_BLIND_RECEIVE) {
-            var br = adapter!!.getItem(position)
-            val intent = Intent()
-            intent.putExtra("SERIAL_NO", br.serial_no)
-            setResult(RESULT_OK, intent)
-            finish()
-        }
+//        var que = adapter!!.getItem(position)
+//        Log.i("TUNA RUN > QUEUE CLICK", que.Id.toString())
+//        val intent = Intent()
+//        intent.putExtra("QUE_ID", que.Id.toString())
+//        setResult(RESULT_OK, intent)
+//        finish()
     }
 }
 
-class BlindReceiveListAdapter internal constructor(
+class QueGroupAdapter internal constructor(
     context: Context?,
-    private val mData: List<Fish.Skipjack.Blind.BR>
-) : RecyclerView.Adapter<BlindReceiveListAdapter.ViewHolder>() {
+    private val mData: List<Fish.Skipjack.Queue>
+) : RecyclerView.Adapter<QueGroupAdapter.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var mClickListener: ItemClickListener? = null
-
-    //instance variable
     private val itemViewList: ArrayList<View> = ArrayList()
-    // inflates the row layout from xml when needed
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView: View =
-            mInflater.inflate(R.layout.custom_skipjack_blind_recieve_item, parent, false)
+            mInflater.inflate(R.layout.custom_skipjack_que_grp_item, parent, false)
         val viewHolder = ViewHolder(itemView)
         itemViewList.add(itemView) //to add all the 'list row item' views
+
         itemView.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 itemViewList.forEach { it.setBackgroundColor(Color.TRANSPARENT) }
@@ -127,57 +112,46 @@ class BlindReceiveListAdapter internal constructor(
         return viewHolder
     }
 
-
     // binds the data to the TextView in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val br = mData[position]
-        holder.viewSerialNo.text = br.serial_no.toString()
-        holder.viewBatchNo.text = br.batch_no
-        holder.viewLotNo.text = br.lot_no
-        holder.viewSloc.text = br.sloc
+        val que = mData[position]
+        holder.viewGrpText.text = que.batch_group_text
+        holder.viewBatchNo.text = que.batch_no
+        holder.viewLot.text = que.lot_date_text
+        holder.viewSize.text = que.species_size_code
 
-        var itemNo = ""
-        if (br.material_code != null) {
-            itemNo += br.material_code
-        }
-
-        if (br.species != null) {
-            if (itemNo.isNotEmpty()) {
-                itemNo += " /"
-            }
-            itemNo += br.species
-        }
-
-        holder.viewItemNo.text = itemNo
-        holder.viewWeight.text = "${br.weight} KG."
+        holder.viewWeight.text = que.weight_bins_text
+        holder.viewTotal.text = "=" + que.weight_bins_total_text
     }
 
     // total number of rows
     override fun getItemCount(): Int {
         return mData.size
-
     }
 
     // stores and recycles views as they are scrolled off screen
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        var viewSerialNo: TextView = itemView.findViewById(R.id.view_serial_no)
+        var viewGrpText: TextView = itemView.findViewById(R.id.view_group_text)
+        var viewSize: TextView = itemView.findViewById(R.id.view_size)
         var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
-        var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
-        var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
+        var viewLot: TextView = itemView.findViewById(R.id.view_lot)
         var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
-        var viewSloc: TextView = itemView.findViewById(R.id.view_sloc)
+        var viewTotal: TextView = itemView.findViewById(R.id.view_total)
+
+
         init {
             itemView.setOnClickListener(this)
         }
+
         override fun onClick(view: View) {
+            Log.i("TUNA RUN > VIEW_HOLDER QUEUE_ITEM CLICK", viewGrpText.text.toString())
             if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
         }
     }
 
-
     // convenience method for getting data at click position
-    fun getItem(id: Int): Fish.Skipjack.Blind.BR {
+    fun getItem(id: Int): Fish.Skipjack.Queue {
         return mData[id]
     }
 
@@ -191,3 +165,4 @@ class BlindReceiveListAdapter internal constructor(
         fun onItemClick(view: View?, position: Int)
     }
 }
+

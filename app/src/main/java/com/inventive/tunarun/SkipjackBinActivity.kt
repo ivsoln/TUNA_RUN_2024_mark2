@@ -1,47 +1,55 @@
 package com.inventive.tunarun
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
 import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.Fish.Objects.EntityState
+import com.inventive.tunarun.FishClient.Companion.REQUEST_BLIND_RECEIVE
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
+import com.inventive.tunarun.Instant.Companion.errorResult
 
 
 class SkipjackBinActivity : AppCompatActivity() {
 
 
-    var bin: Fish.Skipjack.Bin = Fish.Skipjack.Bin()
-    var que: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
+    private var bin: Fish.Skipjack.Bin = Fish.Skipjack.Bin()
+    private  var que: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
 
-    var queType: Fish.Skipjack.Masters.QueueType = Fish.Skipjack.Masters.QueueType()
-    var queRange: Fish.Skipjack.Masters.QueueRange = Fish.Skipjack.Masters.QueueRange()
+    private var queType: Fish.Skipjack.Masters.QueueType = Fish.Skipjack.Masters.QueueType()
+    private var queRange: Fish.Skipjack.Masters.QueueRange = Fish.Skipjack.Masters.QueueRange()
 
-    lateinit var gotoBlindReceive: TextView
-    lateinit var textBarcode: EditText
-    lateinit var textOrigin: EditText
-    lateinit var textSpecy: EditText
-    lateinit var textSpecyDesc: EditText
-    lateinit var textSloc: EditText
-    lateinit var textBatchNo: EditText
-    lateinit var textLotNo: EditText
-    lateinit var textWeight: EditText
-    lateinit var textQueue: TextView
-    lateinit var textQueueType: TextView
-    lateinit var viewRun: TextView
-    lateinit var viewList: TextView
-    lateinit var viewNew: TextView
-    lateinit var textResult: TextView
+    private lateinit var gotoBlindReceive: TextView
+    private lateinit var textBarcode: EditText
+    private lateinit var textOrigin: EditText
+    private lateinit var textSpecy: EditText
+    private lateinit var textSpecyDesc: EditText
+    private lateinit var textSloc: EditText
+    private lateinit var textBatchNo: EditText
+    private lateinit var textLotNo: EditText
+    private lateinit var textWeight: EditText
+    private lateinit var textQueue: TextView
+    private lateinit var textQueueType: TextView
+    private lateinit var viewRun: TextView
+    private lateinit var viewList: TextView
+    private lateinit var viewNew: TextView
+    private lateinit var textResult: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -92,14 +100,12 @@ class SkipjackBinActivity : AppCompatActivity() {
                 override fun <T> onSuccess(result: T) {
                     var obj = result as Fish.Skipjack.Queue
                     bind(obj)
-                    textResult.showResult(
-                        EntityState.SUCCESS,
-                        "${que.entityMessage}\r\n${que.time_stamp}"
-                    )
+                    textResult.showResult(que)
                 }
 
                 override fun onError(result: String) {
                     Log.e("TUNA RUN > GET_BIN > ERROR", result)
+                    textResult.errorResult(result)
                 }
             }
             skipjack.addQueue(bin, callback)
@@ -107,7 +113,7 @@ class SkipjackBinActivity : AppCompatActivity() {
 
         viewList.setOnClickListener {
             Intent(this, SkipjackQueListActivity::class.java).also {
-                startActivityForResult(it, 0, null)
+                startActivityForResult(it, 0)
             }
         }
 
@@ -121,24 +127,25 @@ class SkipjackBinActivity : AppCompatActivity() {
 
     private fun openBlind() {
         Intent(this, BlindReceiveActivity::class.java).also {
-            startActivityForResult(it, 10, null)
+            it.putExtra("REQUEST_CODE", REQUEST_BLIND_RECEIVE)
+            startActivityForResult(it, FishClient.REQUEST_BLIND_RECEIVE)
         }
     }
 
     private fun getBin(serialNo: String) {
-        val skipjack = FishClient.SkipjackClient(applicationContext)
-        val callback = object : ActionRequest.Callback {
-            override fun <T> onSuccess(result: T) {
-                val obj = result as Fish.Skipjack.Bin
-                bind(obj)
-
+        FishClient.SkipjackClient(applicationContext).also {
+            val callback = object : ActionRequest.Callback {
+                override fun <T> onSuccess(result: T) {
+                    val obj = result as Fish.Skipjack.Bin
+                    bind(obj)
+                }
+                override fun onError(result: String) {
+                    textResult.errorResult(result)
+                    Log.e("TUNA RUN > GET_BIN > ERROR", result)
+                }
             }
-
-            override fun onError(result: String) {
-                Log.e("TUNA RUN > GET_BIN > ERROR", result)
-            }
+            it.getBin(serialNo, callback)
         }
-        skipjack.getBin(serialNo, callback)
     }
 
     private fun bind(obj: Fish.Skipjack.Bin) {
@@ -192,8 +199,8 @@ class SkipjackBinActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 10) {
-                val serialNo = data?.getSerializableExtra("SERIAL_NO") as String
+            if (requestCode == FishClient.REQUEST_BLIND_RECEIVE) {
+                val serialNo = data?.getStringExtra("SERIAL_NO") as String
                 if (serialNo.isNotEmpty()) {
 
                     getBin(serialNo)
@@ -204,5 +211,98 @@ class SkipjackBinActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+}
+
+
+class SkipjackBinAdapter internal constructor(
+    context: Context?,
+    private val mData: List<Fish.Skipjack.Bin>
+) : RecyclerView.Adapter<SkipjackBinAdapter.ViewHolder>() {
+    private val mInflater: LayoutInflater = LayoutInflater.from(context)
+    private var mClickListener: ItemClickListener? = null
+    private val itemViewList: ArrayList<View> = ArrayList()
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView: View =
+            mInflater.inflate(R.layout.custom_skipjack_bin_item, parent, false)
+        val viewHolder = ViewHolder(itemView)
+        itemViewList.add(itemView) //to add all the 'list row item' views
+
+        itemView.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                //v.setBackgroundColor(Color.parseColor("#000000"))
+            }
+            if (event.action == MotionEvent.ACTION_UP) {
+                v.setBackgroundColor(Color.TRANSPARENT)
+            }
+            false
+        }
+        return viewHolder
+    }
+
+
+    // binds the data to the TextView in each row
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val bin = mData[position]
+        holder.viewSerialNo.text = bin.serial_no.toString()
+        holder.viewBatchNo.text = bin.batch_no
+        holder.viewLotNo.text = bin.lot_no
+        holder.viewSloc.text = bin.location_description
+
+        var itemNo = ""
+        if (bin.material_code != null) {
+            itemNo += bin.material_code
+        }
+
+        if (bin.species_code != null) {
+            if (itemNo.isNotEmpty()) {
+                itemNo += " /"
+            }
+            itemNo += bin.species_code
+        }
+
+        holder.viewItemNo.text = itemNo
+        holder.viewWeight.text = "${bin.net_weight} KG."
+    }
+
+    // total number of rows
+    override fun getItemCount(): Int {
+        return mData.size
+
+    }
+
+    // stores and recycles views as they are scrolled off screen
+    inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        var viewSerialNo: TextView = itemView.findViewById(R.id.view_que)
+        var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
+        var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
+        var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
+        var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
+        var viewSloc: TextView = itemView.findViewById(R.id.view_sloc)
+        init {
+            itemView.setOnClickListener(this)
+        }
+        override fun onClick(view: View) {
+            if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
+        }
+    }
+
+
+    // convenience method for getting data at click position
+    fun getItem(id: Int): Fish.Skipjack.Bin {
+        return mData[id]
+    }
+
+    // allows clicks events to be caught
+    fun setClickListener(itemClickListener: ItemClickListener?) {
+        mClickListener = itemClickListener
+    }
+
+    // parent activity will implement this method to respond to click events
+    interface ItemClickListener {
+        fun onItemClick(view: View?, position: Int)
     }
 }

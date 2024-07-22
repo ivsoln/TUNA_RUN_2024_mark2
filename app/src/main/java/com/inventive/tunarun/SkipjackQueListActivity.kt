@@ -35,7 +35,7 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_skipjack_que_list)
+        setContentView(R.layout.custom_list_view_item)
 
         findViewById<TextView>(R.id.view_shift).showShift()
         findViewById<TextView>(R.id.text_user).showUser()
@@ -62,7 +62,7 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
                     viewResult.text = ""
                     viewResult.isVisible = true
                 } else {
-                    val recyclerView = findViewById<RecyclerView>(R.id.list_queue)
+                    val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
                     recyclerView.setLayoutManager(LinearLayoutManager(context))
                     adapter = QueListAdapter(context, queues.Items)
                     adapter!!.setClickListener(itemClickListener = context)
@@ -77,29 +77,26 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
                 viewResult.showResult(Fish.Objects.EntityState.ERROR, result)
             }
         }
-        skipjack.getQueues(callback)
+        skipjack.getQueuesAsCompact(callback)
     }
 
     override fun onItemClick(view: View?, position: Int) {
-        var que = adapter!!.getItem(position)
-        val intent = Intent()
-        intent.putExtra("QUE_ID", que.Id.toString())
-        setResult(RESULT_OK, intent)
-        finish()
+//        var que = adapter!!.getItem(position)
+//        Log.i("TUNA RUN > QUEUE CLICK", que.Id.toString())
+//        val intent = Intent()
+//        intent.putExtra("QUE_ID", que.Id.toString())
+//        setResult(RESULT_OK, intent)
+//        finish()
     }
 }
 
 class QueListAdapter internal constructor(
     context: Context?,
-    private val mData: List<Fish.Skipjack.Queue>
+    private val mData: List<Fish.Skipjack.Queue>,
 ) : RecyclerView.Adapter<QueListAdapter.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var mClickListener: ItemClickListener? = null
-
-    //instance variable
     private val itemViewList: ArrayList<View> = ArrayList()
-    // inflates the row layout from xml when needed
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView: View =
@@ -109,16 +106,14 @@ class QueListAdapter internal constructor(
 
         itemView.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
-                //v.setBackgroundColor(Color.parseColor("#000000"))
+                itemViewList.forEach { it.setBackgroundColor(Color.TRANSPARENT) }
+                v.setBackgroundColor(Color.parseColor("#FFFFE57F"))
             }
-            if (event.action == MotionEvent.ACTION_UP) {
-                v.setBackgroundColor(Color.TRANSPARENT)
-            }
+
             false
         }
         return viewHolder
     }
-
 
     // binds the data to the TextView in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -126,21 +121,13 @@ class QueListAdapter internal constructor(
         holder.viewQue.text = que.queue_no.toString()
         holder.viewBatchNo.text = que.batch_no
         holder.viewLotNo.text = que.lot_no
-
-        var itemNo = ""
-        if (que.material_code != null) {
-            itemNo += que.material_code
+        if (que.batch_group_text.isNotEmpty()) {
+            holder.viewItemNo.text =
+                que.getItemText() + " /" + que.customer_species_text + "/" + que.batch_group_text
+        } else {
+            holder.viewItemNo.text = que.getItemText()
         }
-
-        if (que.species_code != null) {
-            if (itemNo.isNotEmpty()) {
-                itemNo += " /"
-            }
-            itemNo += que.species_code
-        }
-
-        holder.viewItemNo.text = itemNo
-        holder.viewWeight.text = "${que.net_weight} KG."
+        holder.viewWeight.text = que.getNetWeightText()
     }
 
     // total number of rows
@@ -157,11 +144,16 @@ class QueListAdapter internal constructor(
         var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
         var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
         var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         override fun onClick(view: View) {
+            Log.i("TUNA RUN > VIEW_HOLDER QUEUE_ITEM CLICK", viewQue.text.toString())
             if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
         }
     }
-
 
     // convenience method for getting data at click position
     fun getItem(id: Int): Fish.Skipjack.Queue {

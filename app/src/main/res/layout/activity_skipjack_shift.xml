@@ -23,14 +23,14 @@
     <TextView
         android:id="@+id/text_date_picker"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:background="@color/Primary_090"
         android:fontFamily="serif"
         android:gravity="center"
         android:text="01/01/2000"
-        android:textSize="34sp"
+        android:textSize="54sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="DATE"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_date_picker"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -53,18 +54,19 @@
         android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:text="SHIFT"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_date_picker"
         app:layout_constraintTop_toBottomOf="@+id/text_date_picker" />
 
     <TextView
         android:id="@+id/text_ds"
         android:layout_width="146dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@color/Blue_Gray_050"
         android:fontFamily="serif"
         android:gravity="center"
         android:text="DS"
-        android:textSize="34sp"
+        android:textSize="54sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView26"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
@@ -72,13 +74,13 @@
     <TextView
         android:id="@+id/text_ns"
         android:layout_width="146dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/Amber_A100"
+        android:background="@color/Amber_A400"
         android:fontFamily="serif"
         android:gravity="center"
         android:text="NS"
-        android:textSize="34sp"
+        android:textSize="54sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/text_ds"
         app:layout_constraintTop_toTopOf="@+id/text_ds" />

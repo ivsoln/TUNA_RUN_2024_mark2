@@ -25,7 +25,7 @@ class SkipjackTagColorAdapter(
 
     override fun onBindViewHolder(holder: ColorViewHolder, position: Int) {
         val color = colors[position]
-        holder.colorName.text = color.color_description
+        holder.colorName.text = color.color_type
 
         holder.colorName.setBackgroundColor(Color.parseColor(color.color_hex))
 

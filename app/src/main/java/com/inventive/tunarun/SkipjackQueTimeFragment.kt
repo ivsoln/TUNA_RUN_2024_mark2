@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 
 class SkipjackQueTimeFragment : Fragment() {
-    fun newInstance(queId: Long): SkipjackQueTimeFragment {
+    private var queue: Fish.Skipjack.Queue = Fish.Skipjack.Queue()
+    fun getQueue(): Fish.Skipjack.Queue {
+        return queue
+    }
+    fun newInstance(queue: Fish.Skipjack.Queue): SkipjackQueTimeFragment {
         val fragment = SkipjackQueTimeFragment()
-        val args = Bundle()
-        args.putLong("QUE_ID", queId)
-        fragment.setArguments(args)
+       fragment.queue = queue
         return fragment
     }
     override fun onCreateView(

@@ -41,11 +41,12 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight="wrap_content_constrained"
+        app:layout_constraintWidth="wrap_content_constrained"
         app:layout_constraintHeight_max="400dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_item"
-        app:layout_constraintWidth="wrap_content_constrained"></ListView>
+        ></ListView>
 
 
     <LinearLayout

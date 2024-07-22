@@ -9,14 +9,14 @@
     <TextView
         android:id="@+id/btn_save"
         android:layout_width="0dp"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@color/Light_Green_A400"
         android:fontFamily="serif"
         android:gravity="center"
         android:text="SAVE"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/viewPager2"
         app:layout_constraintStart_toStartOf="@+id/viewPager2"
@@ -24,12 +24,16 @@
 
     <TextView
         android:id="@+id/view_species"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Blue_Gray_050"
         android:fontFamily="@font/roboto_mono"
         android:hint="#SPE"
+        android:singleLine="true"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_queueNo"
         app:layout_constraintTop_toTopOf="@+id/text_queueNo" />
 
@@ -37,29 +41,32 @@
         android:id="@+id/view_batchNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/Blue_Gray_050"
         android:fontFamily="@font/roboto_mono"
         android:hint="#BATCH"
+        android:singleLine="false"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_queueNo"
-        app:layout_constraintEnd_toEndOf="@+id/view_origin"
-        app:layout_constraintStart_toEndOf="@+id/text_queueNo" />
+        app:layout_constraintEnd_toEndOf="@+id/view_species"
+        app:layout_constraintStart_toStartOf="@+id/text_queueNo"
+        app:layout_constraintTop_toBottomOf="@+id/view_origin" />
 
     <EditText
         android:id="@+id/text_queueNo"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_width="130dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/Cyan_A200"
         android:ems="10"
-        android:fontFamily="@font/roboto_mono"
+        android:fontFamily="serif"
+        android:gravity="center"
         android:hint="#QUE"
-        android:inputType="text"
-        android:textSize="48sp"
+        android:inputType="number"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
         android:id="@+id/textView19"
@@ -78,12 +85,10 @@
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_queueNo"
+        app:layout_constraintEnd_toEndOf="@+id/view_batchNo"
+        app:layout_constraintStart_toStartOf="@+id/view_batchNo"
+        app:layout_constraintTop_toBottomOf="@+id/view_batchNo"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.tabs.TabItem
@@ -116,15 +121,30 @@
 
     <TextView
         android:id="@+id/view_origin"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@color/Blue_Gray_050"
         android:fontFamily="@font/roboto_mono"
         android:hint="#ORI"
+        android:singleLine="true"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_species"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_species"
-        app:layout_constraintTop_toTopOf="@+id/view_species" />
+        app:layout_constraintStart_toStartOf="@+id/view_species"
+        app:layout_constraintTop_toBottomOf="@+id/view_species" />
+
+    <TextView
+        android:id="@+id/view_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@color/Blue_Gray_050"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="end"
+        android:hint="#KG."
+        android:singleLine="true"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_species"
+        app:layout_constraintStart_toEndOf="@+id/view_origin"
+        app:layout_constraintTop_toTopOf="@+id/view_origin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

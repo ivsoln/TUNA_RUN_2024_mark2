@@ -255,7 +255,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cap_origin" />
 
     <TextView
-        android:id="@+id/view_col"
+        android:id="@+id/view_tag_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -266,10 +266,10 @@
         android:hint="COL"
         android:textSize="34sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/view_QueColor"
+        app:layout_constraintBottom_toBottomOf="@+id/text_queueNo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_QueColor"
-        app:layout_constraintTop_toTopOf="@+id/view_QueColor"
+        app:layout_constraintStart_toEndOf="@+id/text_queueNo"
+        app:layout_constraintTop_toTopOf="@+id/text_queueNo"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -296,7 +296,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="SIZE"
-        app:layout_constraintStart_toStartOf="@+id/view_col"
+        app:layout_constraintStart_toStartOf="@+id/view_tag_color"
         app:layout_constraintTop_toTopOf="@+id/cap_origin" />
 
     <EditText
@@ -309,28 +309,13 @@
         android:inputType="textCapCharacters"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_origin"
-        app:layout_constraintEnd_toEndOf="@+id/view_col"
-        app:layout_constraintStart_toStartOf="@+id/view_col"
+        app:layout_constraintEnd_toEndOf="@+id/view_tag_color"
+        app:layout_constraintStart_toStartOf="@+id/view_tag_color"
         app:layout_constraintTop_toBottomOf="@+id/cap_size" />
-
-    <TextView
-        android:id="@+id/view_QueColor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/Amber_A400"
-        android:fontFamily="@font/roboto_mono"
-        android:gravity="center"
-        android:hint="[=]"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_queueNo"
-        app:layout_constraintEnd_toEndOf="@+id/view_origin"
-        app:layout_constraintStart_toEndOf="@+id/text_queueNo"
-        app:layout_constraintTop_toTopOf="@+id/text_queueNo" />
 
     <EditText
         android:id="@+id/text_queueNo"
-        android:layout_width="160dp"
+        android:layout_width="229dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
@@ -340,7 +325,7 @@
         android:gravity="center"
         android:hint="#QUE"
         android:inputType="number"
-        android:textSize="34sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_shift"

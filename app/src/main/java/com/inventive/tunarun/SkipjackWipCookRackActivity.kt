@@ -1,19 +1,22 @@
 package com.inventive.tunarun
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import com.inventive.tunarun.FishClient.Companion.dialogPreRackList
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
 import com.inventive.tunarun.Instant.Companion.afterTextChanged
 import com.inventive.tunarun.Instant.Companion.clearResult
+import com.inventive.tunarun.Instant.Companion.done
+import com.inventive.tunarun.Instant.Companion.errorResult
 import com.inventive.tunarun.Instant.Companion.focusThenSelectionAll
 import com.inventive.tunarun.Instant.Companion.focusThenSelectionEnd
 import com.inventive.tunarun.Instant.Companion.showResult
@@ -28,6 +31,9 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
     lateinit var textStartTime: EditText
     lateinit var textResult: TextView
     lateinit var textCancelRack: TextView
+
+    private var requestCode: Int = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,10 +41,6 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.text_user).showUser()
         findViewById<TextView>(R.id.view_shift).showShift()
-
-
-
-
 
         textRackNo = findViewById(R.id.text_rackNo)
         textStartTime = findViewById(R.id.text_startTime)
@@ -66,12 +68,60 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
             }
             skipjack.preRack(date, shift, rackNo, callback)
         }
-
         textRackNo.afterTextChanged {
             textResult.clearResult()
             textStartTime.setText("")
             textCancelRack.isVisible = false
         }
+
+
+        textRackNo.setOnLongClickListener {
+            val callback = object : ActionRequest.Callback {
+                override fun <T> onSuccess(result: T) {
+                    var rack = result as Fish.Skipjack.Rack
+                    bind(rack)
+                }
+
+                override fun onError(result: String) {
+                    textResult.showResult(Fish.Objects.EntityState.WARNING, result)
+                }
+            }
+
+            this.dialogPreRackList(callback)
+            true
+        }
+
+        textRackNo.setOnTouchListener { v, event ->
+            v.onTouchEvent(event)
+            val imm = v.context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm?.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
+            true
+        }
+
+        if (intent != null) {
+            if (intent.extras != null) {
+                requestCode = intent.extras!!.getInt("REQUEST_CODE")
+                val rackNo = intent.extras!!.getString("RACK_NO")
+                if (rackNo != null) {
+                    if (rackNo.isNotBlank()) {
+                        textRackNo.setText(rackNo)
+                    }
+                }
+            }
+        }
+
+        textStartTime.afterKeyEntered {
+            if (rack != null) {
+                if ((rack.Id > 0) && (requestCode == 30)) {
+                    val intent = Intent()
+                    intent.putExtra("RACK_NO", rack.rack_no)
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
+            }
+        }
+
+        textRackNo.focusThenSelectionEnd()
     }
 
     fun bind(obj: Fish.Skipjack.Rack) {
@@ -81,16 +131,24 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
         textStartTime.showShortTime(rack.rack_arrange_start)
 
         if (rack.state == Fish.Objects.EntityState.ERROR) {
-            textResult.showResult(Fish.Objects.EntityState.ERROR, rack.entityMessage)
+            textResult.errorResult(rack.entityMessage)
         } else {
             textResult.showResult(
                 rack.state,
                 "${rack.entityMessage}\r\n${rack.rack_arrange_start}"
             )
-            textCancelRack.isVisible = true
-            textCancelRack.setOnClickListener { cancelRack() }
+            if (rack.state == Fish.Objects.EntityState.SUCCESS) {
+                textRackNo.done()
+            } else {
+                textCancelRack.isVisible = true
+                textCancelRack.setOnClickListener { cancelRack() }
+            }
         }
-        textRackNo.focusThenSelectionAll()
+        if (requestCode == 30) {
+            textStartTime.focusThenSelectionEnd()
+        } else {
+            textRackNo.focusThenSelectionAll()
+        }
     }
 
     private fun cancelRack() {

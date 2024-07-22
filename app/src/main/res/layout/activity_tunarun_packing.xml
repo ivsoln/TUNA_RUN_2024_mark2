@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TunarunPackingActivity">
+
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PACKING"
+        android:textColor="@color/Black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/capt_wo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="W/O:"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+    <TextView
+        android:id="@+id/view_wo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/Amber_A400"
+        android:hint="WORK_ORDER"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/view_line"
+        app:layout_constraintStart_toEndOf="@id/capt_wo"
+        app:layout_constraintTop_toTopOf="@id/capt_wo" />
+
+    <TextView
+        android:id="@+id/view_line"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@color/Amber_A400"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_wo" />
+
+
+    <TextView
+        android:id="@+id/capt_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="CODE:"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/capt_wo"
+        app:layout_constraintTop_toBottomOf="@+id/capt_wo" />
+
+    <EditText
+        android:id="@+id/text_code"
+        android:layout_width="0dp"
+        android:gravity="start"
+        android:layout_height="120dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/Steel_Blue"
+        app:layout_constraintEnd_toEndOf="@+id/view_line"
+        app:layout_constraintStart_toEndOf="@+id/capt_code"
+        app:layout_constraintTop_toTopOf="@+id/capt_code" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/capt_sum"
+        app:layout_constraintTop_toBottomOf="@id/text_code">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/packing_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <TextView
+        android:id="@+id/capt_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="SUM:"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_code" />
+
+    <TextView
+        android:id="@+id/view_sum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@color/Steel_Blue"
+        android:textSize="24dp"
+        app:layout_constraintLeft_toRightOf="@+id/capt_sum"
+        app:layout_constraintRight_toLeftOf="@id/kg"
+        app:layout_constraintTop_toTopOf="@+id/capt_sum" />
+
+    <TextView
+        android:id="@+id/kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@color/Steel_Blue"
+        android:text="KG."
+        android:textSize="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_sum" />
+
+    <TextView
+        android:id="@+id/btn_pick_rm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/Tufts_Blue"
+        android:gravity="center"
+        android:text="PICK R/M"
+        android:textColor="@color/White"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capt_sum" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

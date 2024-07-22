@@ -16,8 +16,13 @@ import com.inventive.tunarun.Instant.Companion.afterTextChanged
 import com.inventive.tunarun.Instant.Companion.clearResult
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.Fish.Objects.EntityState
+import com.inventive.tunarun.FishClient.Companion.REQUEST_BLIND_RECEIVE
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
+import com.inventive.tunarun.Instant.Companion.done
+import com.inventive.tunarun.Instant.Companion.error
+import com.inventive.tunarun.Instant.Companion.focusThenSelectionEnd
+import com.inventive.tunarun.Instant.Companion.typing
 
 
 class BlindReceiveActivity : AppCompatActivity() {
@@ -26,7 +31,6 @@ class BlindReceiveActivity : AppCompatActivity() {
     private var br = Fish.Skipjack.Blind.BR()
     private lateinit var species: Fish.Skipjack.Masters.Species
 
-    private lateinit var gotoListAll: TextView
 
     private lateinit var inputBarcode: EditText
     private lateinit var captBarcode: TextView
@@ -44,26 +48,29 @@ class BlindReceiveActivity : AppCompatActivity() {
     private lateinit var inputSloc: EditText
 
     private lateinit var actionSave: TextView
-    private lateinit var actionUse: TextView
 
 
     private lateinit var textResult: TextView
+
+    private var requestCode: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_blind_receive)
+
+
         findViewById<TextView>(R.id.text_user).showUser()
         findViewById<TextView>(R.id.view_shift).showShift()
 
-        gotoListAll = findViewById(R.id.goto_listAll)
-        gotoListAll.setOnClickListener {
-            val intent = Intent(this, BlindReceiveListActivity::class.java).also {
-                startActivityForResult(it, 0, null)
-            }
+        inputBarcode = findViewById(R.id.input_barcode)
+        inputBarcode.setOnLongClickListener {
+            var intent = Intent(this, BlindReceiveListActivity::class.java)
+            intent.putExtra("REQUEST_CODE", REQUEST_BLIND_RECEIVE)
+            startActivityForResult(intent, REQUEST_BLIND_RECEIVE, null)
+            true
         }
 
-        inputBarcode = findViewById(R.id.input_barcode)
         inputSerialNo = findViewById(R.id.text_serialNo)
         captBarcode = findViewById(R.id.capt_barcode)
         inputBatchNo = findViewById(R.id.text_batchNo)
@@ -77,10 +84,8 @@ class BlindReceiveActivity : AppCompatActivity() {
         inputSloc = findViewById(R.id.text_sloc)
 
         actionSave = findViewById(R.id.action_save)
-        actionUse = findViewById(R.id.action_use)
 
         actionSave.isEnabled = false
-        actionUse.isEnabled = false
 
         textResult = findViewById(R.id.text_result)
         textResult.setOnClickListener {
@@ -88,74 +93,16 @@ class BlindReceiveActivity : AppCompatActivity() {
         }
 
         inputBarcode.afterTextChanged {
-            inputBarcode.setBackgroundColor(resources.getColor(R.color.Cyan_A200))
+            inputBarcode.typing()
         }
         inputBarcode.afterKeyEntered {
             actionSave.isEnabled = false
-            actionUse.isEnabled = false
             textResult.clearResult()
             inputBarcode.isEnabled = false
             val barcode = inputBarcode.text.toString().uppercase()
             Log.i("TUNA RUN > READ_BARCODE", barcode)
 
-            if (barcode.isNotEmpty()) {
-                if (barcode.contains("|")) {
-                    val strs: List<String> = barcode.uppercase().split("|")
-                    if (strs.size == 6) {
-                        var sloc = strs[0]
-                        var batch = strs[1]
-                        var lot = strs[2]
-                        var material = strs[3]
-                        var weight = strs[4]
-                        var serialNo = strs[5]
-
-                        inputBarcode.setText(serialNo)
-
-                        setSerialNo(serialNo)
-
-                        setSloc(sloc)
-                        setBatch(batch)
-                        setLot(lot)
-                        setWeight(weight)
-                        setMaterial(material)
-
-                        actionSave.isEnabled = true
-                    } else {
-                        textResult.showResult(
-                            EntityState.WARNING,
-                            "WRONG BARCODE FORMAT\r\n$barcode"
-                        )
-                    }
-                } else if (barcode.uppercase().endsWith("KG")) {
-                    setWeight(barcode)
-                    inputBarcode.setText("")
-                    prompt()
-                } else if (barcode.length == 6) {
-                    setSloc(barcode)
-                    inputBarcode.setText("")
-                    prompt()
-                } else if (barcode.length == 7) {
-                    setMaterial(barcode)
-                    inputBarcode.setText("")
-                    prompt()
-                } else if (barcode.length == 8) {
-                    setMaterial(barcode)
-                    inputBarcode.setText("")
-                    prompt()
-                } else if ((barcode.length == 13) && (barcode.toBigDecimalOrNull() != null)) {
-                    getSerialNo(barcode)
-                } else if (barcode.length >= 9) {
-                    setBatch(barcode)
-                    inputBarcode.setText("")
-                    prompt()
-                } else {
-                    inputBarcode.setBackgroundColor(resources.getColor(R.color.Red_200))
-                }
-                inputBarcode.selectAll()
-
-            }
-            inputBarcode.isEnabled = true
-            inputBarcode.requestFocus()
+            doBarcode(barcode)
         }
 
 
@@ -184,11 +131,22 @@ class BlindReceiveActivity : AppCompatActivity() {
                 override fun <T> onSuccess(result: T) {
                     val obj = result as Fish.Skipjack.Blind.BR
                     if (obj.state == EntityState.OK) {
+
                         bind(obj)
-                        textResult.showResult(
-                            EntityState.OK,
-                            "${obj.entityMessage}\r\n${obj.time_stamp}"
-                        )
+
+                        if (requestCode == REQUEST_BLIND_RECEIVE) {
+                            if (br!!.Id > 0) {
+                                val intent = Intent()
+                                intent.putExtra("SERIAL_NO", br.serial_no)
+                                setResult(RESULT_OK, intent)
+                                finish()
+                            }
+                        } else {
+                            textResult.showResult(
+                                EntityState.OK,
+                                "${obj.entityMessage}\r\n${obj.time_stamp}"
+                            )
+                        }
                     } else {
                         textResult.showResult(EntityState.WARNING, obj.entityMessage)
                     }
@@ -202,13 +160,16 @@ class BlindReceiveActivity : AppCompatActivity() {
             }
             skipjack.changeBlindReceive(br, callback)
         }
-        actionUse.setOnClickListener {
 
-            if (br!!.Id > 0) {
-                val intent = Intent()
-                intent.putExtra("SERIAL_NO", br.serial_no)
-                setResult(RESULT_OK, intent)
-                finish()
+
+        if (intent != null) {
+            if (intent.extras != null) {
+                requestCode = intent.extras!!.getInt("REQUEST_CODE")
+                val barcode = intent.extras!!.getString("BARCODE_TEXT")
+                if (barcode != null) {
+                    Log.v("TUNA RUN > EXTRA_BARCODE_TEXT", barcode)
+                    doBarcode(barcode)
+                }
             }
         }
 
@@ -216,32 +177,82 @@ class BlindReceiveActivity : AppCompatActivity() {
         inputBarcode.setOnTouchListener { v, event ->
             v.onTouchEvent(event)
             val imm = v.context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm?.hideSoftInputFromWindow(v.windowToken, 0)
+            imm?.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
             true
         }
-        captBarcode.setOnTouchListener { v, event ->
-            v.onTouchEvent(event)
-            val imm = v.context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm?.showSoftInput(inputBarcode, InputMethodManager.SHOW_IMPLICIT)
-            true
-        }
-
-
         inputBarcode.requestFocus()
+    }
 
+    private fun doBarcode(barcode: String) {
+        if (barcode.isNotEmpty()) {
+            if (barcode.contains("|")) {
+                val strs: List<String> = barcode.uppercase().split("|")
+                if (strs.size == 6) {
+                    var sloc = strs[0]
+                    var batch = strs[1]
+                    var lot = strs[2]
+                    var material = strs[3]
+                    var weight = strs[4]
+                    var serialNo = strs[5]
+
+                    inputBarcode.setText(serialNo)
+
+                    setSerialNo(serialNo)
+
+                    setSloc(sloc)
+                    setBatch(batch)
+                    setLot(lot)
+                    setWeight(weight)
+                    setMaterial(material)
+
+                    actionSave.isEnabled = true
+                } else {
+                    textResult.showResult(
+                        EntityState.WARNING,
+                        "WRONG BARCODE FORMAT\r\n$barcode"
+                    )
+                }
+            } else if (barcode.uppercase().endsWith("KG")) {
+                setWeight(barcode)
+                inputBarcode.setText("")
+                prompt()
+            } else if (barcode.length == 6) {
+                setSloc(barcode)
+                inputBarcode.setText("")
+                prompt()
+            } else if (barcode.length == 7) {
+                setMaterial(barcode)
+                inputBarcode.setText("")
+                prompt()
+            } else if (barcode.length == 8) {
+                setMaterial(barcode)
+                inputBarcode.setText("")
+                prompt()
+            } else if ((barcode.length == 13) && (barcode.toBigDecimalOrNull() != null)) {
+                getSerialNo(barcode)
+            } else if (barcode.length >= 9) {
+                setBatch(barcode)
+                inputBarcode.setText("")
+                prompt()
+            } else {
+                inputBarcode.error()
+            }
+            inputBarcode.selectAll()
+
+        }
+        inputBarcode.isEnabled = true
+        inputBarcode.requestFocus()
     }
 
     private fun prompt() {
-        if (inputBatchNo.text.isNotEmpty() && inputWeight.text.isNotEmpty() && inputMaterial.text.isNotEmpty() && inputSloc.text.isNotEmpty()) {
+        if (inputBatchNo.text.isNotEmpty()
+            && inputWeight.text.isNotEmpty()
+            && inputMaterial.text.isNotEmpty()
+            && inputSloc.text.isNotEmpty()
+        ) {
             actionSave.isEnabled = true
         } else {
             actionSave.isEnabled = false
-        }
-
-        if (br.Id > 0) {
-            actionUse.isEnabled = true
-        } else {
-            actionUse.isEnabled = false
         }
     }
 
@@ -255,6 +266,8 @@ class BlindReceiveActivity : AppCompatActivity() {
         setMaterial(br.material_code)
         setWeight(br.weight.toString())
         inputSpecies.setText(br.species)
+
+        inputBarcode.focusThenSelectionEnd()
         prompt()
 
     }
@@ -283,43 +296,38 @@ class BlindReceiveActivity : AppCompatActivity() {
         skipjack.getBlindReceive(serialNo, callback)
 
     }
+
     private fun setSerialNo(serialNo: String) {
-        inputSerialNo.setText(serialNo)
-        inputSerialNo.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputSerialNo.done(serialNo)
     }
+
     private fun setLot(barcode: String) {
-        inputLotNo.setText(barcode)
-        inputLotNo.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputLotNo.done(barcode)
     }
 
     private fun setSloc(barcode: String) {
-        inputSloc.setText(barcode)
-        inputSloc.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputSloc.done(barcode)
     }
 
     private fun setBatch(barcode: String) {
-        inputBatchNo.setText(barcode)
-        inputBatchNo.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputBatchNo.done(barcode)
     }
 
     private fun setWeight(barcode: String) {
         var wgt = barcode.uppercase().replace(" ", "")
             .replace("K", "")
             .replace("G", "")
-        inputWeight.setText(wgt)
-        inputWeight.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputWeight.done(wgt)
     }
 
     private fun setMaterial(barcode: String) {
-        inputMaterial.setText(barcode)
-        inputMaterial.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        inputMaterial.done(barcode)
 
         FishClient.Companion.Master.Species.Items.firstOrNull { it.material_code == barcode && it.species_code.isNotEmpty() }
             .also {
                 if (it != null) {
                     species = it
-                    inputSpecies.setText(species.species_code)
-                    inputSpecies.setBackgroundColor(resources.getColor(R.color.Light_Green))
+                    inputSpecies.done(species.species_code)
                 } else {
                     Log.e("TUNA RUN > NOT_FOUND MATERIAL_SPECIES", barcode)
                     inputSpecies.setText("")
@@ -331,15 +339,15 @@ class BlindReceiveActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // If you have multiple activities returning results then you should include unique request codes for each
-        //if (requestCode == <pick a code>) {
-
-        // The result code from the activity started using startActivityForResults
         if (resultCode == Activity.RESULT_OK) {
-            val animal = data?.getSerializableExtra("Animal") as String
-            Toast.makeText(this, "You clicked $animal", Toast.LENGTH_SHORT).show()
+
+            if (requestCode == REQUEST_BLIND_RECEIVE) {
+                val serialNo = data?.getStringExtra("SERIAL_NO") as String
+                if (serialNo.isNotEmpty()) {
+                    getSerialNo(serialNo)
+                }
+            }
+
         }
-        //}
     }
 }

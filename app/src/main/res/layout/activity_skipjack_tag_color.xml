@@ -7,16 +7,13 @@
     tools:context=".SkipjackTagColorActivity">
 
     <TextView
-        android:id="@+id/title_colors"
+        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/Amber_A400"
         android:fontFamily="serif"
-        android:padding="16dp"
-        android:text="Select Color"
+        android:text="TAG COLOR"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_colors"
+        app:layout_constraintTop_toBottomOf="@id/textView"
         tools:listitem="@layout/item_color" />
 
 

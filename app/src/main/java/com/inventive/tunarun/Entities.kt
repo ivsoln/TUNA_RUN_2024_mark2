@@ -184,31 +184,70 @@ class Fish {
             var _uxTimeStamp: Long = 0
         }
 
-        open class EntityClient<TEntity> where TEntity : EntityClient<TEntity> {
-            var Id: Int = 0
-            var State: Int = 0
-            var EntityMessages: MutableList<EntityMessage> = mutableListOf()
-            var TimeStamp: Date = Date()
-            var state: EntityState = EntityState.NEW
+        interface ObjectClient {
+            var Id: Int
+            var State: Int
+            var EntityMessages: MutableList<EntityMessage>
+            var TimeStamp: Date
+            var state: EntityState
+            val entityMessage: String
+        }
+
+        open class EntityClient<TEntity> : ObjectClient where TEntity : EntityClient<TEntity> {
+            override var Id: Int = 0
+            override var State: Int = 0
+            override var EntityMessages: MutableList<EntityMessage> = mutableListOf()
+            override var TimeStamp: Date = Date()
+            override var state: EntityState = EntityState.NEW
                 get() {
                     return EntityState.fromInt(State)
                 }
-            val entityMessage: String
+            override val entityMessage: String
                 get() {
-                    return if (EntityMessages.isNotEmpty()) {
-                        val msg = EntityMessages.last()
-                        "${msg.Action}, ${msg.Description} (#${state})"
+                    if (EntityMessages.isNotEmpty()) {
+                        var text = ""
+                        EntityMessages.last().also {
+                            text = "${it.Action}"
+                            if (it.Description != null) text += ", ${it.Description}"
+                            if (it.ErrorMessage != null) text += ", ${it.ErrorMessage}"
+
+                            text += ", (#${state}) (Id:${Id})"
+                        }
+
+                        return text
                     } else {
-                        ""
+                        return ""
                     }
                 }
         }
 
-        open class HashSetClient<TEntity> where TEntity : EntityClient<TEntity> {
-            var Id: Int = 0
-            var State: Int = 0
-            var EntityMessages: MutableList<EntityMessage> = mutableListOf()
-            var TimeStamp: Date = Date()
+        open class HashSetClient<TEntity> : ObjectClient where TEntity : EntityClient<TEntity> {
+            override var Id: Int = 0
+            override var State: Int = 0
+            override var EntityMessages: MutableList<EntityMessage> = mutableListOf()
+            override var TimeStamp: Date = Date()
+            override var state: EntityState = EntityState.NEW
+                get() {
+                    return EntityState.fromInt(State)
+                }
+            override val entityMessage: String
+                get() {
+                    if (EntityMessages.isNotEmpty()) {
+                        var text = ""
+                        EntityMessages.last().also {
+                            text = "${it.Action}"
+                            if (it.Description != null) text += ", ${it.Description}"
+                            if (it.ErrorMessage != null) text += ", ${it.ErrorMessage}"
+
+                            text += ", (#${state}) (Id:${Id})"
+                        }
+
+                        return text
+                    } else {
+                        return ""
+                    }
+                }
+
             var Items: MutableList<TEntity> = mutableListOf()
 
             init {
@@ -223,15 +262,7 @@ class Fish {
                 Items.add(item)
             }
 
-            val entityMessage: String
-                get() {
-                    return if (EntityMessages.isNotEmpty()) {
-                        val msg = EntityMessages.last()
-                        "${msg.Action}, ${msg.Description} (#${State})"
-                    } else {
-                        ""
-                    }
-                }
+
         }
 
     }
@@ -500,6 +531,7 @@ class Fish {
 
                 var view_index: Int = 0
 
+                var color_type: String? = null
                 var color_hex: String? = null
             }
 
@@ -616,25 +648,34 @@ class Fish {
             var queue_id: Int = 0
             var queue_no: Int = 0
 
-            var lot_no: String? = null
-            var material_code: String? = null
-            var material_name: String? = null
-            var material_sesc: String? = null
+            var lot_no: String = ""
+            var material_code: String = ""
+            var material_name: String = ""
+            var material_sesc: String = ""
 
-            var serial_no: String? = null
-            var serial_desc: String? = null
+            var serial_no: String = ""
+            var serial_desc: String = ""
 
-            var species_code: String? = null
-            var species_origin_code: String? = null
 
-            var cold_storage_size_code: String? = null
-            var location_description: String? = null
+            var customer_id: String = ""
+            var customer_code: String = ""
+            var customer_description: String = ""
+
+            var batch_group_id: Int = 0;
+            var batch_group_text: String = ""
+
+            var species_id: Int = 0;
+            var species_code: String = ""
+            var species_origin_code: String = ""
+
+            var cold_storage_size_code: String = ""
+            var location_description: String = ""
 
             var batch_id: Int = 0
-            var batch: String? = null
-            var batch_no: String? = null
-            var batch_no1: String? = null
-            var batch_no2: String? = null
+            var batch: String = ""
+            var batch_no: String = ""
+            var batch_no1: String = ""
+            var batch_no2: String = ""
 
             var gross_weight: Number = 0
             var tare_weight: Number = 0
@@ -681,6 +722,16 @@ class Fish {
             var _guid: UUID = UUID.randomUUID()
             var Scrapes: Objects.HashSetClient<Scrape> = Objects.HashSetClient()
 
+            fun newInstance(que: Queue): Tag {
+                var tag = Tag()
+                tag.date = que.date
+                tag.shift = que.shift
+                tag.queue_no = que.queue_no
+                tag.queue_id = que.Id
+                tag.batch_no = que.batch_no
+
+                return tag
+            }
 
             init {
                 this.Scrapes = Objects.HashSetClient<Scrape>()
@@ -1028,11 +1079,33 @@ class Fish {
 
             var batch_no: String = ""
             var queue_type_code: String = ""
+
+            var customer_species_id: Int = 0
+            var customer_species_text: String = ""
+
+            var batch_group_id: Int = 0;
             var batch_group_text: String = ""
+
+
             var species_base_code: String = ""
             var species_code: String = ""
             var species_origin_code: String = ""
             var queue_remark_description: String = ""
+
+            fun getItemText(): String {
+                var itemNo = ""
+                if (this.material_code != null) {
+                    itemNo += this.material_code
+                }
+
+                if (this.species_code != null) {
+                    if (itemNo.isNotEmpty()) {
+                        itemNo += "/"
+                    }
+                    itemNo += this.species_code
+                }
+                return itemNo
+            }
 
             init {
                 this.QueueState = Skipjack.QueueState.CREATE_QUEUE
@@ -1067,7 +1140,6 @@ class Fish {
             var cold_storage_size_code: String = ""
             var location_description: String = ""
 
-            var batch_group_id: Int = 0
 
             var species_base_id: Int = 0
             var species_base_description: String = ""
@@ -1101,6 +1173,10 @@ class Fish {
             var tare_weight: BigDecimal = BigDecimal.ZERO
             var net_weight: BigDecimal = BigDecimal.ZERO
 
+            fun getNetWeightText(): String {
+                return "${this.net_weight}KG."
+            }
+
             var queue_time_plan: Date? = null
             var queue_time_actual: Date? = null
             var queue_time_thaw_plan: Date? = null
@@ -1121,6 +1197,13 @@ class Fish {
             var is_vccolor_dirty: Boolean = false
 
             var material_description: String = ""
+
+            var lot_date: Date? = null
+            var lot_date_text: String = ""
+
+            var species_size_code: String = ""
+            var weight_bins_text: String = ""
+            var weight_bins_total_text: String = ""
 
 
             var first_bin_time: Date? = null

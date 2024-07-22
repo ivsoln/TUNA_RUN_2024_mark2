@@ -13,7 +13,7 @@ class SkipjackTagColorActivity : AppCompatActivity(), SkipjackTagColorAdapter.On
 
     companion object {
         const val REQUEST_COLOR = 0
-        const val EXTRA_SELECTED_COLOR = "color_ID"
+        const val EXTRA_SELECTED_COLOR = "TAG_COLOR_ID"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,34 +23,15 @@ class SkipjackTagColorActivity : AppCompatActivity(), SkipjackTagColorAdapter.On
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view_tag_colors)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        FishClient.initTagColors(this@SkipjackTagColorActivity, object : ActionRequest.Callback {
-            override fun <T> onSuccess(result: T) {
-                if (result is Fish.Objects.HashSetClient<*>) {
-                    val hashSetClient =
-                        result as Fish.Objects.HashSetClient<Fish.Skipjack.Masters.TagColor>
-                    val items = hashSetClient.Items
+        val items = FishClient.Companion.Master.TagColor.Items
 
-                    Log.i("TUNA RUN", "Number of items retrieved: ${items.size}")
+        for (item in items) {
+            val colorHex = item.color_hex
+            Log.i("TUNA RUN", "COLOR_HEX: $colorHex")
+        }
 
-                    for (item in items) {
-                        val colorHex = item.color_hex
-                        Log.i("TUNA RUN", "Color Code: $colorHex")
-                    }
-
-                    val adapter = SkipjackTagColorAdapter(this@SkipjackTagColorActivity, items)
-                    recyclerView.adapter = adapter
-                } else {
-                    Log.e(
-                        "TUNA RUN",
-                        "Result is not of type HashSetClient<Fish.Skipjack.Masters.TagColor>"
-                    )
-                }
-            }
-
-            override fun onError(result: String) {
-                Log.e("TUNA RUN", "Error in Fish.Skipjack.Masters.TagColor: $result")
-            }
-        })
+        val adapter = SkipjackTagColorAdapter(this, items)
+        recyclerView.adapter = adapter
 
 
     }

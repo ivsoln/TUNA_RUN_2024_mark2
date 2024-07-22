@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.inventive.tunarun.Fish.Objects.EntityState
+import com.inventive.tunarun.Fish.Objects.ObjectClient
 import com.inventive.tunarun.ListItem.Callback
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -77,64 +78,116 @@ class Instant {
             }
             dialog.show()
         }
-        fun TextView.done(){
+
+        fun TextView.done() {
             this.setBackgroundColor(resources.getColor(R.color.Light_Green))
         }
 
-        fun TextView.cancel(){
-            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
-        }
-        fun EditText.done(){
+        fun TextView.done(text: String) {
+            this.text = text
             this.setBackgroundColor(resources.getColor(R.color.Light_Green))
         }
-        fun EditText.typing(){
-            this.setBackgroundColor(resources.getColor(R.color.Amber_A100))
-        }
-        fun EditText.cancel(){
+
+        fun TextView.clear() {
+            this.text = ""
             this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
         }
-        fun EditText.focusThenSelectionEnd(){
+
+        fun TextView.cancel() {
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+
+        fun EditText.clear() {
+            this.setText("")
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+
+        fun EditText.done() {
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
+
+        fun EditText.done(text: String) {
+            this.setText(text)
+            this.setBackgroundColor(resources.getColor(R.color.Light_Green))
+        }
+
+
+        fun EditText.typing() {
+            this.setBackgroundColor(resources.getColor(R.color.Amber_A100))
+        }
+
+        fun EditText.cancel() {
+            this.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
+        }
+
+        fun EditText.error() {
+            this.setBackgroundColor(resources.getColor(R.color.Red_200))
+        }
+
+        fun EditText.focusThenSelectionEnd() {
             this.requestFocus()
             this.setSelection(this.length())
         }
-        fun EditText.focusThenSelectionAll(){
+
+        fun EditText.focusThenSelectionAll() {
             this.requestFocus()
             this.selectAll()
         }
-        fun EditText.showShortTime(date: Date){
+
+        fun EditText.showShortTime(date: Date) {
             this.setText(date.stringShortTime())
         }
-        fun TextView.showShortTime(date: Date){
+
+        fun TextView.showShortTime(date: Date) {
             this.text = date.stringShortTime()
+        }
+
+        fun String?.toIntOrDefault(default: Int = 0): Int {
+            return this?.toIntOrNull() ?: default
         }
 
         fun Date.queryDateString(): String {
             return (SimpleDateFormat("yyyy-MM-dd").format(this))
         }
+
         fun Date.stringShortTime(): String {
-           return (SimpleDateFormat("dd/MM/yyyy HH:mm").format(this))
+            return (SimpleDateFormat("dd/MM/yyyy HH:mm").format(this))
         }
+
 
         fun TextView.clearResult() {
             this.showResult(EntityState.NEW, "")
         }
+
+        fun TextView.warningResult(message: String) {
+            this.showResult(EntityState.WARNING, message)
+        }
+
+        fun TextView.errorResult(message: String) {
+            this.showResult(EntityState.ERROR, message)
+        }
+
+        fun TextView.showResult(entity: ObjectClient) {
+                this.showResult(entity.state, entity.entityMessage)
+        }
+
 
         fun TextView.showResult(state: EntityState, message: String) {
             this.text = message
             when (state) {
                 EntityState.OK -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
                 EntityState.WARNING -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
-                EntityState.ERROR ->  this.setBackgroundColor(resources.getColor(R.color.Red_A200))
+                EntityState.ERROR -> this.setBackgroundColor(resources.getColor(R.color.Red_A200))
                 EntityState.NEW -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.SUCCESS -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
                 EntityState.FAILURE -> this.setBackgroundColor(resources.getColor(R.color.Red_A200))
-                EntityState.DUPLICATE -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.DUPLICATE -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOT_FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
-                EntityState.EXISTED ->  this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
+                EntityState.EXISTED -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.REJECT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOTHING -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.UNCHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
@@ -154,16 +207,18 @@ class Instant {
                     s: CharSequence?,
                     start: Int,
                     count: Int,
-                    after: Int
+                    after: Int,
                 ) {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
                 }
 
 
                 override fun afterTextChanged(editable: Editable?) {
                     afterTextChanged.invoke(editable.toString())
+
                 }
             })
         }
@@ -195,8 +250,6 @@ class Instant {
                 }
             })
         }
-
-
 
 
     }

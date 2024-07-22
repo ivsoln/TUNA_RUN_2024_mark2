@@ -15,8 +15,35 @@
         android:gravity="left|center_vertical"
         android:hint="NO."
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_que"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view_group_text"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/capt_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:gravity="left|center_vertical"
+        android:hint="SIZE"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view_group_text"
+        app:layout_constraintStart_toEndOf="@+id/view_group_text" />
+
+    <TextView
+        android:id="@+id/capt_lot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:gravity="left|center_vertical"
+        android:hint="LOT"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view_group_text"
+        app:layout_constraintStart_toEndOf="@+id/view_size" />
 
     <TextView
         android:id="@+id/view_batchNo"
@@ -28,32 +55,34 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/capt_que"
-        app:layout_constraintTop_toBottomOf="@+id/view_que" />
+        app:layout_constraintTop_toBottomOf="@+id/view_group_text" />
 
     <TextView
         android:id="@+id/view_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/Cyan_050"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
-        android:hint="#WEIGHT"
-        android:textSize="16sp"
+        android:hint="#WGT.."
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/view_batchNo"
         app:layout_constraintTop_toBottomOf="@+id/view_batchNo" />
 
     <TextView
-        android:id="@+id/view_lotNo"
-        android:layout_width="0dp"
+        android:id="@+id/view_total"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Cyan_A100"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
-        android:hint="#LOT_NO"
-        android:textSize="16sp"
+        android:hint="#TOTAL"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/capt_lot"
-        app:layout_constraintStart_toEndOf="@+id/capt_lot" />
+        app:layout_constraintStart_toEndOf="@+id/view_weight"
+        app:layout_constraintTop_toBottomOf="@+id/view_batchNo" />
 
     <TextView
         android:id="@+id/view_separate"
@@ -68,33 +97,35 @@
         app:layout_constraintTop_toBottomOf="@id/view_weight" />
 
     <TextView
-        android:id="@+id/capt_lot"
+        android:id="@+id/view_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="serif"
-        android:gravity="left|center_vertical"
-        android:hint="LOT:"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_weight"
-        app:layout_constraintStart_toEndOf="@+id/view_weight" />
-
-    <TextView
-        android:id="@+id/view_itemNo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/Cyan_050"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
-        android:hint="#ITEM_NO|SPECIES"
+        android:hint="#SIZE"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_que"
-        app:layout_constraintTop_toTopOf="@+id/view_que" />
+        app:layout_constraintStart_toEndOf="@+id/capt_size"
+        app:layout_constraintTop_toTopOf="@+id/view_group_text" />
 
     <TextView
-        android:id="@+id/view_que"
+        android:id="@+id/view_lot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@color/Cyan_050"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="left|center_vertical"
+        android:hint="#LOT"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/capt_lot"
+        app:layout_constraintTop_toTopOf="@+id/view_group_text" />
+
+    <TextView
+        android:id="@+id/view_group_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -102,7 +133,7 @@
         android:background="@color/Amber_A200"
         android:fontFamily="@font/roboto_mono"
         android:gravity="center_horizontal|center_vertical"
-        android:hint="#QUE"
+        android:hint="#GROUP"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/capt_que"

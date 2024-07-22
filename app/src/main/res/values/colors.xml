@@ -16,6 +16,7 @@
     <color name="Blue_Gray_800">#37474F</color>
     <color name="Blue_Gray_900">#263238</color>
 
+    <color name="Lemon_Chiffon">#ffffcc</color>
     <color name="Amber_A100">#FFE57F</color>
     <color name="Amber_A200">#FFD740</color>
     <color name="Amber_A400">#FFC400</color>
@@ -31,7 +32,10 @@
     <color name="Cyan_A100">#84FFFF</color>
     <color name="Cyan_A200">#18FFFF</color>
     <color name="Cyan_A400">#00E5FF</color>
+    <color name="Steel_Blue">#8db6d5</color>
     <color name="Cyan_A700">#00B8D4</color>
+    <color name="Tufts_Blue">#3791D3</color>
+
 
     <color name="Red_100">#FFCCBC</color>
     <color name="Red_200">#FFAB91</color>
@@ -39,6 +43,8 @@
     <color name="Red_A200">#FF6E40</color>
     <color name="Red_A400">#FF3D00</color>
     <color name="Red_A700">#DD2C00</color>
+
+
 
 
 
