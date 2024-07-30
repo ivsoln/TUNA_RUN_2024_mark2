@@ -18,13 +18,29 @@ import java.util.Date
 
 
 class FishClient {
-
-
     companion object {
         var apiAddr: String = "99.42.1.72"
-
         var REQUEST_BLIND_RECEIVE = 10
 
+        class Master {
+            companion object {
+                var Species = HashSetClient<Fish.Skipjack.Masters.Species>()
+                var SpeciesOrigin = HashSetClient<Fish.Skipjack.Masters.SpeciesOrigin>()
+                var SpeciesSize = HashSetClient<Fish.Skipjack.Masters.SpeciesSize>()
+                var VCColor = HashSetClient<Fish.Skipjack.Masters.VCColor>()
+                var TagColor = HashSetClient<Fish.Skipjack.Masters.TagColor>()
+                var QueueRanges = HashSetClient<Fish.Skipjack.Masters.QueueRange>()
+                var QueueTypes = HashSetClient<Fish.Skipjack.Masters.QueueType>()
+            }
+        }
+
+        class Skipjack {
+            companion object {
+                var Identity = Fish.Auth.Identity()
+                var Default = Fish.Skipjack.DefaultClient()
+                var Shift = Fish.Skipjack.DateShift()
+            }
+        }
 
         fun Init(context: Context, callback: InitCallback) {
             var master = MasterClient(context)
@@ -138,6 +154,25 @@ class FishClient {
                 }
                 it.get_tag_colors(callback)
             }
+            master.also {
+                val callback = object : ActionRequest.Callback {
+                    override fun <T> onSuccess(result: T) {
+                        Master.VCColor = result as HashSetClient<Fish.Skipjack.Masters.VCColor>
+                        callback.count += 1
+                        callback.refresh()
+                        Log.e(
+                            "TUNA RUN > LOAD_VC_COLOR > COUNT",
+                            Master.VCColor.count.toString()
+                        )
+                    }
+
+                    override fun onError(result: String) {
+                        Log.e("TUNA RUN > LOAD_VC_COLOR > ERROR", result)
+                    }
+                }
+                it.get_virtual_colors(callback)
+            }
+
 
             var skipjack = SkipjackClient(context)
             skipjack.also {
@@ -158,82 +193,6 @@ class FishClient {
             }
         }
 
-        fun initVCColors(context: Context, param: ActionRequest.Callback) {
-            val masterClient = MasterClient(context)
-            val vcColorsCallback = object : ActionRequest.Callback {
-                override fun <T> onSuccess(result: T) {
-                    if (result is HashSetClient<*>) {
-                        Master.VCColor = result as HashSetClient<Fish.Skipjack.Masters.VCColor>
-                        Log.i(
-                            "TUNA RUN > INIT_VCColor > SUCCESS",
-                            "VCColor initialized with ${Master.VCColor.Items.size} items"
-                        )
-                        param.onSuccess(result)
-                    } else {
-                        Log.e(
-                            "TUNA RUN > INIT_VCColor > ERROR",
-                            "Result is not of type HashSetClient<Fish.Skipjack.Masters.VCColor>"
-                        )
-                        param.onError("Result is not of type HashSetClient<Fish.Skipjack.Masters.VCColor>")
-                    }
-                }
-
-                override fun onError(result: String) {
-                    Log.e("TUNA RUN > INIT_VCColor > ERROR", result)
-                    param.onError(result)
-                }
-            }
-            masterClient.get_virtual_colors(vcColorsCallback)
-        }
-
-        fun initTagColors(context: Context, param: ActionRequest.Callback) {
-            val masterClient = MasterClient(context)
-            val tagColorsCallback = object : ActionRequest.Callback {
-                override fun <T> onSuccess(result: T) {
-                    if (result is HashSetClient<*>) {
-                        Master.TagColor = result as HashSetClient<Fish.Skipjack.Masters.TagColor>
-                        Log.i(
-                            "TUNA RUN > INIT_TagColors > SUCCESS",
-                            "TagColor initialized with ${Master.TagColor.Items.size} items"
-                        )
-                        param.onSuccess(result)
-                    } else {
-                        Log.e(
-                            "TUNA RUN > INIT_TagColors > ERROR",
-                            "Result is not of type HashSetClient<Fish.Skipjack.Masters.TagColor>"
-                        )
-                        param.onError("Result is not of type HashSetClient<Fish.Skipjack.Masters.TagColor>")
-                    }
-                }
-
-                override fun onError(result: String) {
-                    Log.e("TUNA RUN > INIT_TagColors > ERROR", result)
-                    param.onError(result)
-                }
-            }
-            masterClient.get_tag_colors(tagColorsCallback)
-        }
-
-
-        class Master {
-            companion object {
-                var Species = HashSetClient<Fish.Skipjack.Masters.Species>()
-                var SpeciesOrigin = HashSetClient<Fish.Skipjack.Masters.SpeciesOrigin>()
-                var SpeciesSize = HashSetClient<Fish.Skipjack.Masters.SpeciesSize>()
-                var VCColor = HashSetClient<Fish.Skipjack.Masters.VCColor>()
-                var TagColor = HashSetClient<Fish.Skipjack.Masters.TagColor>()
-                var QueueRanges = HashSetClient<Fish.Skipjack.Masters.QueueRange>()
-                var QueueTypes = HashSetClient<Fish.Skipjack.Masters.QueueType>()
-            }
-        }
-
-        class Skipjack {
-            companion object {
-                var Identity = Fish.Auth.Identity()
-                var Default = Fish.Skipjack.DefaultClient()
-                var Shift = Fish.Skipjack.DateShift()
-            }
-        }
 
         fun TextView.showShift() {
             var shiftText =
@@ -413,7 +372,7 @@ class FishClient {
         private var connect: Connect = Connect(context)
         fun login(
             user: com.inventive.tunarun.Fish.Security.User,
-            callback: ActionRequest.Callback
+            callback: ActionRequest.Callback,
         ) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -832,6 +791,23 @@ class FishClient {
         }
 
 
+        fun getBinBySloc(sloc: String, callback: ActionRequest.Callback) {
+
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Bin>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = Companion.Skipjack.Shift.Date.queryDateString()
+            val strShift = Companion.Skipjack.Shift.Shift
+            connect.get(baseUrl + "get_bin_by_sloc?_date=$strDate&_shift=$strShift&_sloc=$sloc", jCall)
+        }
+
         fun listBlindSLoc(callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -925,6 +901,19 @@ class FishClient {
             connect.post(baseUrl + "change_blind_receive", blind, jCall)
         }
 
+        fun createThenGetBin(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Bin>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            connect.post(baseUrl + "create_then_get_bin", blind, jCall)
+        }
 
         fun changeBlindReceive(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
@@ -1019,10 +1008,11 @@ class FishClient {
             }
             val strDate = Companion.Skipjack.Shift.Date.queryDateString()
             val strShift = Companion.Skipjack.Shift.Shift
-            connect.get(baseUrl + "get_queues_grp_batch_text?_date=$strDate&_shift=$strShift", jCall)
+            connect.get(
+                baseUrl + "get_queues_grp_batch_text?_date=$strDate&_shift=$strShift",
+                jCall
+            )
         }
-
-
 
 
         fun addTag(tag: Fish.Skipjack.Tag, callback: ActionRequest.Callback) {
@@ -1129,13 +1119,13 @@ class FishClient {
                 class Adapter(
                     context: Activity,
                     var resources: Int,
-                    private var items: List<Fish.Skipjack.Queue>
+                    private var items: List<Fish.Skipjack.Queue>,
                 ) :
                     ArrayAdapter<Fish.Skipjack.Queue>(context, resources, items) {
                     override fun getView(
                         position: Int,
                         convertView: View?,
-                        parent: ViewGroup
+                        parent: ViewGroup,
                     ): View {
 
                         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)

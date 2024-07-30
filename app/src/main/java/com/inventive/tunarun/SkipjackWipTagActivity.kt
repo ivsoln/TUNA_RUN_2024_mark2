@@ -142,7 +142,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
         }
 
         viewColor.setOnClickListener {
-            val intent = Intent(this, SkipjackTagColorActivity::class.java)
+            val intent = Intent(this, SkipjackColorActivity::class.java)
             startActivityForResult(intent, REQUEST_COLOR)
         }
 

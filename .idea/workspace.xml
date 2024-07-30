@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="4.65in 720p (Galaxy Nexus)" />
+      </config>
     </shared>
     <layouts>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_blind_receive.xml">
@@ -41,6 +43,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_bin.xml">
+        <config>
+          <theme>@style/Theme.TUNA_RUN2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_color.xml">
         <config>
           <theme>@style/Theme.TUNA_RUN2024</theme>
         </config>
@@ -141,70 +148,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="214f875f-3f14-432e-8ada-24ab8ffdd893" name="Changes" comment="#bhumi 2024.7.5">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueCreateActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueGroupListActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/TunarunPackingActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/TunarunPackingAdapterActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_minus.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_create.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tunarun_packing.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tunarun_packing_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_list_view_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_bin_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_blind_recieve_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_cook_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_grp_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_wip_tag_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/gc.properties" beforeDir="false" />
+    <list default="true" id="214f875f-3f14-432e-8ada-24ab8ffdd893" name="Changes" comment="#bhumi 2024.07.23">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TUNA_RUN_2024_mark2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/ColorAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/ColorAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackBinActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackBinActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueProductFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueProductFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQuePropertyFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQuePropertyFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueTimeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueTimeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackTagColorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackTagColorActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackTagColorAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackTagColorAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipCookRackActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipCookRackActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipMainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipMainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackColorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackColorActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueCreateActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueCreateActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_blind_receive.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_blind_receive.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_view_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_view_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_bin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_list.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_shift.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_shift.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_tag_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_tag_color.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_color.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_create.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_create.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -495,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720162462785</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="#bhumi 2024.07.23">
+      <option name="closed" value="true" />
+      <created>1721672282591</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721672282591</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -535,7 +497,8 @@
     <MESSAGE value="#bhumi 2024.6.28" />
     <MESSAGE value="#bhumi 2024.7.3" />
     <MESSAGE value="#bhumi 2024.7.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="#bhumi 2024.7.5" />
+    <MESSAGE value="#bhumi 2024.07.23" />
+    <option name="LAST_COMMIT_MESSAGE" value="#bhumi 2024.07.23" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

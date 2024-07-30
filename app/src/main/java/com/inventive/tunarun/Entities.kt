@@ -1086,6 +1086,7 @@ class Fish {
             var batch_group_id: Int = 0;
             var batch_group_text: String = ""
 
+            var check_merge_batch_species: Boolean = false
 
             var species_base_code: String = ""
             var species_code: String = ""

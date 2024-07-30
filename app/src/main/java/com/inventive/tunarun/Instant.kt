@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.Fish.Objects.ObjectClient
+import com.inventive.tunarun.Instant.Companion.done
 import com.inventive.tunarun.ListItem.Callback
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -146,6 +147,14 @@ class Instant {
             return this?.toIntOrNull() ?: default
         }
 
+
+        fun String.getDecimalWeight(): Double {
+            return this.uppercase().replace(" ", "")
+                .replace("K", "")
+                .replace("G", "").toDouble()
+        }
+
+
         fun Date.queryDateString(): String {
             return (SimpleDateFormat("yyyy-MM-dd").format(this))
         }
@@ -168,7 +177,7 @@ class Instant {
         }
 
         fun TextView.showResult(entity: ObjectClient) {
-                this.showResult(entity.state, entity.entityMessage)
+            this.showResult(entity.state, entity.entityMessage)
         }
 
 
@@ -177,7 +186,7 @@ class Instant {
             when (state) {
                 EntityState.OK -> this.setBackgroundColor(resources.getColor(R.color.Light_Green_A100))
                 EntityState.WARNING -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
-                EntityState.ERROR -> this.setBackgroundColor(resources.getColor(R.color.Red_A200))
+                EntityState.ERROR -> this.setBackgroundColor(resources.getColor(R.color.Red_A100))
                 EntityState.NEW -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.EDIT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.CHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
@@ -186,12 +195,12 @@ class Instant {
                 EntityState.DUPLICATE -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.DELETED -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
-                EntityState.NOT_FOUND -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.NOT_FOUND -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.EXISTED -> this.setBackgroundColor(resources.getColor(R.color.Amber_A200))
                 EntityState.REJECT -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.NOTHING -> this.setBackgroundColor(Color.TRANSPARENT)
                 EntityState.UNCHANGE -> this.setBackgroundColor(Color.TRANSPARENT)
-                EntityState.NOT_ALLOW_NULL -> this.setBackgroundColor(Color.TRANSPARENT)
+                EntityState.NOT_ALLOW_NULL -> this.setBackgroundColor(resources.getColor(R.color.Red_A100))
             }
         }
 
