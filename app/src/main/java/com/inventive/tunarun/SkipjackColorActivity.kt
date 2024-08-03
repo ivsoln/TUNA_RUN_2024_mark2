@@ -12,7 +12,7 @@ class SkipjackColorActivity : AppCompatActivity(), ColorAdapter.OnColorClickList
 
     companion object {
         const val REQUEST_COLOR = 1
-        const val EXTRA_SELECTED_COLOR = "color_ID"
+        const val EXTRA_SELECTED_COLOR = "TAG_COLOR_ID"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,15 +20,14 @@ class SkipjackColorActivity : AppCompatActivity(), ColorAdapter.OnColorClickList
         setContentView(R.layout.activity_skipjack_color)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view_colors)
-        recyclerView.layoutManager = GridLayoutManager(this, 3)
+        recyclerView.layoutManager = GridLayoutManager(this, 1)
 
-        val adapter =
-            ColorAdapter(this@SkipjackColorActivity, FishClient.Companion.Master.VCColor.Items)
+        val adapter = ColorAdapter(this, FishClient.Companion.Master.TagColor.Items)
         recyclerView.adapter = adapter
     }
 
 
-    override fun onColorClick(color: Fish.Skipjack.Masters.VCColor) {
+    override fun onColorClick(color: Fish.Skipjack.Masters.TagColor) {
         val intent = Intent()
         intent.putExtra(EXTRA_SELECTED_COLOR, color.Id)
         setResult(Activity.RESULT_OK, intent)

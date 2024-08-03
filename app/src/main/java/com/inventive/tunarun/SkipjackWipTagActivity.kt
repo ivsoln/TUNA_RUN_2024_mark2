@@ -67,6 +67,10 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     private lateinit var btnNew: TextView
     private lateinit var gotoEdit: TextView
     private lateinit var textResult: TextView
+
+    private lateinit var viewList: TextView
+    private lateinit var viewBatch: TextView
+
     private var REQUEST_COLOR = 0
     private var REQUEST_RACK = 30
 
@@ -97,6 +101,8 @@ class SkipjackWipTagActivity : AppCompatActivity() {
         textRack = findViewById(R.id.text_rackNo)
         textTray = findViewById(R.id.text_tray)
         textEach = findViewById(R.id.text_each)
+
+        viewBatch = findViewById(R.id.view_batch)
 
         btnSave = findViewById(R.id.btn_save)
         btnSave.isEnabled = false
@@ -198,7 +204,8 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             val callback = object : ActionRequest.Callback {
                 override fun <T> onSuccess(result: T) {
                     var size = result as Fish.Skipjack.Masters.SpeciesSize
-                    bind(size)
+                    Log.i("TUNA RUN > LONG_CLICK_PRE_RACK:", "${size.species_size_code}//${size.state}")
+                    textSize.setText(size.species_size_code)
                 }
 
                 override fun onError(result: String) {
@@ -213,6 +220,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             val callback = object : ActionRequest.Callback {
                 override fun <T> onSuccess(result: T) {
                     var rack = result as Fish.Skipjack.Rack
+                    Log.i("TUNA RUN > LONG_CLICK_PRE_RACK:", "${rack.rack_no}//${rack.state}")
                     bind(rack)
                 }
 
@@ -330,7 +338,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
                 Log.e("TUNA RUN > GET_PRE_RACK > ERROR", result)
             }
         }
-        skipjack.getRack(date, shift, rackNo, callback)
+        skipjack.getPreRack(date, shift, rackNo, callback)
     }
 
     fun bind(obj: Fish.Skipjack.Masters.SpeciesSize?) {
@@ -351,14 +359,15 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     }
 
     fun bind(obj: Fish.Skipjack.Rack) {
-        if (obj.state == Fish.Objects.EntityState.NEW) {
-            clearRack()
-        } else if (obj.Id > 0) {
+        if (obj.Id > 0) {
             _rack = obj
             textRack.setText(_rack.rack_no)
             textRack.done()
             textTray.focusThenSelectionAll()
-        } else {
+        }else if (obj.state == Fish.Objects.EntityState.NEW) {
+            clearRack()
+        }
+        else {
             _rack = Fish.Skipjack.Rack()
             textResult.warningResult(obj.entityMessage)
             textRack.typing()
@@ -377,6 +386,8 @@ class SkipjackWipTagActivity : AppCompatActivity() {
         viewColor1.clear()
         viewColor2.clear()
         viewColor3.clear()
+
+        viewBatch.clear()
     }
 
     fun bind(obj: Fish.Skipjack.Queue) {
@@ -399,6 +410,10 @@ class SkipjackWipTagActivity : AppCompatActivity() {
                 }
             }
             textQueue.done()
+
+            viewBatch.text = _queue.batch_no
+            viewBatch.done()
+
             textSize.focusThenSelectionAll()
         } else if (obj.state == Fish.Objects.EntityState.NEW) {
             _queue = obj
@@ -412,6 +427,7 @@ class SkipjackWipTagActivity : AppCompatActivity() {
             textQueue.typing()
             viewSpecy.cancel()
             viewOrigin.cancel()
+            viewBatch.cancel()
             textQueue.focusThenSelectionAll()
         }
         prompt()
@@ -482,5 +498,9 @@ class SkipjackWipTagActivity : AppCompatActivity() {
     private fun getTagColorCodeById(colorId: Int?): Fish.Skipjack.Masters.TagColor {
         return FishClient.Companion.Master.TagColor.Items.first { it.Id == colorId }
     }
+
+
+
+
 
 }

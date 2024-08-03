@@ -37,6 +37,11 @@
           <theme>@style/Theme.TUNA_RUN2024</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search_recycler_list.xml">
+        <config>
+          <theme>@style/Theme.TUNA_RUN2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search_view_list.xml">
         <config>
           <theme>@style/Theme.TUNA_RUN2024</theme>
@@ -53,6 +58,21 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_list.xml">
+        <config>
+          <theme>@style/Theme.TUNA_RUN2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_main.xml">
+        <config>
+          <theme>@style/Theme.TUNA_RUN2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post.xml">
+        <config>
+          <theme>@style/Theme.TUNA_RUN2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post_tag.xml">
         <config>
           <theme>@style/Theme.TUNA_RUN2024</theme>
         </config>
@@ -149,16 +169,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="214f875f-3f14-432e-8ada-24ab8ffdd893" name="Changes" comment="#bhumi 2024.07.23">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_recycler_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/BlindReceiveListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/ColorAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/ColorAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackBinActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackBinActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackColorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackColorActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookMainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookMainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostTagActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostTagActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueCreateActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueCreateActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueGroupListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueGroupListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackQueListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipCookRackActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipCookRackActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipMainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipMainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_create.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_que_create.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post_tag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post_tag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_wip_tag_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_wip_tag_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +204,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=2316710168)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/bhumi/.android/avd/Pixel_2_XL_API_28.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -457,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721672282591</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="#bhumi 2024.07.23">
+      <option name="closed" value="true" />
+      <created>1722315123219</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722315123219</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -500,5 +544,20 @@
     <MESSAGE value="#bhumi 2024.07.23" />
     <option name="LAST_COMMIT_MESSAGE" value="#bhumi 2024.07.23" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishAdapter.kt</url>
+          <line>18</line>
+          <properties class="com.inventive.tunarun.FishAdapter.ListItem" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -19,12 +19,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.inventive.tunarun.FishAdapter.RecyclerViewAdapter
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.showResult
 
 
-class BlindReceiveListActivity : AppCompatActivity(), BlindReceiveListAdapter.ItemClickListener {
+class BlindReceiveListActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListener {
 
     private var adapter: BlindReceiveListAdapter? = null
 
@@ -104,7 +105,7 @@ class BlindReceiveListAdapter internal constructor(
     private val mData: List<Fish.Skipjack.Blind.BR>
 ) : RecyclerView.Adapter<BlindReceiveListAdapter.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private var mClickListener: ItemClickListener? = null
+    private var mClickListener: RecyclerViewAdapter.ItemClickListener? = null
 
     //instance variable
     private val itemViewList: ArrayList<View> = ArrayList()
@@ -182,12 +183,8 @@ class BlindReceiveListAdapter internal constructor(
     }
 
     // allows clicks events to be caught
-    fun setClickListener(itemClickListener: ItemClickListener?) {
+    fun setClickListener(itemClickListener: RecyclerViewAdapter.ItemClickListener?) {
         mClickListener = itemClickListener
     }
 
-    // parent activity will implement this method to respond to click events
-    interface ItemClickListener {
-        fun onItemClick(view: View?, position: Int)
-    }
 }

@@ -5,13 +5,16 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.Fish.Objects.HashSetClient
 import com.inventive.tunarun.Instant.Companion.queryDateString
 import com.inventive.tunarun.Instant.Companion.stringShortTime
+import com.inventive.tunarun.SkipjackCookPostActivity.Companion.Cook
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -19,8 +22,15 @@ import java.util.Date
 
 class FishClient {
     companion object {
-        var apiAddr: String = "99.42.1.72"
+
+        private var apiAddr: String = "172.20.10.4"
+
+        var REQUEST_SHIFT = 1
         var REQUEST_BLIND_RECEIVE = 10
+
+        var REQUEST_TAG_SCAN = 30
+        var REQUEST_TAG_COUNT = 31
+
 
         class Master {
             companion object {
@@ -207,16 +217,19 @@ class FishClient {
 
 
         fun Activity.dialogSpeciesList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE SPECIES") {
-                override fun onItemSelected(result: ListItem) {
+            val popupList = object : FishAdapter.RecyclerViewAdapter.Callback<FishAdapter.ListItem>(
+                this,
+                "CHOOSE SPECIES"
+            ) {
+                override fun onItemSelected(result: FishAdapter.ListItem) {
                     var species = Master.Species.Items.first { it.Id == result.id }
                     callback.onSuccess(species)
                 }
 
-                override fun searchTextChanged(listView: ListView, text: String) {
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
                     items = listOf()
                     for (o: Fish.Skipjack.Masters.Species in Master.Species.Items) {
-                        val w = ListItem()
+                        val w = FishAdapter.ListItem()
                         w.id = o.Id
                         w.caption = o.species_code
                         if (o.material_code.isNotEmpty()) {
@@ -226,8 +239,8 @@ class FishClient {
                         items = items + w
                     }
                     listView.adapter =
-                        ListItem.Adapter(
-                            activity,
+                        FishAdapter.RecyclerViewAdapter(
+                            activity,this,
                             R.layout.activity_search_item_desc,
                             items
                         )
@@ -237,24 +250,27 @@ class FishClient {
         }
 
         fun Activity.dialogSpeciesOriginList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE ORIGIN") {
-                override fun onItemSelected(result: ListItem) {
+            val popupList = object : FishAdapter.RecyclerViewAdapter.Callback<FishAdapter.ListItem>(
+                this,
+                "CHOOSE ORIGIN"
+            ) {
+                override fun onItemSelected(result: FishAdapter.ListItem) {
                     var origin = Master.SpeciesOrigin.Items.first { it.Id == result.id }
                     callback.onSuccess(origin)
                 }
 
-                override fun searchTextChanged(listView: ListView, text: String) {
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
                     items = listOf()
                     for (o: Fish.Skipjack.Masters.SpeciesOrigin in Master.SpeciesOrigin.Items) {
-                        val w = ListItem()
+                        val w = FishAdapter.ListItem()
                         w.id = o.Id
                         w.caption = o.species_origin_code.toString()
                         w.description = o.species_origin_description.toString()
                         items = items + w
                     }
                     listView.adapter =
-                        ListItem.Adapter(
-                            activity,
+                        FishAdapter.RecyclerViewAdapter(
+                            activity,this,
                             R.layout.activity_search_item_desc,
                             items
                         )
@@ -265,43 +281,51 @@ class FishClient {
         }
 
         fun Activity.dialogSpeciesSizeList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE SIZE") {
-                override fun onItemSelected(result: ListItem) {
+            val popupList = object : FishAdapter.RecyclerViewAdapter.Callback<FishAdapter.ListItem>(
+                this,
+                "CHOOSE SIZE"
+            ) {
+                override fun onItemSelected(result: FishAdapter.ListItem) {
                     Master.SpeciesSize.Items.firstOrNull { it.Id == result.id }
                         .also {
                             callback.onSuccess(it)
                         }
                 }
 
-                override fun searchTextChanged(listView: ListView, text: String) {
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
                     items = listOf()
                     for (o: Fish.Skipjack.Masters.SpeciesSize in Master.SpeciesSize.Items) {
-                        val w = ListItem()
+                        val w = FishAdapter.ListItem()
                         w.id = o.Id
                         w.caption = o.species_size_code.toString()
                         w.description = o.species_size_description.toString()
                         items = items + w
                     }
-                    listView.adapter =
-                        ListItem.Adapter(
-                            activity,
-                            R.layout.activity_search_item,
-                            items
-                        )
+                    FishAdapter.RecyclerViewAdapter(
+                        activity,this,
+                        R.layout.activity_search_item,
+                        items
+                    ).also {
+                        listView.adapter = it
+                        listView.adapter?.notifyDataSetChanged()
+                    }
                 }
             }
             Instant.selectionDialog(popupList)
         }
 
         fun Activity.dialogPreRackList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback<ListItem>(this, "CHOOSE PRE-RACK") {
+            val popupList = object : FishAdapter.RecyclerViewAdapter.Callback<FishAdapter.ListItem>(
+                this,
+                "CHOOSE PRE-RACK"
+            ) {
                 var racks = HashSetClient<Fish.Skipjack.Rack>()
-                override fun onItemSelected(result: ListItem) {
+                override fun onItemSelected(result: FishAdapter.ListItem) {
                     var rack = racks.Items.first { it.Id == result.id }
                     callback.onSuccess(rack)
                 }
 
-                override fun searchTextChanged(listView: ListView, text: String) {
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
                     var date = Skipjack.Shift.Date
                     var shift = Skipjack.Shift.Shift
                     val skipjack = SkipjackClient(applicationContext)
@@ -310,48 +334,109 @@ class FishClient {
                             racks = result as HashSetClient<Fish.Skipjack.Rack>
                             items = listOf()
                             for (o in racks.Items) {
-                                val w = ListItem()
+                                val w = FishAdapter.ListItem()
                                 w.id = o.Id
                                 w.caption = o.rack_no.toString()
                                 w.description = o.rack_arrange_start.stringShortTime()
                                 items = items + w
                             }
-                            listView.adapter = ListItem.Adapter(
+                            listView.adapter = FishAdapter.RecyclerViewAdapter(
                                 activity,
                                 R.layout.activity_search_item_desc,
                                 items
-                            )
+                            ).also {
+                                it.setClickListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemClickListener {
+                                    override fun onItemClick(view: View?, position: Int) {
+                                        Log.i(
+                                            "TUNA RUN > ADAPTER_CLICK",
+                                            position.toString()
+                                        )
+                                        onItemClicked(view, position)
+                                    }
+                                })
+                                listView.adapter = it
+                                listView.adapter?.notifyDataSetChanged()
+                            }
                         }
 
                         override fun onError(result: String) {
                             Log.e("TUNA RUN > GET_PRE_RACKS > ERROR", result)
                         }
                     }
-                    skipjack.getPreRacks(date, shift, callback)
+                    skipjack.listPreRacks(date, shift, callback)
                 }
             }
             Instant.selectionDialog(popupList)
         }
 
         fun Activity.dialogQueueList(callback: ActionRequest.Callback) {
-            val popupList = object : ListItem.Callback<Fish.Skipjack.Queue>(this, "CHOOSE QUEUE") {
+
+            val popupList = object : FishAdapter.RecyclerViewAdapter.Callback<Fish.Skipjack.Queue>(
+                this,
+                "CHOOSE QUEUE"
+            ) {
                 var client = HashSetClient<Fish.Skipjack.Queue>()
                 override fun onItemSelected(result: Fish.Skipjack.Queue) {
                     var queue = client.Items.first { it.Id == result.Id }
                     callback.onSuccess(queue)
                 }
 
-                override fun searchTextChanged(listView: ListView, text: String) {
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
                     val skipjack = SkipjackClient(applicationContext)
                     val callback = object : ActionRequest.Callback {
                         override fun <T> onSuccess(result: T) {
                             client = result as HashSetClient<Fish.Skipjack.Queue>
+
                             items = client.Items
-                            listView.adapter = SkipjackView.Queue.ListItem.Adapter(
+
+                            Log.i("TUNA RUN > GET_QUEUES > COUNT:", items.size.toString())
+
+                            FishAdapter.QueAdapter(
                                 activity,
-                                R.layout.custom_skipjack_que_item,
                                 items
-                            )
+                            ).also {
+                                it.setClickListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemClickListener {
+                                    override fun onItemClick(view: View?, position: Int) {
+                                        Log.i(
+                                            "TUNA RUN > QUEUES_ADAPTER_CLICK",
+                                            position.toString()
+                                        )
+                                        onItemClicked(view, position)
+                                    }
+                                })
+                                listView.adapter = it
+                                listView.adapter?.notifyDataSetChanged()
+                            }
+                        }
+
+                        override fun onError(result: String) {
+                            Log.e("TUNA RUN > GET_QUEUES > ERROR", result)
+                        }
+                    }
+                    skipjack.listQueuesAsCompact(callback)
+                }
+            }
+            Instant.selectionDialog(popupList)
+        }
+
+        fun Activity.dialogTagList(callback: ActionRequest.Callback) {
+            val popupList = object :
+                FishAdapter.RecyclerViewAdapter.Callback<Fish.Skipjack.Tag>(this, "CHOOSE TAG") {
+                var client = HashSetClient<Fish.Skipjack.Tag>()
+                override fun onItemSelected(result: Fish.Skipjack.Tag) {
+                    var queue = client.Items.first { it.Id == result.Id }
+                    callback.onSuccess(queue)
+                }
+
+                override fun searchTextChanged(listView: RecyclerView, text: String) {
+                    val skipjack = SkipjackClient(applicationContext)
+                    val callback = object : ActionRequest.Callback {
+                        override fun <T> onSuccess(result: T) {
+                            client = result as HashSetClient<Fish.Skipjack.Tag>
+                            items = client.Items
+                            listView.adapter = FishAdapter.TagAdapter(activity, Cook.tags!!.Items)
 
                         }
 
@@ -359,7 +444,7 @@ class FishClient {
                             Log.e("TUNA RUN > GET_QUEUES > ERROR", result)
                         }
                     }
-                    skipjack.getQueuesAsCompact(callback)
+                    skipjack.listQueuesAsCompact(callback)
                 }
             }
             Instant.selectionDialog(popupList)
@@ -805,7 +890,10 @@ class FishClient {
             }
             val strDate = Companion.Skipjack.Shift.Date.queryDateString()
             val strShift = Companion.Skipjack.Shift.Shift
-            connect.get(baseUrl + "get_bin_by_sloc?_date=$strDate&_shift=$strShift&_sloc=$sloc", jCall)
+            connect.get(
+                baseUrl + "get_bin_by_sloc?_date=$strDate&_shift=$strShift&_sloc=$sloc",
+                jCall
+            )
         }
 
         fun listBlindSLoc(callback: ActionRequest.Callback) {
@@ -887,20 +975,6 @@ class FishClient {
             connect.get(baseUrl + "get_blind_receive?_serial_no=$serialNo", jCall)
         }
 
-        fun runBlindReceiveQueue(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
-            val jCall = object : JSONCallback {
-                override fun onSuccess(response: JSONObject) {
-                    val result = connect.jObj<Fish.Skipjack.Blind.BR>(response)
-                    callback.onSuccess(result)
-                }
-
-                override fun onError(error: String) {
-                    callback.onError(error)
-                }
-            }
-            connect.post(baseUrl + "change_blind_receive", blind, jCall)
-        }
-
         fun createThenGetBin(blind: Fish.Skipjack.Blind.BR, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -979,7 +1053,7 @@ class FishClient {
             return getQueue(date, shift, queueNo, callback)
         }
 
-        fun getQueuesAsCompact(callback: ActionRequest.Callback) {
+        fun listQueuesAsCompact(callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
                     val result = connect.jObj<HashSetClient<Fish.Skipjack.Queue>>(response)
@@ -995,7 +1069,7 @@ class FishClient {
             connect.get(baseUrl + "get_queues_as_compact?_date=$strDate&_shift=$strShift", jCall)
         }
 
-        fun getQueuesGroupBatchText(callback: ActionRequest.Callback) {
+        fun listQueuesAsGroup(callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
                     val result = connect.jObj<HashSetClient<Fish.Skipjack.Queue>>(response)
@@ -1009,7 +1083,7 @@ class FishClient {
             val strDate = Companion.Skipjack.Shift.Date.queryDateString()
             val strShift = Companion.Skipjack.Shift.Shift
             connect.get(
-                baseUrl + "get_queues_grp_batch_text?_date=$strDate&_shift=$strShift",
+                baseUrl + "get_queues_as_group?_date=$strDate&_shift=$strShift",
                 jCall
             )
         }
@@ -1027,6 +1101,20 @@ class FishClient {
                 }
             }
             connect.post(baseUrl + "add_tag", tag, jCall)
+        }
+
+        fun addCook(cook: Fish.Skipjack.Cook, callback: ActionRequest.Callback) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Cook>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            connect.post(baseUrl + "add_cook", cook, jCall)
         }
 
         fun getTag(tagNo: String, callback: ActionRequest.Callback) {
@@ -1058,7 +1146,7 @@ class FishClient {
             connect.get(baseUrl + "pre_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
         }
 
-        fun getRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback) {
+        fun getPreRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
                     val result = connect.jObj<Fish.Skipjack.Rack>(response)
@@ -1073,7 +1161,12 @@ class FishClient {
             connect.get(baseUrl + "get_rack?_date=$strDate&_shift=$shift&_rack_no=$rackNo", jCall)
         }
 
-        fun deleteRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback) {
+        fun deletePreRack(
+            date: Date,
+            shift: Int,
+            rackNo: String,
+            callback: ActionRequest.Callback,
+        ) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
                     val result = connect.jObj<Fish.Skipjack.Rack>(response)
@@ -1091,7 +1184,7 @@ class FishClient {
             )
         }
 
-        fun getPreRacks(date: Date, shift: Int, callback: ActionRequest.Callback) {
+        fun listPreRacks(date: Date, shift: Int, callback: ActionRequest.Callback) {
             var _date = date.queryDateString()
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {

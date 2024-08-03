@@ -2,12 +2,14 @@ package com.inventive.tunarun
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -20,10 +22,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.Fish.Objects.ObjectClient
+import com.inventive.tunarun.FishAdapter.TagAdapter
 import com.inventive.tunarun.Instant.Companion.done
-import com.inventive.tunarun.ListItem.Callback
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -37,14 +41,16 @@ class Instant {
             toast.show()
         }
 
-        fun <T> selectionDialog(callback: Callback<T>) {
+
+        fun <T> selectionDialog(callback: FishAdapter.RecyclerViewAdapter.Callback<T>) {
             val dialog = Dialog(callback.activity)
             with(dialog) {
                 setCancelable(true)
-                setContentView(R.layout.activity_search_view_list)
+                setContentView(R.layout.activity_search_recycler_list)
             }
             val title: TextView = dialog.findViewById(R.id.text_title)
-            val listView: ListView = dialog.findViewById(R.id.list_item_view)
+            val listView: RecyclerView = dialog.findViewById(R.id.list_item_view)
+            listView.setLayoutManager(LinearLayoutManager(callback.activity))
             val searchView: SearchView = dialog.findViewById(R.id.search_item)
 
             title.text = callback.title
@@ -70,13 +76,17 @@ class Instant {
             dismiss.setOnClickListener { dialog.dismiss() }
 
             callback.searchTextChanged(listView, "")
-            listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-                Log.i("TUNA RUN > COUNT", "${callback.items.size.toString()}")
-                Log.i("TUNA RUN > SELECT", "${position.toString()}")
-                //Log.e("TUNA RUN > SELECT", callback.items[position].toString())
-                callback.onItemSelected(callback.items[position])
-                dialog.dismiss()
-            }
+            callback.setClickListener(object : FishAdapter.RecyclerViewAdapter.ItemClickListener {
+                override fun onItemClick(view: View?, position: Int) {
+                    Log.i("TUNA RUN > COUNT", "${callback.items.size.toString()}")
+                    Log.i("TUNA RUN > SELECT", "${position.toString()}")
+                    Log.i("TUNA RUN > SELECT", callback.items[position].toString())
+                    callback.onItemSelected(callback.items[position])
+                    dialog.dismiss()
+                }
+            })
+
+            Log.i("TUNA RUN > DIALOG_ITEMS_SIZE:", callback.items.size.toString())
             dialog.show()
         }
 
@@ -264,37 +274,3 @@ class Instant {
     }
 }
 
-class ListItem {
-    override fun toString(): String {
-        return caption.toString()
-    }
-
-    var id: Int = 0
-    var caption: String = ""
-    var description: String = ""
-
-    class Adapter(context: Activity, var resources: Int, private var items: List<ListItem>) :
-        ArrayAdapter<ListItem>(context, resources, items) {
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-
-            val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
-            val view: View = layoutInflater.inflate(resources, null)
-            val textCaption: TextView = view.findViewById(R.id.text_caption)
-            val textDescription: TextView = view.findViewById(R.id.text_description)
-            var item: ListItem = items[position]
-
-
-            textCaption.text = item.caption;
-            textDescription.text = item.description;
-            return view
-        }
-    }
-
-    abstract class Callback<T>(activity: Activity, title: String) {
-        var title: String = title
-        val activity: Activity = activity
-        var items: List<T> = listOf()
-        open fun onItemSelected(result: T) {}
-        open fun searchTextChanged(listView: ListView, text: String) {}
-    }
-}

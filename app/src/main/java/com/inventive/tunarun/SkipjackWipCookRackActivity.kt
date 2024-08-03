@@ -174,7 +174,7 @@ class SkipjackWipCookRackActivity : AppCompatActivity() {
                     Log.e("TUNA RUN > CANCEL_RACK > ERROR", result)
                 }
             }
-            skipjack.deleteRack(date, shift, rackNo, callback)
+            skipjack.deletePreRack(date, shift, rackNo, callback)
         }
     }
 }

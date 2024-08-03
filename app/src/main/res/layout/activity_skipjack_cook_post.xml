@@ -18,8 +18,9 @@
         android:gravity="center"
         android:inputType="text"
         android:text="SCAN"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="@+id/view_shift"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/text_rackCount"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         tools:ignore="TouchTargetSizeCheck" />
@@ -27,18 +28,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="320dp"
         android:layout_marginTop="8dp"
         android:background="@color/Primary_090"
-        app:layout_constraintEnd_toEndOf="@+id/view_scanned"
-        app:layout_constraintStart_toStartOf="@+id/view_steamNo"
-        app:layout_constraintTop_toBottomOf="@+id/goto_pickRackCount" />
+        app:layout_constraintEnd_toEndOf="@+id/text_rackScanned"
+        app:layout_constraintStart_toStartOf="@+id/text_steamNo"
+        app:layout_constraintTop_toBottomOf="@+id/goto_pickCount" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="STEAM NO."
@@ -46,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/view_shift"
+        android:id="@+id/text_rackCount"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -57,8 +58,9 @@
         android:hint="#"
         android:inputType="text"
         android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/view_steamNo"
-        app:layout_constraintTop_toTopOf="@+id/view_steamNo"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_steamNo"
+        app:layout_constraintTop_toTopOf="@+id/text_steamNo"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -81,12 +83,12 @@
         android:fontFamily="serif"
         android:text="SCANNED"
         app:layout_constraintBottom_toBottomOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/view_scanned"
-        app:layout_constraintStart_toStartOf="@+id/view_scanned"
+        app:layout_constraintEnd_toEndOf="@+id/text_rackScanned"
+        app:layout_constraintStart_toStartOf="@+id/text_rackScanned"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <TextView
-        android:id="@+id/view_steamNo"
+        android:id="@+id/text_steamNo"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:background="@color/Amber_A400"
@@ -96,16 +98,17 @@
         android:hint="#"
         android:inputType="text"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/view_scanned"
+        android:id="@+id/text_rackScanned"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/Amber_A400"
         android:ems="10"
         android:fontFamily="@font/roboto_mono"
@@ -113,8 +116,9 @@
         android:hint="#"
         android:inputType="text"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/goto_pickRackCount"
+        app:layout_constraintStart_toEndOf="@+id/goto_pickCount"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -125,12 +129,12 @@
         android:fontFamily="serif"
         android:text="RACK COUNT"
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
-        app:layout_constraintEnd_toEndOf="@+id/goto_pickRackCount"
-        app:layout_constraintStart_toStartOf="@+id/view_shift"
+        app:layout_constraintEnd_toEndOf="@+id/goto_pickCount"
+        app:layout_constraintStart_toStartOf="@+id/text_rackCount"
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <TextView
-        android:id="@+id/goto_pickRackCount"
+        android:id="@+id/goto_pickCount"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:background="@color/Light_Green"
@@ -140,9 +144,9 @@
         android:inputType="text"
         android:text="[=]"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_shift"
-        app:layout_constraintStart_toEndOf="@+id/view_shift"
-        app:layout_constraintTop_toTopOf="@+id/view_steamNo"
+        app:layout_constraintBottom_toBottomOf="@+id/text_rackCount"
+        app:layout_constraintStart_toEndOf="@+id/text_rackCount"
+        app:layout_constraintTop_toTopOf="@+id/text_steamNo"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -157,7 +161,8 @@
         android:gravity="center"
         android:inputType="text"
         android:text="RESET"
-        android:textSize="34sp"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/goto_scan"

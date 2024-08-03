@@ -10,12 +10,12 @@ import com.inventive.tunarun.ColorAdapter.ColorViewHolder
 
 class ColorAdapter(
     private val listener: OnColorClickListener,
-    private val colors: List<Fish.Skipjack.Masters.VCColor>
+    private val colors: List<Fish.Skipjack.Masters.TagColor>
 ) :
     RecyclerView.Adapter<ColorAdapter.ColorViewHolder>() {
 
     interface OnColorClickListener {
-        fun onColorClick(color: Fish.Skipjack.Masters.VCColor)
+        fun onColorClick(color: Fish.Skipjack.Masters.TagColor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {

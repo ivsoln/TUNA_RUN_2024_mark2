@@ -19,14 +19,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.inventive.tunarun.FishAdapter.RecyclerViewAdapter
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.showResult
 import java.text.SimpleDateFormat
 
-class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickListener {
+class SkipjackQueListActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListener {
 
-    private var adapter: QueListAdapter? = null
+    private var adapter: FishAdapter.QueAdapter? = null
 
     private lateinit var progressBar: ProgressBar
     private lateinit var overlay: View
@@ -64,7 +65,7 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
                 } else {
                     val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
                     recyclerView.setLayoutManager(LinearLayoutManager(context))
-                    adapter = QueListAdapter(context, queues.Items)
+                    adapter = FishAdapter.QueAdapter(context, queues.Items)
                     adapter!!.setClickListener(itemClickListener = context)
                     recyclerView.setAdapter(adapter)
                 }
@@ -77,7 +78,7 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
                 viewResult.showResult(Fish.Objects.EntityState.ERROR, result)
             }
         }
-        skipjack.getQueuesAsCompact(callback)
+        skipjack.listQueuesAsCompact(callback)
     }
 
     override fun onItemClick(view: View?, position: Int) {
@@ -90,84 +91,4 @@ class SkipjackQueListActivity : AppCompatActivity(), QueListAdapter.ItemClickLis
     }
 }
 
-class QueListAdapter internal constructor(
-    context: Context?,
-    private val mData: List<Fish.Skipjack.Queue>,
-) : RecyclerView.Adapter<QueListAdapter.ViewHolder>() {
-    private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private var mClickListener: ItemClickListener? = null
-    private val itemViewList: ArrayList<View> = ArrayList()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView: View =
-            mInflater.inflate(R.layout.custom_skipjack_que_item, parent, false)
-        val viewHolder = ViewHolder(itemView)
-        itemViewList.add(itemView) //to add all the 'list row item' views
-
-        itemView.setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                itemViewList.forEach { it.setBackgroundColor(Color.TRANSPARENT) }
-                v.setBackgroundColor(Color.parseColor("#FFFFE57F"))
-            }
-
-            false
-        }
-        return viewHolder
-    }
-
-    // binds the data to the TextView in each row
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val que = mData[position]
-        holder.viewQue.text = que.queue_no.toString()
-        holder.viewBatchNo.text = que.batch_no
-        holder.viewLotNo.text = que.lot_no
-        if (que.batch_group_text.isNotEmpty()) {
-            holder.viewItemNo.text =
-                que.getItemText() + " /" + que.customer_species_text + "/" + que.batch_group_text
-        } else {
-            holder.viewItemNo.text = que.getItemText()
-        }
-        holder.viewWeight.text = que.getNetWeightText()
-    }
-
-    // total number of rows
-    override fun getItemCount(): Int {
-        return mData.size
-
-    }
-
-    // stores and recycles views as they are scrolled off screen
-    inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
-        var viewQue: TextView = itemView.findViewById(R.id.view_que)
-        var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
-        var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
-        var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
-        var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(view: View) {
-            Log.i("TUNA RUN > VIEW_HOLDER QUEUE_ITEM CLICK", viewQue.text.toString())
-            if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
-        }
-    }
-
-    // convenience method for getting data at click position
-    fun getItem(id: Int): Fish.Skipjack.Queue {
-        return mData[id]
-    }
-
-    // allows clicks events to be caught
-    fun setClickListener(itemClickListener: ItemClickListener?) {
-        mClickListener = itemClickListener
-    }
-
-    // parent activity will implement this method to respond to click events
-    interface ItemClickListener {
-        fun onItemClick(view: View?, position: Int)
-    }
-}
 

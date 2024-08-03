@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".SkipjackCookMainActivity">
 
+
     <TextView
         android:id="@+id/goto_continue"
         android:layout_width="0dp"
@@ -18,7 +19,8 @@
         android:gravity="center"
         android:inputType="text"
         android:text="CONTINUE"
-        android:textSize="34sp"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/goto_pickRackCount"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/capt_rackCount"
@@ -74,6 +76,7 @@
         android:hint="#"
         android:inputType="text"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView222"
         app:layout_constraintEnd_toEndOf="@+id/view_date"
         app:layout_constraintStart_toEndOf="@+id/textView222"
@@ -102,7 +105,8 @@
         android:gravity="center"
         android:inputType="text"
         android:text="BATCH COOK"
-        android:textSize="24sp"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/goto_pickRackCount"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/capt_rackCount"
@@ -120,6 +124,7 @@
         android:hint="#"
         android:inputType="text"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/capt_rackCount"
         app:layout_constraintEnd_toEndOf="@+id/text_steamNo"
         app:layout_constraintStart_toEndOf="@+id/textView222"
@@ -142,8 +147,8 @@
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="DATE"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,15 +167,16 @@
 
     <TextView
         android:id="@+id/view_date"
-        android:layout_width="230dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:background="@color/Cyan_050"
         android:ems="10"
-        android:fontFamily="@font/roboto_mono"
+        android:fontFamily="serif"
         android:gravity="center"
         android:hint="dd.MM.yyyy"
         android:inputType="text"
-        android:textSize="34sp"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
         tools:ignore="TouchTargetSizeCheck" />
@@ -185,18 +191,35 @@
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <TextView
+        android:id="@+id/text_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Red_A700"
+        android:fontFamily="serif"
+        android:hint="#USER"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <TextView
         android:id="@+id/view_shift"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/Cyan_050"
         android:ems="10"
-        android:fontFamily="@font/roboto_mono"
+        android:fontFamily="serif"
         android:gravity="center"
         android:hint="DN"
         android:inputType="text"
-        android:textSize="34sp"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_date"
         app:layout_constraintTop_toTopOf="@+id/view_date"

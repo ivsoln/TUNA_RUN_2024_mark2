@@ -8,11 +8,29 @@
     tools:context=".SkipjackWipTagActivity">
 
     <TextView
+        android:id="@+id/view_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Blue_Gray_050"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="[=]"
+        android:textSize="34sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_queueNo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_tag_color"
+        app:layout_constraintTop_toTopOf="@+id/text_queueNo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/text_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="serif"
         android:hint="#RESULT"
@@ -64,7 +82,7 @@
         android:gravity="center"
         android:text="NEW"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/goto_edit"
         app:layout_constraintEnd_toEndOf="@+id/text_each"
@@ -76,13 +94,13 @@
         android:id="@+id/btn_save"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@color/Light_Green_A400"
         android:fontFamily="serif"
         android:gravity="center"
         android:text="SAVE"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/text_rackNo"
         app:layout_constraintStart_toStartOf="@+id/text_rackNo"
@@ -97,7 +115,7 @@
         android:gravity="center"
         android:text="EDIT"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="@+id/text_tray"
@@ -141,7 +159,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="EACH"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view_color3"
         app:layout_constraintTop_toTopOf="@+id/cap_tray" />
 
@@ -151,7 +169,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="TRAY"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view_color2"
         app:layout_constraintTop_toTopOf="@+id/cap_rackNo" />
 
@@ -176,7 +194,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="RACK"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view_color1"
         app:layout_constraintTop_toBottomOf="@+id/view_color1" />
 
@@ -231,35 +249,49 @@
 
     <TextView
         android:id="@+id/view_specy"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/Blue_Gray_050"
         android:fontFamily="serif"
         android:gravity="center"
         android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_queueNo"
         app:layout_constraintStart_toStartOf="@+id/cap_specy"
         app:layout_constraintTop_toBottomOf="@+id/cap_specy" />
 
 
     <TextView
+        android:id="@+id/view_batch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/Blue_Gray_050"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center|left"
+        android:hint="@string/hint_batch_no"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_list"
+        app:layout_constraintStart_toStartOf="@+id/cap_specy"
+        app:layout_constraintTop_toBottomOf="@+id/text_queueNo" />
+
+    <TextView
         android:id="@+id/view_origin"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
         android:background="@color/Blue_Gray_050"
         android:fontFamily="serif"
         android:gravity="center"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_specy"
-        app:layout_constraintStart_toEndOf="@+id/view_specy"
+        app:layout_constraintEnd_toEndOf="@+id/view_tag_color"
+        app:layout_constraintStart_toStartOf="@+id/view_tag_color"
         app:layout_constraintTop_toBottomOf="@+id/cap_origin" />
 
     <TextView
         android:id="@+id/view_tag_color"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
         android:background="@color/Blue_Gray_050"
         android:fontFamily="serif"
         android:gravity="center"
@@ -267,7 +299,6 @@
         android:textSize="34sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/text_queueNo"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_queueNo"
         app:layout_constraintTop_toTopOf="@+id/text_queueNo"
         app:layout_constraintVertical_bias="0.0" />
@@ -279,7 +310,7 @@
         android:fontFamily="serif"
         android:text="SPECIES"
         app:layout_constraintStart_toStartOf="@+id/text_queueNo"
-        app:layout_constraintTop_toBottomOf="@+id/text_queueNo" />
+        app:layout_constraintTop_toBottomOf="@+id/view_batch" />
 
     <TextView
         android:id="@+id/cap_origin"
@@ -296,7 +327,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="SIZE"
-        app:layout_constraintStart_toStartOf="@+id/view_tag_color"
+        app:layout_constraintStart_toStartOf="@+id/view_list"
         app:layout_constraintTop_toTopOf="@+id/cap_origin" />
 
     <EditText
@@ -309,13 +340,13 @@
         android:inputType="textCapCharacters"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_origin"
-        app:layout_constraintEnd_toEndOf="@+id/view_tag_color"
-        app:layout_constraintStart_toStartOf="@+id/view_tag_color"
+        app:layout_constraintEnd_toEndOf="@+id/view_list"
+        app:layout_constraintStart_toStartOf="@+id/view_list"
         app:layout_constraintTop_toBottomOf="@+id/cap_size" />
 
     <EditText
         android:id="@+id/text_queueNo"
-        android:layout_width="229dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
@@ -325,7 +356,7 @@
         android:gravity="center"
         android:hint="#QUE"
         android:inputType="number"
-        android:textSize="48sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_shift"

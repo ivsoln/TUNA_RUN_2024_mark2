@@ -934,9 +934,12 @@ class Fish {
             var date: Date? = null
             var shift: Int = 0
             var shift_id: Int = 0
+
             var shift_sequence: Int = 0
+
             var line_no: Int = 0
             var line_sequence: Int = 0
+
             var rack_count: Int = 0
         }
 

@@ -30,7 +30,7 @@ import com.inventive.tunarun.Instant.Companion.showResult
 
 class SkipjackQueCreateActivity : AppCompatActivity() {
 
-    private lateinit var adapter: SkipjackBinAdapter
+    private lateinit var adapter: FishAdapter.BinAdapter
     private lateinit var bins: MutableList<Fish.Skipjack.Bin>
 
     private lateinit var inputBarcode: EditText
@@ -71,7 +71,7 @@ class SkipjackQueCreateActivity : AppCompatActivity() {
         recyclerView.setLayoutManager(LinearLayoutManager(this))
 
         bins = mutableListOf()
-        adapter = SkipjackBinAdapter(this, bins)
+        adapter = FishAdapter.BinAdapter(this, bins)
         recyclerView.adapter = adapter
 
         inputBarcode.afterKeyEnteredThenCloseKeyboard {

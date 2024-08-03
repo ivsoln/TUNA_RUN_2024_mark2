@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.inventive.tunarun.FishClient.Companion.REQUEST_SHIFT
 import com.inventive.tunarun.FishClient.Companion.showShift
 import com.inventive.tunarun.FishClient.Companion.showUser
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
@@ -22,8 +23,6 @@ import java.text.SimpleDateFormat
 
 class SkipjackWipMainActivity : AppCompatActivity() {
 
-    private lateinit var viewDate: TextView
-    private lateinit var viewShift: TextView
 
     private lateinit var gotoScanBin: TextView
     private lateinit var gotoCreateQueue: TextView
@@ -39,16 +38,14 @@ class SkipjackWipMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_skipjack_wip_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
 
-        findViewById<TextView>(R.id.text_user).showUser()
+        init()
 
-        viewDate = findViewById(R.id.view_date)
-        viewShift = findViewById(R.id.view_shift)
 
         gotoScanBin = findViewById(R.id.goto_scanBin)
         gotoCreateQueue = findViewById(R.id.goto_create_queue)
@@ -69,7 +66,6 @@ class SkipjackWipMainActivity : AppCompatActivity() {
 
         gotoTag = findViewById(R.id.goto_tag)
 
-        viewShift(FishClient.Companion.Skipjack.Shift)
 
         gotoScanBin.setOnClickListener {
             val intent = Intent(this, SkipjackBinActivity::class.java)
@@ -112,27 +108,31 @@ class SkipjackWipMainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1) {
-                viewShift(FishClient.Companion.Skipjack.Shift)
+            if (requestCode == REQUEST_SHIFT) {
+                init()
             }
         }
     }
 
-    private fun viewShift(shift: Fish.Skipjack.DateShift) {
-        viewDate.text =
-            SimpleDateFormat(Instant.dateFormat).format(shift.Date)
-        viewShift.text = shift.WorkShift?.ShiftCode.toString()
+    private fun init() {
+        findViewById<TextView>(R.id.text_user).showUser()
+        var viewDate: TextView = findViewById(R.id.view_date)
+        var viewShift: TextView = findViewById(R.id.view_shift)
 
-        if (shift.Shift == 1) {
+        viewDate.text =
+            SimpleDateFormat(Instant.dateFormat).format(FishClient.Companion.Skipjack.Shift.Date)
+        viewShift.text = FishClient.Companion.Skipjack.Shift.WorkShift?.ShiftCode.toString()
+
+        if (FishClient.Companion.Skipjack.Shift.Shift == 1) {
             viewShift.setBackgroundColor(resources.getColor(R.color.Blue_Gray_050))
         }
-        if (shift.Shift == 2) {
+        if (FishClient.Companion.Skipjack.Shift.Shift == 2) {
             viewShift.setBackgroundColor(resources.getColor(R.color.Amber_A200))
         }
 
         viewDate.setOnClickListener {
             Intent(this, SkipjackShiftActivity::class.java).also {
-                startActivityForResult(it, 1, null)
+                startActivityForResult(it, REQUEST_SHIFT, null)
             }
         }
     }
