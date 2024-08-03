@@ -25,6 +25,7 @@ import com.inventive.tunarun.Instant.Companion.focusThenSelectionEnd
 import com.inventive.tunarun.Instant.Companion.typing
 
 
+
 class BlindReceiveActivity : AppCompatActivity() {
 
 
