@@ -22,6 +22,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inventive.tunarun.Fish.Objects.EntityState
@@ -49,44 +50,59 @@ class Instant {
                 setContentView(R.layout.activity_search_recycler_list)
             }
             val title: TextView = dialog.findViewById(R.id.text_title)
-            val listView: RecyclerView = dialog.findViewById(R.id.list_item_view)
-            listView.setLayoutManager(LinearLayoutManager(callback.activity))
+            val recyclerView: RecyclerView = dialog.findViewById(R.id.list_item_view)
+            recyclerView.setLayoutManager(LinearLayoutManager(callback.activity))
             val searchView: SearchView = dialog.findViewById(R.id.search_item)
+            //searchView.isVisible = false
+
+            val result: TextView = dialog.findViewById(R.id.text_result)
+            result.isVisible = false
 
             title.text = callback.title
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    // do something on text submit
                     if (query != null) {
-                        callback.searchTextChanged(listView, query)
+                        searchView.clearFocus()
+                        Log.i("TUNA RUN:selectionDialog", "onQueryTextSubmit: $query")
+                        callback.searchTextChanged(recyclerView, query)
                     }
-                    return false
+                    return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    // do something when text changes
                     if (newText != null) {
-                        //callback.searchTextChanged(listView, newText)
+                        Log.i("TUNA RUN:selectionDialog", "onQueryTextChange: $newText")
+                        //callback.searchTextChanged(recyclerView, newText)
                     }
-                    return false
+                    return true
                 }
             })
 
             val dismiss: Button = dialog.findViewById(R.id.button_dismiss)
             dismiss.setOnClickListener { dialog.dismiss() }
 
-            callback.searchTextChanged(listView, "")
-            callback.setClickListener(object : FishAdapter.RecyclerViewAdapter.ItemClickListener {
+            callback.searchTextChanged(recyclerView, "")
+            callback.setItemClickListener(object :
+                FishAdapter.RecyclerViewAdapter.ItemClickListener {
                 override fun onItemClick(view: View?, position: Int) {
-                    Log.i("TUNA RUN > COUNT", "${callback.items.size.toString()}")
-                    Log.i("TUNA RUN > SELECT", "${position.toString()}")
-                    Log.i("TUNA RUN > SELECT", callback.items[position].toString())
+                    Log.i("TUNA RUN:selectionDialog", "setItemClickListener: item.text: " +callback.items[position].toString())
+                    Log.i("TUNA RUN:selectionDialog", "setItemClickListener: items.position: $position")
                     callback.onItemSelected(callback.items[position])
                     dialog.dismiss()
                 }
             })
 
-            Log.i("TUNA RUN > DIALOG_ITEMS_SIZE:", callback.items.size.toString())
+            callback.setItemsChangedListener(object : FishAdapter.RecyclerViewAdapter.ItemsChangedListener{
+                override fun onItemsChanged() {
+                    Log.i("TUNA RUN:selectionDialog", "setItemsChangedListener: items.size: " + callback.items.toString())
+                    result.isVisible = callback.items.isEmpty()
+
+                }
+            })
+
+
+            Log.i("TUNA RUN:selectionDialog", "items: " + callback.items.toString())
             dialog.show()
         }
 

@@ -12,7 +12,7 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
 
     lateinit var textBarcode: EditText
     lateinit var textQueue: EditText
-    lateinit var viewColor1: TextView
+    lateinit var viewColor: TextView
     lateinit var viewColorNew: TextView
     lateinit var viewSpecy: TextView
     lateinit var textSpecy: EditText
@@ -27,7 +27,7 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
     lateinit var viewEach: TextView
     lateinit var textEach: EditText
     lateinit var goToSave: TextView
-    lateinit var goToDelete: TextView
+    lateinit var goToDel: TextView
     lateinit var goToUndo: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,23 +40,38 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
         }
 
         textBarcode = findViewById(R.id.text_barcode)
+        textBarcode.setOnLongClickListener {
+
+
+
+            true
+        }
+
         textQueue = findViewById(R.id.text_queue)
-        viewColor1 = findViewById(R.id.view_color1)
+
+        viewColor = findViewById(R.id.view_color)
         viewColorNew = findViewById(R.id.view_colorNew)
+
         viewSpecy = findViewById(R.id.view_specy)
         textSpecy = findViewById(R.id.text_specy)
+
         viewOrigin = findViewById(R.id.view_origin)
         textOrigin = findViewById(R.id.text_origin)
+
         viewSize = findViewById(R.id.view_size)
         textSize = findViewById(R.id.text_size)
+
         viewRack = findViewById(R.id.view_rack)
         textRack = findViewById(R.id.text_rack)
+
         viewTray = findViewById(R.id.view_tray)
         textTray = findViewById(R.id.text_tray)
+
         viewEach = findViewById(R.id.view_each)
         textEach = findViewById(R.id.text_each)
+
         goToSave = findViewById(R.id.goto_save)
-        goToDelete = findViewById(R.id.goto_delete)
+        goToDel = findViewById(R.id.goto_delete)
         goToUndo = findViewById(R.id.goto_undo)
     }
 }

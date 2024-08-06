@@ -23,7 +23,7 @@ import java.util.Date
 class FishClient {
     companion object {
 
-        private var apiAddr: String = "172.20.10.4"
+        private var apiAddr: String = "99.42.1.44"
 
         var REQUEST_SHIFT = 1
         var REQUEST_BLIND_RECEIVE = 10
@@ -240,10 +240,12 @@ class FishClient {
                     }
                     listView.adapter =
                         FishAdapter.RecyclerViewAdapter(
-                            activity,this,
+                            activity, this,
                             R.layout.activity_search_item_desc,
                             items
                         )
+
+                    this.notifyItemsChanged()
                 }
             }
             Instant.selectionDialog(popupList)
@@ -270,10 +272,11 @@ class FishClient {
                     }
                     listView.adapter =
                         FishAdapter.RecyclerViewAdapter(
-                            activity,this,
+                            activity, this,
                             R.layout.activity_search_item_desc,
                             items
                         )
+                    this.notifyItemsChanged()
                 }
             }
             Instant.selectionDialog(popupList)
@@ -302,13 +305,16 @@ class FishClient {
                         items = items + w
                     }
                     FishAdapter.RecyclerViewAdapter(
-                        activity,this,
+                        activity, this,
                         R.layout.activity_search_item,
                         items
                     ).also {
                         listView.adapter = it
                         listView.adapter?.notifyDataSetChanged()
+
+                        this.notifyItemsChanged()
                     }
+
                 }
             }
             Instant.selectionDialog(popupList)
@@ -348,15 +354,22 @@ class FishClient {
                                 it.setClickListener(object :
                                     FishAdapter.RecyclerViewAdapter.ItemClickListener {
                                     override fun onItemClick(view: View?, position: Int) {
-                                        Log.i(
-                                            "TUNA RUN > ADAPTER_CLICK",
-                                            position.toString()
-                                        )
+                                        Log.i("TUNA RUN:dialogPreRackList","onItemClick : $position")
                                         onItemClicked(view, position)
                                     }
                                 })
+                                it.setChangedListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemsChangedListener {
+                                    override fun onItemsChanged() {
+                                        notifyItemsChanged()
+                                    }
+                                })
+
                                 listView.adapter = it
                                 listView.adapter?.notifyDataSetChanged()
+
+                                it.notifyItemsChanged()
+
                             }
                         }
 
@@ -406,8 +419,18 @@ class FishClient {
                                         onItemClicked(view, position)
                                     }
                                 })
+
+                                it.setChangedListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemsChangedListener {
+                                    override fun onItemsChanged() {
+                                        notifyItemsChanged()
+                                    }
+                                })
+
                                 listView.adapter = it
                                 listView.adapter?.notifyDataSetChanged()
+
+                                it.notifyItemsChanged()
                             }
                         }
 

@@ -69,21 +69,35 @@ class FishAdapter {
             val activity: Activity = activity
             var items: List<T> = listOf()
             private var mClickListener: ItemClickListener? = null
+            private var mChangedListener: ItemsChangedListener? = null
             open fun onItemSelected(result: T) {}
             open fun searchTextChanged(listView: RecyclerView, text: String) {}
+
+            open fun notifyItemsChanged() {
+                Log.i("TUNA RUN:RecyclerViewAdapter","notifyItemsChanged :" + items.size.toString())
+                if (mChangedListener != null) mChangedListener!!.onItemsChanged()
+            }
+            fun setItemsChangedListener(itemChangedListener: ItemsChangedListener?) {
+                Log.i("TUNA RUN:RecyclerViewAdapter","setItemsChangedListener :" + items.size.toString())
+                mChangedListener = itemChangedListener
+            }
+
 
             fun onItemClicked(view: View?, position: Int) {
                 if (mClickListener != null) mClickListener!!.onItemClick(view, position)
             }
 
-            fun setClickListener(itemClickListener: ItemClickListener?) {
+            fun setItemClickListener(itemClickListener: ItemClickListener?) {
                 mClickListener = itemClickListener
             }
+
+
         }
 
         private var _callback: RecyclerViewAdapter.Callback<ListItem>? = null
         private val mInflater: LayoutInflater = LayoutInflater.from(context)
         private var mClickListener: ItemClickListener? = null
+        private var mChangedListener: ItemsChangedListener? = null
         private val itemViewList: ArrayList<View> = ArrayList()
 
         constructor(context: Context?, resources: Int, mData: List<ListItem>) : this(
@@ -97,11 +111,15 @@ class FishAdapter {
             _callback = callback
             setClickListener(object : ItemClickListener {
                 override fun onItemClick(view: View?, position: Int) {
-                    Log.i(
-                        "TUNA RUN > ADAPTER_CLICK",
-                        position.toString()
-                    )
+                    Log.i("TUNA RUN:RecyclerViewAdapter", "onClick :$position")
                     _callback?.onItemClicked(view, position)
+                }
+            })
+
+            setChangedListener(object : ItemsChangedListener{
+                override fun onItemsChanged() {
+                    Log.i("TUNA RUN:RecyclerViewAdapter", "onItemsChanged :${mData.size}")
+                    _callback?.notifyItemsChanged()
                 }
             })
         }
@@ -150,7 +168,7 @@ class FishAdapter {
             }
 
             override fun onClick(view: View) {
-                Log.i("TUNA RUN > VIEW_HOLDER TAG_ITEM CLICK", textCaption.text.toString())
+                Log.i("TUNA RUN:RecyclerViewAdapter","onClick :" + textCaption.text.toString())
                 if (mClickListener != null) mClickListener!!.onItemClick(
                     view,
                     getAdapterPosition()
@@ -162,16 +180,27 @@ class FishAdapter {
         fun getItem(id: Int): ListItem {
             return mData[id]
         }
-
-        // allows clicks events to be caught
+        fun notifyItemsChanged() {
+            Log.e("TUNA RUN:RecyclerViewAdapter","notifyItemsChanged :" + mData.size.toString())
+            if (mChangedListener != null) mChangedListener!!.onItemsChanged()
+        }
         fun setClickListener(itemClickListener: ItemClickListener?) {
             mClickListener = itemClickListener
         }
 
-        // parent activity will implement this method to respond to click events
         interface ItemClickListener {
             fun onItemClick(view: View?, position: Int)
         }
+
+
+        fun setChangedListener(itemChangedListener: ItemsChangedListener?) {
+            mChangedListener = itemChangedListener
+        }
+
+        interface ItemsChangedListener {
+            fun onItemsChanged()
+        }
+
 
     }
 
@@ -181,6 +210,7 @@ class FishAdapter {
     ) : RecyclerView.Adapter<QueAdapter.ViewHolder>() {
         private val mInflater: LayoutInflater = LayoutInflater.from(context)
         private var mClickListener: RecyclerViewAdapter.ItemClickListener? = null
+        private var mChangedListener: RecyclerViewAdapter.ItemsChangedListener? = null
         private val itemViewList: ArrayList<View> = ArrayList()
 
 
@@ -237,9 +267,13 @@ class FishAdapter {
             }
 
             override fun onClick(view: View) {
-                Log.i("TUNA RUN > VIEW_HOLDER QUEUE_ITEM CLICK", viewQue.text.toString())
+                Log.i("TUNA RUN:QueAdapter","onClick :" + viewQue.text.toString())
                 if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
             }
+        }
+
+        fun notifyItemsChanged() {
+            if (mChangedListener != null) mChangedListener!!.onItemsChanged()
         }
 
         // convenience method for getting data at click position
@@ -252,6 +286,10 @@ class FishAdapter {
             mClickListener = itemClickListener
         }
 
+        fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
+            mChangedListener = itemChangedListener
+        }
+
     }
 
     class QueGroupAdapter internal constructor(
@@ -260,6 +298,7 @@ class FishAdapter {
     ) : RecyclerView.Adapter<QueGroupAdapter.ViewHolder>() {
         private val mInflater: LayoutInflater = LayoutInflater.from(context)
         private var mClickListener: RecyclerViewAdapter.ItemClickListener? = null
+        private var mChangedListener: RecyclerViewAdapter.ItemsChangedListener? = null
         private val itemViewList: ArrayList<View> = ArrayList()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -328,6 +367,9 @@ class FishAdapter {
             mClickListener = itemClickListener
         }
 
+        fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
+            mChangedListener = itemChangedListener
+        }
     }
 
 
@@ -337,6 +379,7 @@ class FishAdapter {
     ) : RecyclerView.Adapter<BinAdapter.ViewHolder>() {
         private val mInflater: LayoutInflater = LayoutInflater.from(context)
         private var mClickListener: RecyclerViewAdapter.ItemClickListener? = null
+        private var mChangedListener: RecyclerViewAdapter.ItemsChangedListener? = null
         private val itemViewList: ArrayList<View> = ArrayList()
 
 
@@ -419,7 +462,9 @@ class FishAdapter {
         fun setClickListener(itemClickListener: RecyclerViewAdapter.ItemClickListener?) {
             mClickListener = itemClickListener
         }
-
+        fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
+            mChangedListener = itemChangedListener
+        }
 
     }
 
@@ -430,6 +475,7 @@ class FishAdapter {
     ) : RecyclerView.Adapter<TagAdapter.ViewHolder>() {
         private val mInflater: LayoutInflater = LayoutInflater.from(context)
         private var mClickListener: RecyclerViewAdapter.ItemClickListener? = null
+        private var mChangedListener: RecyclerViewAdapter.ItemsChangedListener? = null
         private val itemViewList: ArrayList<View> = ArrayList()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -491,6 +537,8 @@ class FishAdapter {
         fun setClickListener(itemClickListener: RecyclerViewAdapter.ItemClickListener?) {
             mClickListener = itemClickListener
         }
-
+        fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
+            mChangedListener = itemChangedListener
+        }
     }
 }
