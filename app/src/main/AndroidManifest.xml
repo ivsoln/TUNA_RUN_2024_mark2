@@ -21,7 +21,7 @@
         <activity
             android:name=".SkipjackQueCreateActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".SkipjackQueListActivity"
             android:exported="false" />
@@ -53,6 +53,7 @@
             android:exported="false" />
         <activity
             android:name=".SkipjackCookPostTagActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:exported="false" />
         <activity
             android:name=".SkipjackCookPostActivity"
@@ -63,16 +64,16 @@
         <activity
             android:name=".SkipjackWipTagActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".SkipjackWipCookRackActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".SkipjackWipMainActivity"
             android:exported="false"
             android:theme="@style/Theme.TUNA_RUN2024"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".BlindReceiveListActivity"
             android:exported="false" />
@@ -82,18 +83,18 @@
         <activity
             android:name=".SkipjackQueActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".SkipjackBinActivity"
             android:exported="false" />
         <activity
             android:name=".BlindReceiveActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

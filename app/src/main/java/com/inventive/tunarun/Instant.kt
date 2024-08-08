@@ -42,8 +42,11 @@ class Instant {
             toast.show()
         }
 
-
         fun <T> selectionDialog(callback: FishAdapter.RecyclerViewAdapter.Callback<T>) {
+            selectionDialog(callback, false)
+        }
+
+        private fun <T> selectionDialog(callback: FishAdapter.RecyclerViewAdapter.Callback<T>, searchable: Boolean) {
             val dialog = Dialog(callback.activity)
             with(dialog) {
                 setCancelable(true)
@@ -53,7 +56,7 @@ class Instant {
             val recyclerView: RecyclerView = dialog.findViewById(R.id.list_item_view)
             recyclerView.setLayoutManager(LinearLayoutManager(callback.activity))
             val searchView: SearchView = dialog.findViewById(R.id.search_item)
-            //searchView.isVisible = false
+            searchView.isVisible = searchable
 
             val result: TextView = dialog.findViewById(R.id.text_result)
             result.isVisible = false

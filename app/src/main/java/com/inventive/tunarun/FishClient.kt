@@ -23,7 +23,7 @@ import java.util.Date
 class FishClient {
     companion object {
 
-        private var apiAddr: String = "99.42.1.44"
+        private var apiAddr: String = "99.42.1.48"
 
         var REQUEST_SHIFT = 1
         var REQUEST_BLIND_RECEIVE = 10
@@ -354,7 +354,10 @@ class FishClient {
                                 it.setClickListener(object :
                                     FishAdapter.RecyclerViewAdapter.ItemClickListener {
                                     override fun onItemClick(view: View?, position: Int) {
-                                        Log.i("TUNA RUN:dialogPreRackList","onItemClick : $position")
+                                        Log.i(
+                                            "TUNA RUN:dialogPreRackList",
+                                            "onItemClick : $position"
+                                        )
                                         onItemClicked(view, position)
                                     }
                                 })
@@ -449,8 +452,8 @@ class FishClient {
                 FishAdapter.RecyclerViewAdapter.Callback<Fish.Skipjack.Tag>(this, "CHOOSE TAG") {
                 var client = HashSetClient<Fish.Skipjack.Tag>()
                 override fun onItemSelected(result: Fish.Skipjack.Tag) {
-                    var queue = client.Items.first { it.Id == result.Id }
-                    callback.onSuccess(queue)
+                    var item = client.Items.first { it.Id == result.Id }
+                    callback.onSuccess(item)
                 }
 
                 override fun searchTextChanged(listView: RecyclerView, text: String) {
@@ -459,15 +462,35 @@ class FishClient {
                         override fun <T> onSuccess(result: T) {
                             client = result as HashSetClient<Fish.Skipjack.Tag>
                             items = client.Items
-                            listView.adapter = FishAdapter.TagAdapter(activity, Cook.tags!!.Items)
+                            FishAdapter.TagAdapter(activity, items).also {
+                                it.setClickListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemClickListener {
+                                    override fun onItemClick(view: View?, position: Int) {
+                                        Log.i("TUNA RUN:dialogTagList", "onItemClick :$position")
+                                        onItemClicked(view, position)
+                                    }
+                                })
+
+                                it.setChangedListener(object :
+                                    FishAdapter.RecyclerViewAdapter.ItemsChangedListener {
+                                    override fun onItemsChanged() {
+                                        notifyItemsChanged()
+                                    }
+                                })
+
+                                listView.adapter = it
+                                listView.adapter?.notifyDataSetChanged()
+
+                                it.notifyItemsChanged()
+                            }
 
                         }
 
                         override fun onError(result: String) {
-                            Log.e("TUNA RUN > GET_QUEUES > ERROR", result)
+                            Log.e("TUNA RUN:dialogTagList", "Error :$result")
                         }
                     }
-                    skipjack.listQueuesAsCompact(callback)
+                    skipjack.listTags(callback)
                 }
             }
             Instant.selectionDialog(popupList)
@@ -1126,6 +1149,59 @@ class FishClient {
             connect.post(baseUrl + "add_tag", tag, jCall)
         }
 
+        fun getTag(tagNo: String, callback: ActionRequest.Callback) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<Fish.Skipjack.Tag>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            connect.get(baseUrl + "get_tag?_tag=$tagNo", jCall)
+        }
+
+        fun listTags(callback: ActionRequest.Callback) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<HashSetClient<Fish.Skipjack.Tag>>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = Companion.Skipjack.Shift.Date.queryDateString()
+            val strShift = Companion.Skipjack.Shift.Shift
+            connect.get(
+                baseUrl + "get_tags?_date=$strDate&_shift=$strShift",
+                jCall
+            )
+        }
+
+        fun listTags(callback: ActionRequest.Callback, queueNo: Int) {
+            val jCall = object : JSONCallback {
+                override fun onSuccess(response: JSONObject) {
+                    val result = connect.jObj<HashSetClient<Fish.Skipjack.Tag>>(response)
+                    callback.onSuccess(result)
+                }
+
+                override fun onError(error: String) {
+                    callback.onError(error)
+                }
+            }
+            val strDate = Companion.Skipjack.Shift.Date.queryDateString()
+            val strShift = Companion.Skipjack.Shift.Shift
+            connect.get(
+                baseUrl + "get_tags?_date=$strDate&_shift=$strShift&_queue_no=$queueNo",
+                jCall
+            )
+        }
+
+
         fun addCook(cook: Fish.Skipjack.Cook, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {
                 override fun onSuccess(response: JSONObject) {
@@ -1140,19 +1216,6 @@ class FishClient {
             connect.post(baseUrl + "add_cook", cook, jCall)
         }
 
-        fun getTag(tagNo: String, callback: ActionRequest.Callback) {
-            val jCall = object : JSONCallback {
-                override fun onSuccess(response: JSONObject) {
-                    val result = connect.jObj<Fish.Skipjack.Tag>(response)
-                    callback.onSuccess(result)
-                }
-
-                override fun onError(error: String) {
-                    callback.onError(error)
-                }
-            }
-            connect.get(baseUrl + "get_tag?_tag=$tagNo", jCall)
-        }
 
         fun preRack(date: Date, shift: Int, rackNo: String, callback: ActionRequest.Callback) {
             val jCall = object : JSONCallback {

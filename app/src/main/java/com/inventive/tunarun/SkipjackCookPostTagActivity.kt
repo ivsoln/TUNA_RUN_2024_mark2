@@ -2,23 +2,27 @@ package com.inventive.tunarun
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
+import android.view.View
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.EditText
+import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.inventive.tunarun.Fish.Objects
 import com.inventive.tunarun.Fish.Objects.EntityState
 import com.inventive.tunarun.Fish.Skipjack.Tag
+import com.inventive.tunarun.FishClient.Companion.dialogTagList
 import com.inventive.tunarun.Instant.Companion.afterKeyEntered
-import com.inventive.tunarun.Instant.Companion.clear
 import com.inventive.tunarun.Instant.Companion.focusThenSelectionAll
 import com.inventive.tunarun.Instant.Companion.showResult
 import com.inventive.tunarun.SkipjackCookPostActivity.Companion.Cook
+
 
 class SkipjackCookPostTagActivity : AppCompatActivity() {
 
@@ -39,14 +43,7 @@ class SkipjackCookPostTagActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_skipjack_cook_post_tag)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-
         if (intent != null) {
             if (intent.extras != null) {
                 requestCode = intent.extras!!.getInt("REQUEST_CODE")
@@ -83,7 +80,20 @@ class SkipjackCookPostTagActivity : AppCompatActivity() {
             recyclerView?.adapter?.notifyDataSetChanged()
             textBarcode.focusThenSelectionAll()
         }
+        textBarcode.setOnLongClickListener {
+            val callback = object : ActionRequest.Callback {
+                override fun <T> onSuccess(result: T) {
+                    var obj = result as Fish.Skipjack.Tag
+                    addTag(obj)
+                }
 
+                override fun onError(result: String) {
+                    textResult.showResult(Fish.Objects.EntityState.WARNING, result)
+                }
+            }
+            this.dialogTagList(callback)
+            true
+        }
         textBarcode.afterKeyEntered {
             var text: String = textBarcode.text.toString()
             val skipjack = FishClient.SkipjackClient(applicationContext)
@@ -94,13 +104,15 @@ class SkipjackCookPostTagActivity : AppCompatActivity() {
                 }
 
                 override fun onError(result: String) {
-                    Log.e("TUNA RUN > CREATE BLIND_RECEIVE", result)
+                    Log.e("TUNA RUN:SkipjackCookPostTag", "Barcode.Entered: $result")
                     textResult.showResult(EntityState.WARNING, result)
                 }
             }
             skipjack.getTag(text, callback)
 
         }
+
+        textBarcode.requestFocus()
     }
 
 

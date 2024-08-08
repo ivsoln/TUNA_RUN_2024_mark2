@@ -7,9 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.inventive.tunarun.FishClient.Companion.dialogQueueList
+import com.inventive.tunarun.FishClient.Companion.dialogTagList
+import com.inventive.tunarun.Instant.Companion.showResult
 
 class SkipjackWipTagEditActivity : AppCompatActivity() {
 
+    var tag: Fish.Skipjack.Tag = Fish.Skipjack.Tag()
     lateinit var textBarcode: EditText
     lateinit var textQueue: EditText
     lateinit var viewColor: TextView
@@ -29,6 +33,9 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
     lateinit var goToSave: TextView
     lateinit var goToDel: TextView
     lateinit var goToUndo: TextView
+
+    lateinit var textResult: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,9 +46,22 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
             insets
         }
 
+        textResult = findViewById(R.id.text_result)
         textBarcode = findViewById(R.id.text_barcode)
         textBarcode.setOnLongClickListener {
 
+            val callback = object : ActionRequest.Callback {
+                override fun <T> onSuccess(result: T) {
+                    var obj = result as Fish.Skipjack.Tag
+                    bind(obj)
+                }
+
+                override fun onError(result: String) {
+                    textResult.showResult(Fish.Objects.EntityState.WARNING, result)
+                }
+            }
+
+            this.dialogTagList(callback)
 
 
             true
@@ -73,5 +93,18 @@ class SkipjackWipTagEditActivity : AppCompatActivity() {
         goToSave = findViewById(R.id.goto_save)
         goToDel = findViewById(R.id.goto_delete)
         goToUndo = findViewById(R.id.goto_undo)
+    }
+
+
+    fun bind(obj: Fish.Skipjack.Tag){
+        tag = obj
+
+        viewSpecy.text = tag.species_code
+        textSpecy.setText(tag.species_code)
+
+        viewTray.text = tag.quantity_tray_text
+        textTray.setText(tag.quantity_tray_text)
+
+
     }
 }

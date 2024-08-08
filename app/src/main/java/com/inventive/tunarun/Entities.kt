@@ -651,7 +651,7 @@ class Fish {
             var lot_no: String = ""
             var material_code: String = ""
             var material_name: String = ""
-            var material_sesc: String = ""
+            var material_desc: String = ""
 
             var serial_no: String = ""
             var serial_desc: String = ""
@@ -763,6 +763,12 @@ class Fish {
 
             var batch_no: String = ""
 
+            var material_code: String = ""
+            var material_name: String = ""
+            var material_desc: String = ""
+
+            var sloc: String = ""
+
             var species_base_code: String = ""
 
             var species_id: Int = 0
@@ -774,6 +780,21 @@ class Fish {
             var species_size_id: Int = 0
 
             var species_size_code: String = ""
+
+            fun getItemText(): String {
+                var itemNo = ""
+                if (this.material_code != null) {
+                    itemNo += this.material_code
+                }
+
+                if (this.species_code != null) {
+                    if (itemNo.isNotEmpty()) {
+                        itemNo += "/"
+                    }
+                    itemNo += this.species_code
+                }
+                return itemNo
+            }
 
             var species_size_quantity: BigDecimal = BigDecimal.ZERO
 

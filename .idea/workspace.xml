@@ -175,12 +175,23 @@
   <component name="ChangeListManager">
     <list default="true" id="214f875f-3f14-432e-8ada-24ab8ffdd893" name="Changes" comment="#bhumi 2024.07.23">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Entities.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/Instant.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostTagActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackCookPostTagActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagEditActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/SkipjackWipTagEditActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_recycler_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_recycler_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post_tag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_cook_post_tag.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_skipjack_wip_tag_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_bin_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_bin_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_blind_recieve_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_blind_recieve_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_grp_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_grp_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_que_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_wip_tag_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_skipjack_wip_tag_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -590,7 +601,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inventive/tunarun/FishAdapter.kt</url>
-          <line>18</line>
+          <line>19</line>
           <properties class="com.inventive.tunarun.FishAdapter.ListItem" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class FishAdapter {
 
@@ -74,11 +75,18 @@ class FishAdapter {
             open fun searchTextChanged(listView: RecyclerView, text: String) {}
 
             open fun notifyItemsChanged() {
-                Log.i("TUNA RUN:RecyclerViewAdapter","notifyItemsChanged :" + items.size.toString())
+                Log.i(
+                    "TUNA RUN:RecyclerViewAdapter",
+                    "notifyItemsChanged :" + items.size.toString()
+                )
                 if (mChangedListener != null) mChangedListener!!.onItemsChanged()
             }
+
             fun setItemsChangedListener(itemChangedListener: ItemsChangedListener?) {
-                Log.i("TUNA RUN:RecyclerViewAdapter","setItemsChangedListener :" + items.size.toString())
+                Log.i(
+                    "TUNA RUN:RecyclerViewAdapter",
+                    "setItemsChangedListener :" + items.size.toString()
+                )
                 mChangedListener = itemChangedListener
             }
 
@@ -116,7 +124,7 @@ class FishAdapter {
                 }
             })
 
-            setChangedListener(object : ItemsChangedListener{
+            setChangedListener(object : ItemsChangedListener {
                 override fun onItemsChanged() {
                     Log.i("TUNA RUN:RecyclerViewAdapter", "onItemsChanged :${mData.size}")
                     _callback?.notifyItemsChanged()
@@ -168,7 +176,7 @@ class FishAdapter {
             }
 
             override fun onClick(view: View) {
-                Log.i("TUNA RUN:RecyclerViewAdapter","onClick :" + textCaption.text.toString())
+                Log.i("TUNA RUN:RecyclerViewAdapter", "onClick :" + textCaption.text.toString())
                 if (mClickListener != null) mClickListener!!.onItemClick(
                     view,
                     getAdapterPosition()
@@ -180,10 +188,12 @@ class FishAdapter {
         fun getItem(id: Int): ListItem {
             return mData[id]
         }
+
         fun notifyItemsChanged() {
-            Log.e("TUNA RUN:RecyclerViewAdapter","notifyItemsChanged :" + mData.size.toString())
+            Log.e("TUNA RUN:RecyclerViewAdapter", "notifyItemsChanged :" + mData.size.toString())
             if (mChangedListener != null) mChangedListener!!.onItemsChanged()
         }
+
         fun setClickListener(itemClickListener: ItemClickListener?) {
             mClickListener = itemClickListener
         }
@@ -267,7 +277,7 @@ class FishAdapter {
             }
 
             override fun onClick(view: View) {
-                Log.i("TUNA RUN:QueAdapter","onClick :" + viewQue.text.toString())
+                Log.i("TUNA RUN:QueAdapter", "onClick :" + viewQue.text.toString())
                 if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
             }
         }
@@ -462,6 +472,7 @@ class FishAdapter {
         fun setClickListener(itemClickListener: RecyclerViewAdapter.ItemClickListener?) {
             mClickListener = itemClickListener
         }
+
         fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
             mChangedListener = itemChangedListener
         }
@@ -498,8 +509,16 @@ class FishAdapter {
         // binds the data to the TextView in each row
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val obj = mData[position]
-            holder.viewQue.text = obj.queue_no.toString()
+            holder.viewTagNo.text = obj.tag
+            holder.viewQueNo.text = obj.queue_no.toString()
+            holder.viewItemNo.text = obj.getItemText()
+
             holder.viewBatchNo.text = obj.batch_no
+            holder.viewSloc.text = obj.sloc
+
+            holder.viewSizeTray.text =
+                "${obj.species_size_code} (${obj.quantity_tray}/${obj.quantity_each})"
+
         }
 
         // total number of rows
@@ -512,18 +531,20 @@ class FishAdapter {
         inner class ViewHolder internal constructor(itemView: View) :
             RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
-            var viewQue: TextView = itemView.findViewById(R.id.view_que)
-            var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
-            var viewLotNo: TextView = itemView.findViewById(R.id.view_lotNo)
+            var viewQueNo: TextView = itemView.findViewById(R.id.view_queNo)
+            var viewTagNo: TextView = itemView.findViewById(R.id.view_tagNo)
             var viewItemNo: TextView = itemView.findViewById(R.id.view_itemNo)
-            var viewWeight: TextView = itemView.findViewById(R.id.view_weight)
+            var viewBatchNo: TextView = itemView.findViewById(R.id.view_batchNo)
+            var viewSloc: TextView = itemView.findViewById(R.id.view_sloc)
+
+            var viewSizeTray: TextView = itemView.findViewById(R.id.view_sizeTray)
 
             init {
                 itemView.setOnClickListener(this)
             }
 
             override fun onClick(view: View) {
-                Log.i("TUNA RUN > VIEW_HOLDER TAG_ITEM CLICK", viewQue.text.toString())
+                Log.i("TUNA RUN > VIEW_HOLDER TAG_ITEM CLICK", viewQueNo.text.toString())
                 if (mClickListener != null) mClickListener!!.onItemClick(view, getAdapterPosition())
             }
         }
@@ -533,10 +554,15 @@ class FishAdapter {
             return mData[id]
         }
 
+        fun notifyItemsChanged() {
+            if (mChangedListener != null) mChangedListener!!.onItemsChanged()
+        }
+
         // allows clicks events to be caught
         fun setClickListener(itemClickListener: RecyclerViewAdapter.ItemClickListener?) {
             mClickListener = itemClickListener
         }
+
         fun setChangedListener(itemChangedListener: RecyclerViewAdapter.ItemsChangedListener?) {
             mChangedListener = itemChangedListener
         }

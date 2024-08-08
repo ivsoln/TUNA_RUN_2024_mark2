@@ -10,7 +10,7 @@
         android:id="@+id/capt_que"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="serif"
         android:gravity="left|center_vertical"
         android:hint="NO."
@@ -25,7 +25,7 @@
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
         android:hint="#BATCH_NO"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/capt_que"
         app:layout_constraintTop_toBottomOf="@+id/view_que" />
@@ -37,20 +37,19 @@
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
         android:hint="#WEIGHT"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/view_batchNo"
-        app:layout_constraintTop_toBottomOf="@+id/view_batchNo" />
+        app:layout_constraintBottom_toBottomOf="@+id/capt_lot"
+        app:layout_constraintStart_toStartOf="@+id/view_batchNo" />
 
     <TextView
         android:id="@+id/view_lotNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
         android:hint="#LOT_NO"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/capt_lot"
         app:layout_constraintStart_toEndOf="@+id/capt_lot" />
@@ -59,37 +58,37 @@
         android:id="@+id/view_separate"
         android:layout_width="0dp"
         android:layout_height="2dp"
+        android:layout_marginTop="4dp"
         android:background="@color/Blue_Gray_300"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_weight" />
+        app:layout_constraintTop_toBottomOf="@+id/view_weight" />
 
     <TextView
         android:id="@+id/capt_lot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="serif"
         android:gravity="left|center_vertical"
         android:hint="LOT:"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_weight"
-        app:layout_constraintStart_toEndOf="@+id/view_weight" />
+        app:layout_constraintStart_toEndOf="@+id/view_weight"
+        app:layout_constraintTop_toBottomOf="@+id/view_batchNo" />
 
     <TextView
         android:id="@+id/view_itemNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="@font/roboto_mono"
         android:gravity="left|center_vertical"
-        android:hint="#ITEM_NO|SPECIES"
-        android:textSize="16sp"
+        android:hint="#|#"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_que"
         app:layout_constraintTop_toTopOf="@+id/view_que" />
 
@@ -97,13 +96,12 @@
         android:id="@+id/view_que"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:background="@color/Amber_A200"
         android:fontFamily="@font/roboto_mono"
         android:gravity="center_horizontal|center_vertical"
-        android:hint="#QUE"
-        android:textSize="16sp"
+        android:hint="#"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/capt_que"
         app:layout_constraintTop_toTopOf="parent" />

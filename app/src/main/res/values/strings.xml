@@ -90,4 +90,5 @@
     <string name="capt_customer">CUSTOMER</string>
     <string name="hint_customer">#CUSTOMER</string>
     <string name="hint_cust">#CUST</string>
+    <string name="hint_tag_no">#TAG_NO</string>
 </resources>

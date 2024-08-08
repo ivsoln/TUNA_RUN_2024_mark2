@@ -34,12 +34,11 @@
     </androidx.appcompat.widget.SearchView>
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="8dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout0"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +66,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
