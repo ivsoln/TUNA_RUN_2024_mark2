@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkipjackSteamCoolingActivity">
+
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Light_Green_A400"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="center"
+        android:text="SAVE"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/text_batch"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintStart_toEndOf="@+id/text_batch"
+        app:layout_constraintTop_toBottomOf="@+id/capt_group" />
+
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_mono"
+        android:hint="#RESULT"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_save"
+        app:layout_constraintStart_toStartOf="@+id/text_batch"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:text="STEAM #COOLING"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/capt_scanned"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="SCAN TAG"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/text_barcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@color/Cyan_A200"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="start"
+        android:hint="@string/hint_barcode"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/text_group"
+        app:layout_constraintStart_toStartOf="@+id/capt_scanned"
+        app:layout_constraintTop_toBottomOf="@+id/capt_scanned"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Primary_090"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_barcode"
+        app:layout_constraintTop_toBottomOf="@+id/text_barcode" />
+
+    <TextView
+        android:id="@+id/capt_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:text="COOK NO."
+        app:layout_constraintBottom_toTopOf="@+id/text_group"
+        app:layout_constraintStart_toStartOf="@+id/text_group" />
+
+    <TextView
+        android:id="@+id/capt_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono"
+        android:text="COOLING LINE"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <EditText
+        android:id="@+id/text_group"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Amber_A400"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="start"
+        android:hint="#"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_barcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/text_batch"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Light_Green"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:gravity="start"
+        android:hint="#LINE"
+        android:inputType="text"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/text_barcode"
+        app:layout_constraintTop_toBottomOf="@+id/capt_group"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,10 +103,30 @@
         android:inputType="text"
         android:text="STEAM OFF"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/view_shift"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view_date"
         app:layout_constraintTop_toBottomOf="@+id/view_date"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/goto_cooling"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Light_Green"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="COOLING"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/view_shift"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view_date"
+        app:layout_constraintTop_toBottomOf="@+id/goto_steamOff"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -124,6 +144,6 @@
         app:layout_constraintEnd_toEndOf="@+id/goto_steamOff"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/goto_steamOff"
-        app:layout_constraintTop_toBottomOf="@+id/goto_steamOff"
+        app:layout_constraintTop_toBottomOf="@+id/goto_cooling"
         tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

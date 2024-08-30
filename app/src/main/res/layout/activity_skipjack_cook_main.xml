@@ -9,6 +9,21 @@
 
 
     <TextView
+        android:id="@+id/text_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="serif"
+        android:hint="#RESULT"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goto_batchCook" />
+
+    <TextView
         android:id="@+id/goto_continue"
         android:layout_width="0dp"
         android:layout_height="54dp"
@@ -86,13 +101,12 @@
         android:id="@+id/capt_rackCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:fontFamily="serif"
         android:gravity="right"
         android:text="RACK COUNT"
         app:layout_constraintEnd_toEndOf="@+id/textView222"
         app:layout_constraintStart_toStartOf="@+id/view_date"
-        app:layout_constraintTop_toBottomOf="@+id/textView222" />
+        tools:layout_editor_absoluteY="181dp" />
 
     <TextView
         android:id="@+id/goto_batchCook"

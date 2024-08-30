@@ -23,7 +23,7 @@ import java.util.Date
 class FishClient {
     companion object {
 
-        private var apiAddr: String = "99.42.1.48"
+        private var apiAddr: String = "192.168.1.54"
 
         var REQUEST_SHIFT = 1
         var REQUEST_BLIND_RECEIVE = 10
@@ -43,6 +43,7 @@ class FishClient {
                 var QueueTypes = HashSetClient<Fish.Skipjack.Masters.QueueType>()
             }
         }
+
 
         class Skipjack {
             companion object {

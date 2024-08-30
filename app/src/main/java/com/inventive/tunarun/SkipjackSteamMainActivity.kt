@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 class SkipjackSteamMainActivity : AppCompatActivity() {
 
     private lateinit var gotoSteamOff: TextView
+    private lateinit var gotoCooling: TextView
     private lateinit var gotoTempRec: TextView
     private lateinit var gotoBatchCook: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,12 @@ class SkipjackSteamMainActivity : AppCompatActivity() {
             val intent = Intent(this, SkipjackSteamOffActivity::class.java)
             startActivity(intent)
         }
+        gotoCooling = findViewById(R.id.goto_cooling)
+        gotoCooling.setOnClickListener {
+            val intent = Intent(this, SkipjackSteamCoolingActivity::class.java)
+            startActivity(intent)
+        }
+
 
         gotoTempRec = findViewById(R.id.goto_tempRec)
         gotoTempRec.setOnClickListener {
